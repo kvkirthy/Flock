@@ -16,5 +16,10 @@ namespace Flock.Controllers
             return View();
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
+
     }
 }
