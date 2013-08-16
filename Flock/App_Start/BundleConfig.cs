@@ -24,7 +24,9 @@ namespace Flock
 
             bundles.Add(new StyleBundle("~/bundles/JSApplication").Include(
                 "~/JSApplication/main.js",
-                "~/JSApplication/Controllers/registrationController.js"
+                "~/JSApplication/Controllers/registrationController.js",
+                "~/JSApplication/Controllers/messageController.js",
+                "~/JSApplication/Services/messageService.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));            

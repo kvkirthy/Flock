@@ -199,8 +199,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="JSApplication\Controllers\messageController.js" />
     <Content Include="JSApplication\Controllers\registrationController.js" />
     <Content Include="JSApplication\main.js" />
+    <Content Include="JSApplication\Services\messageService.js" />
     <Content Include="Scripts\angular.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -235,7 +237,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="JSApplication\Factories\" />
-    <Folder Include="JSApplication\Services\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
