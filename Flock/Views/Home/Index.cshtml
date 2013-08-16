@@ -11,10 +11,10 @@
     </div>
     <div ng-repeat="message in messages">
         <div class="row-fluid">
-            <div class="span4">{{message.createDateTime}}</div><div class="span4 offset4">{{message.createUserId}}</div>
+            <div class="span4">{{message.createDateTime}}</div><div class="span4 offset2">{{message.createUserId}}</div>
         </div>
         <div class="row-fluid">
-            <div class="span8">{{message.message}} </div>
+            <strong> <div class="span8">{{message.message}} </div></strong>
         </div>
         <hr />
     </div>

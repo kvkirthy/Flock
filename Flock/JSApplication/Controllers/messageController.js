@@ -1,5 +1,7 @@
 ﻿flockApp.controller('messageController', function ($scope, messageService) {
     
     $scope.messages = [];
-    $scope.messages = messageService.getAllMessages();
+     messageService.getAllMessages().then(function (data) {
+         $scope.messages = data;
+    });
 });
