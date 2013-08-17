@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Raven.Client.Document;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web;
@@ -15,6 +17,9 @@ namespace Flock
 
     public class MvcApplication : System.Web.HttpApplication
     {
+
+        internal static DocumentStore FlockDocumentStore;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -25,6 +30,9 @@ namespace Flock
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("json", "true", "application/json"));
+
+            FlockDocumentStore = new DocumentStore { Url = ConfigurationManager.AppSettings["RavenDbUrl"] };
+            FlockDocumentStore.Initialize();
         }
     }
 }

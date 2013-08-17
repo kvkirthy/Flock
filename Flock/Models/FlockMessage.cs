@@ -8,6 +8,9 @@ namespace Flock.Models
 {
     public class FlockMessage
     {
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
         [JsonProperty("message")]
         public string Message { get; set; }
 

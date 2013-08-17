@@ -1,4 +1,5 @@
-﻿using Flock.Models;
+﻿using Flock.Facade;
+using Flock.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Flock.Controllers
     {
         public IEnumerable<FlockMessage> Get()
         {
+            //return MessageFacade.getMessages("dummy");
 
             return new List<FlockMessage>()
             {

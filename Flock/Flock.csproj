@@ -40,7 +40,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Raven.Abstractions-4.5">
+      <HintPath>..\packages\RavenDB.Client.2.5.2666\lib\net45\Raven.Abstractions-4.5.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight-4.5">
+      <HintPath>..\packages\RavenDB.Client.2.5.2666\lib\net45\Raven.Client.Lightweight-4.5.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
@@ -130,6 +137,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="DataAccess\FlockMessageAccess.cs" />
+    <Compile Include="DataAccess\IFlockMessageAccess.cs" />
+    <Compile Include="Facade\MessageFacade.cs" />
     <Compile Include="Models\FlockMessage.cs" />
     <Compile Include="Controllers\FlockMessageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
