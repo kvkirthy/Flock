@@ -16,5 +16,8 @@ namespace Flock.Models
 
         [JsonProperty("createUserId")]
         public string CreateUserId { get; set; }
+
+        [JsonProperty("isLiked")]
+        public bool IsLiked { get; set; }
     }
 }
