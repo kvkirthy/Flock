@@ -1,0 +1,26 @@
+﻿.messageContent {
+    float: left;
+    width: 400px;
+    max-width: 400px;
+    word-wrap: break-word;
+    font-family: calibri;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: lightcyan;
+}
+
+.messageComment {
+   
+    float: left;
+    width: 320px;
+    max-width: 320px;
+    word-wrap: break-word;
+    font-family: verdana;
+    font-size: 10px;
+     
+}
+
+
+.greyColor {
+    background-color: lightcyan;
+}
