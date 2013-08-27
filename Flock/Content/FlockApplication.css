@@ -10,17 +10,43 @@
 }
 
 .messageComment {
-   
     float: left;
     width: 320px;
     max-width: 320px;
     word-wrap: break-word;
     font-family: verdana;
     font-size: 10px;
-     
 }
 
 
 .greyColor {
     background-color: lightcyan;
+}
+
+.info_wrapper {
+        border: 1px solid #ddd;
+        margin-bottom: 15px;
+    }
+
+.flocker {
+    height: 46px;
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    margin: 0;
+}
+
+.flocker .info {
+        width: 170px;
+        float: left;
+        margin-left: 10px;
+    }
+
+.sidebar_title {
+    margin: 0;
+    background: #eee no-repeat 0 0;
+    padding: 10px 10px;
+    color: #444;
+    text-shadow: 1px 1px 0 #fff;
+    font-size: 16px;
+    font-weight: bold;
 }

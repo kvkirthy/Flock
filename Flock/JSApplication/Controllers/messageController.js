@@ -1,26 +1,33 @@
 ﻿flockApp.controller('messageController', function ($scope, messageService) {
 
     $scope.messages = [];
-    $scope.selectedUser = "BruceLee";
+    $scope.selectedUser = "Srinivas Paila";
     $scope.isUserNotSelected = true;
     $scope.originalAuthorSays = "";
     $scope.modifiedMessage = {};
     $scope.showCommentTexbox = false;
-
+    $scope.maxCharacters = 140;
+    $scope.remainingChars = 140;
 
     $scope.sampleUsers = [
-        { id: "1", name: "Sachin" },
-        { id: "2", name: "MJ" },
-        { id: "3", name: "BruceLee" },
-        { id: "4", name: "Federer" },
-        { id: "5", name: "Rehman" }
+        { id: "1", name: "Srinivas Paila" },
+        { id: "2", name: "Sandeep" },
+        { id: "3", name: "Srikanth" },
+        { id: "4", name: "Phani" },
+        { id: "5", name: "Keerti" },
+        { id: "6", name: "Kiran" },
+        { id: "7", name: "Nishanth" },
+        { id: "8", name: "Nagaraju" }
     ];
 
     messageService.getAllMessages().then(function (data) {
         $scope.messages = data;
-
     });
 
+    $scope.SetRemainingChars = function () {
+        $scope.remainingChars = $scope.maxCharacters - $scope.messageContent.length;
+    };
+    
     $scope.refresh = function () {
         messageService.getAllMessages().then(function (data) {
             $scope.messages = data;
@@ -49,7 +56,6 @@
             $scope.messages.unshift(data);
         });
         $scope.messageContent = "";
-
     };
 
 
@@ -119,8 +125,10 @@
         });
     };
 
-    $scope.showCommentsText = function() {
-        $scope.showCommentTexbox = !$scope.showCommentTexbox;
+    $scope.showCommentsText = function (message) {
+        if (message.showCommentTextbox == undefined)
+            message.showCommentTextbox = false;
+        message.showCommentTextbox = !message.showCommentTextbox;
     };
 
 });
