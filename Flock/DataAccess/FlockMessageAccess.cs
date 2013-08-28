@@ -10,9 +10,9 @@ namespace Flock.DataAccess
     {
         public IEnumerable<FlockMessage> getMessages(string givenUserId)
         {
-            using (var session = MvcApplication.FlockDocumentStore.OpenSession("Flock"))
+            using (var session = MvcApplication.FlockDocumentStore.OpenSession())
             {
-               var messages= session.Query<FlockMessage>();
+               var messages= session.Query<FlockMessage>("http://localhost:8082/databases/playground/docs");
                return messages;
             }
         }

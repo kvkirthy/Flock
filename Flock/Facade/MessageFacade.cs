@@ -7,9 +7,6 @@ using System.Web;
 
 namespace Flock.Facade
 {
-    /// <summary>
-    /// Abstracts message access logic
-    /// </summary>
     public static class MessageFacade
     {
         private static IFlockMessageAccess _flockMessageAccess;
