@@ -18,6 +18,12 @@ namespace Flock
                 "~/Scripts/angular.js"
                 ));
 
+
+            bundles.Add(new ScriptBundle("~/bundles/underScorejs").Include(
+                "~/Scripts/underscore.js"
+                ));
+
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
@@ -26,12 +32,15 @@ namespace Flock
                 "~/JSApplication/main.js",
                 "~/JSApplication/Controllers/registrationController.js",
                 "~/JSApplication/Controllers/messageController.js",
-                "~/JSApplication/Services/messageService.js"
+                "~/JSApplication/Services/messageService.js",
+                "~/JSApplication/Directives/onEnter.js",
+                 "~/JSApplication/Directives/setTitle.js"
                 ));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));            
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/FlockApplication.css"));            
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
+                        "~/Content/themes/base/jquery.ui.css",
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",
                         "~/Content/themes/base/jquery.ui.selectable.css",
