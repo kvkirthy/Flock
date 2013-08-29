@@ -164,23 +164,29 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
+    <Compile Include="Facade\Concrete\UserProfileFacade.cs" />
     <Compile Include="Facade\Interfaces\IMessageFacade.cs" />
     <Compile Include="Facade\Concrete\MessageFacade.cs" />
+    <Compile Include="Facade\Interfaces\IUserProfileFacade.cs" />
     <Compile Include="Models\FlockMessage.cs" />
     <Compile Include="Controllers\FlockMessageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Repositories\Base\IRepository.cs" />
     <Compile Include="Repositories\Base\RavenRepository.cs" />
     <Compile Include="Repositories\Concrete\MessageRepository.cs" />
+    <Compile Include="Repositories\Concrete\UserProfileRepository.cs" />
     <Compile Include="Repositories\Interfaces\IMessageRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserProfileRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />
@@ -256,6 +262,7 @@
     <Content Include="JSApplication\Directives\setTitle.js" />
     <Content Include="JSApplication\main.js" />
     <Content Include="JSApplication\Services\messageService.js" />
+    <Content Include="JSApplication\Services\registrationService.js" />
     <Content Include="Scripts\angular.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

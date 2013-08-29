@@ -50,6 +50,8 @@ namespace Flock.DependencyResolution {
 
                             x.For<IMessageFacade>().Use<MessageFacade>();
                             x.For<IMessageRepository>().Use<MessageRepository>();
+                            x.For<IUserProfileFacade>().Use<UserProfileFacade>();
+                            x.For<IUserProfileRepository>().Use<UserProfileRepository>();
 
                         });
             return ObjectFactory.Container;
