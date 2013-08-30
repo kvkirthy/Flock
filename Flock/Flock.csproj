@@ -78,6 +78,8 @@
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -180,7 +182,38 @@
     <Compile Include="Repositories\Base\IRepository.cs" />
     <Compile Include="Repositories\Base\RavenRepository.cs" />
     <Compile Include="Repositories\Concrete\MessageRepository.cs" />
+    <Compile Include="Repositories\FlockDataContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlockDataContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\FlockDataContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlockDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\FlockDataContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlockDataContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\Interest.cs">
+      <DependentUpon>FlockDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\Interfaces\IMessageRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\Project.cs">
+      <DependentUpon>FlockDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\User.cs">
+      <DependentUpon>FlockDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\User_Interest.cs">
+      <DependentUpon>FlockDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\User_Project.cs">
+      <DependentUpon>FlockDataContext.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />
@@ -257,6 +290,23 @@
     <Content Include="JSApplication\main.js" />
     <Content Include="JSApplication\Services\messageService.js" />
     <Content Include="Scripts\angular.js" />
+    <EntityDeploy Include="Repositories\FlockDataContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FlockDataContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Repositories\FlockDataContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FlockDataContext.edmx</DependentUpon>
+      <LastGenOutput>FlockDataContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Repositories\FlockDataContext.edmx.diagram">
+      <DependentUpon>FlockDataContext.edmx</DependentUpon>
+    </Content>
+    <Content Include="Repositories\FlockDataContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FlockDataContext.edmx</DependentUpon>
+      <LastGenOutput>FlockDataContext.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -298,6 +348,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
