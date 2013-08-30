@@ -8,6 +8,26 @@
 
 <div>
     <div ng-controller="registrationController">
-        <input type="text" ng-model="firstName" />
+        {{profile.firstName.label}}<br />
+        <input class="span4" type="text" ng-model="profile.firstName.value" /><br />
+        {{profile.lastName.label}}<br />
+        <input class="span4" type="text" ng-model="profile.lastName.value" /><br />
+        <br />
+        {{profile.project.label}}<br />
+        <input class="span4" type="text" ng-model="profile.project.value" /><br />
+        <br />
+        {{profile.interests.label}}<br />
+
+        <textarea class="span4" style="resize: none;" placeholder="intrests..." rows="4"
+                  ng-model="profile.interests.value"></textarea>
+        <br/>
+        <button class="btn btn-success" ng-click="register()">
+            Register
+        </button>
+        <br/>
+        <br/>        
+        <div ng-repeat="statusMessage in statusMessages">
+            {{statusMessage}}
+        </div>
     </div>
 </div>

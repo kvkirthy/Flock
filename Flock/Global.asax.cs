@@ -1,4 +1,6 @@
-﻿using Raven.Client.Document;
+﻿using System.Web.Http.Dispatcher;
+using Flock.DependencyResolution;
+using Raven.Client.Document;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,6 +11,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using StructureMap;
 
 namespace Flock
 {
@@ -18,21 +21,33 @@ namespace Flock
     public class MvcApplication : System.Web.HttpApplication
     {
 
-        internal static DocumentStore FlockDocumentStore;
+    //    internal static DocumentStore FlockDocumentStore;
 
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+         //   GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("json", "true", "application/json"));
+          //  FlockDocumentStore = new DocumentStore { Url = ConfigurationManager.AppSettings["RavenDbUrl"] };
+           // FlockDocumentStore.Initialize();
 
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("json", "true", "application/json"));
+         
+            //ObjectFactory.Initialize(x =>
+            //                             {
+            //                                 x.Scan(scan =>
+            //                                 {
+            //                                     scan.TheCallingAssembly();
+            //                                     scan.WithDefaultConventions();
+            //                                 });
 
-            FlockDocumentStore = new DocumentStore { Url = ConfigurationManager.AppSettings["RavenDbUrl"] };
-            FlockDocumentStore.Initialize();
+            //                                 x.AddRegistry(new RavenRegistry());
+            //                                 x.AddRegistry(new FacadeRegistry());
+            //                                 x.AddRegistry(new RepositoryRegistry());
+            //      
+                     //  });
         }
     }
 }
