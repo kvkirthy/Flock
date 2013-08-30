@@ -8,4 +8,7 @@
      $scope.toggleLike = function (message) {
          message.isLiked = (message.isLiked)?false:true;
      };
+
 });
+
+
