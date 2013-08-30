@@ -210,16 +210,25 @@
     <Compile Include="Repositories\Project.cs">
       <DependentUpon>FlockDataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\Quack.cs">
+      <DependentUpon>FlockDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\QuackContent.cs">
+      <DependentUpon>FlockDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\QuackType.cs">
+      <DependentUpon>FlockDataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\User.cs">
       <DependentUpon>FlockDataContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\User_Interest.cs">
-      <DependentUpon>FlockDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repositories\User_Project.cs">
-      <DependentUpon>FlockDataContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Repositories\Interfaces\IUserProfileRepository.cs" />
+    <Compile Include="Repositories\UserInterest.cs">
+      <DependentUpon>FlockDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\UserProject.cs">
+      <DependentUpon>FlockDataContext.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />

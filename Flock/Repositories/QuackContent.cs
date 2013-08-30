@@ -12,25 +12,17 @@ namespace Flock.Repositories
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class QuackContent
     {
-        public User()
+        public QuackContent()
         {
             this.Quacks = new HashSet<Quack>();
-            this.UserInterests = new HashSet<UserInterest>();
-            this.UserProjects = new HashSet<UserProject>();
         }
     
         public int ID { get; set; }
-        public string UserName { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public bool Active { get; set; }
-        public string AdditionalDetails { get; set; }
+        public string MessageText { get; set; }
         public System.DateTime CreatedDate { get; set; }
     
         public virtual ICollection<Quack> Quacks { get; set; }
-        public virtual ICollection<UserInterest> UserInterests { get; set; }
-        public virtual ICollection<UserProject> UserProjects { get; set; }
     }
 }

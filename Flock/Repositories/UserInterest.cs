@@ -12,9 +12,13 @@ namespace Flock.Repositories
     using System;
     using System.Collections.Generic;
     
-    public partial class User_Project
+    public partial class UserInterest
     {
         public int UserId { get; set; }
-        public int ProjectId { get; set; }
+        public int InterestId { get; set; }
+        public System.DateTime CreatedDate { get; set; }
+    
+        public virtual Interest Interest { get; set; }
+        public virtual User User { get; set; }
     }
 }

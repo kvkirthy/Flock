@@ -14,8 +14,15 @@ namespace Flock.Repositories
     
     public partial class Interest
     {
+        public Interest()
+        {
+            this.UserInterests = new HashSet<UserInterest>();
+        }
+    
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+    
+        public virtual ICollection<UserInterest> UserInterests { get; set; }
     }
 }

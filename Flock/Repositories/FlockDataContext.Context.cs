@@ -27,8 +27,11 @@ namespace Flock.Repositories
     
         public DbSet<Interest> Interests { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Quack> Quacks { get; set; }
+        public DbSet<QuackContent> QuackContents { get; set; }
+        public DbSet<QuackType> QuackTypes { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<User_Interest> User_Interest { get; set; }
-        public DbSet<User_Project> User_Project { get; set; }
+        public DbSet<UserInterest> UserInterests { get; set; }
+        public DbSet<UserProject> UserProjects { get; set; }
     }
 }
