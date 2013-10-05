@@ -74,6 +74,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
@@ -174,15 +175,15 @@
     <Compile Include="Facade\Interfaces\IMessageFacade.cs" />
     <Compile Include="Facade\Concrete\MessageFacade.cs" />
     <Compile Include="Facade\Interfaces\IUserProfileFacade.cs" />
-    <Compile Include="Models\FlockMessage.cs" />
+    <Compile Include="ViewModels\FlockMessage.cs" />
     <Compile Include="Controllers\FlockMessageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="ViewModels\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\IEntity.cs" />
+    <Compile Include="ViewModels\IEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />
@@ -262,6 +263,7 @@
     <Content Include="JSApplication\Services\messageService.js" />
     <Content Include="JSApplication\Services\registrationService.js" />
     <Content Include="JSApplication\Templates\firstPage.html" />
+    <Content Include="JSApplication\Templates\home.html" />
     <Content Include="Scripts\angular.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
