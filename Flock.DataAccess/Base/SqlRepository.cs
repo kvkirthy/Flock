@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Web;
+using Flock.DataAccess.EntityFramework;
+using Flock.DataAccess.RepositoryBase;
 
-namespace Flock.Repositories.Base
+namespace Flock.DataAccess.Base
 {
     public class SqlRepository<T> : IRepository<T> where T : class
     {
         protected DbContext DbContext { get; set; }
         protected DbSet<T> DbSet { get; set; }
 
-        public SqlRepository(DbContext dbContext)
+        public SqlRepository()
         {
-            if (dbContext == null)
-                throw new ArgumentNullException("dbContext");
-            DbContext = dbContext;
+            DbContext = new FlockContext();
             DbSet = DbContext.Set<T>();
         }
 
@@ -42,6 +39,7 @@ namespace Flock.Repositories.Base
             else
             {
                 DbSet.Add(entity);
+                CommitChanges();
             }
         }
 
@@ -51,6 +49,8 @@ namespace Flock.Repositories.Base
             if (dbEntityEntry.State == EntityState.Detached)
             {
                 DbSet.Attach(entity);
+                CommitChanges();
+              
             }
             dbEntityEntry.State = EntityState.Modified;
         }
@@ -66,14 +66,28 @@ namespace Flock.Repositories.Base
             {
                 DbSet.Attach(entity);
                 DbSet.Remove(entity);
+                CommitChanges();
             }
         }
 
         public virtual void Delete(int id)
         {
             var entity = GetById(id);
-            if (entity == null) return;
+            if (entity == null) return; 
             Delete(entity);
+            CommitChanges();
+        }
+
+        void CommitChanges()
+        {
+            try
+            {
+                DbContext.SaveChanges();
+            }
+            finally
+            {
+                DbContext.Dispose();
+            }
         }
     }
 }

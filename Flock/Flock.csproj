@@ -167,9 +167,9 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
-    <Compile Include="DependencyResolution\IoC.cs" />
-    <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
-    <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
+    <Compile Include="DI\IoC.cs" />
+    <Compile Include="DI\StructureMapDependencyResolver.cs" />
+    <Compile Include="DI\StructureMapDependencyScope.cs" />
     <Compile Include="Facade\Concrete\UserProfileFacade.cs" />
     <Compile Include="Facade\Interfaces\IMessageFacade.cs" />
     <Compile Include="Facade\Concrete\MessageFacade.cs" />
@@ -183,47 +183,6 @@
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\IEntity.cs" />
-    <Compile Include="Repositories\Base\IRepository.cs" />
-    <Compile Include="Repositories\Base\SqlRepository.cs" />
-    <Compile Include="Repositories\FlockDataContext.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FlockDataContext.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repositories\FlockDataContext.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FlockDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repositories\FlockDataContext.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FlockDataContext.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Repositories\Interest.cs">
-      <DependentUpon>FlockDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repositories\Project.cs">
-      <DependentUpon>FlockDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repositories\Quack.cs">
-      <DependentUpon>FlockDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repositories\QuackContent.cs">
-      <DependentUpon>FlockDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repositories\QuackType.cs">
-      <DependentUpon>FlockDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repositories\User.cs">
-      <DependentUpon>FlockDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repositories\UserInterest.cs">
-      <DependentUpon>FlockDataContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repositories\UserProject.cs">
-      <DependentUpon>FlockDataContext.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />
@@ -291,7 +250,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="DBScripts\FlockSchema.sql" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="JSApplication\Controllers\loginController.js" />
@@ -303,24 +261,8 @@
     <Content Include="JSApplication\Services\loginService.js" />
     <Content Include="JSApplication\Services\messageService.js" />
     <Content Include="JSApplication\Services\registrationService.js" />
+    <Content Include="JSApplication\Templates\firstPage.html" />
     <Content Include="Scripts\angular.js" />
-    <EntityDeploy Include="Repositories\FlockDataContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FlockDataContext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Repositories\FlockDataContext.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FlockDataContext.edmx</DependentUpon>
-      <LastGenOutput>FlockDataContext.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Repositories\FlockDataContext.edmx.diagram">
-      <DependentUpon>FlockDataContext.edmx</DependentUpon>
-    </Content>
-    <Content Include="Repositories\FlockDataContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FlockDataContext.edmx</DependentUpon>
-      <LastGenOutput>FlockDataContext.cs</LastGenOutput>
-    </Content>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -353,17 +295,18 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="JSApplication\Factories\" />
-    <Folder Include="Repositories\Concrete\" />
-    <Folder Include="Repositories\Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Flock.DataAccess\Flock.DataAccess.csproj">
+      <Project>{a0f51a1c-0cfe-44ac-b56d-ed647bb7015e}</Project>
+      <Name>Flock.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

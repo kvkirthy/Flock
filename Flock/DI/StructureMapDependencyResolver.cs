@@ -18,7 +18,7 @@
 using System.Web.Http.Dependencies;
 using StructureMap;
 
-namespace Flock.DependencyResolution
+namespace Flock.DI
 {
     /// <summary>
     /// The structure map dependency resolver.

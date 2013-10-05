@@ -86,8 +86,8 @@
       <DependentUpon>FlockModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryBase\IRepository.cs" />
-    <Compile Include="RepositoryBase\SqlRepository.cs" />
+    <Compile Include="Base\IRepository.cs" />
+    <Compile Include="Base\SqlRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EntityFramework\FlockModel.edmx">
