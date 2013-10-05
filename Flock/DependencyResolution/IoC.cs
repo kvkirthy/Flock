@@ -16,11 +16,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
-using Flock.Facade;
-using Flock.Facade.Concrete;
-using Flock.Facade.Interfaces;
-using Flock.Repositories.Concrete;
-using Flock.Repositories.Interfaces;
+
 using Raven.Client;
 using Raven.Client.Document;
 using StructureMap;
@@ -48,10 +44,10 @@ namespace Flock.DependencyResolution {
                             
                             x.For<IDocumentSession>().HttpContextScoped().Use(ctx => ctx.GetInstance<IDocumentStore>().OpenSession());
 
-                            x.For<IMessageFacade>().Use<MessageFacade>();
-                            x.For<IMessageRepository>().Use<MessageRepository>();
-                            x.For<IUserProfileFacade>().Use<UserProfileFacade>();
-                            x.For<IUserProfileRepository>().Use<UserProfileRepository>();
+                            //x.For<IMessageFacade>().Use<MessageFacade>();
+                            //x.For<IMessageRepository>().Use<MessageRepository>();
+                            //x.For<IUserProfileFacade>().Use<UserProfileFacade>();
+                            //x.For<IUserProfileRepository>().Use<UserProfileRepository>();
 
                         });
             return ObjectFactory.Container;
