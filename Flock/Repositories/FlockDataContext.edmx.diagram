@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b716716310fd4b1ba9feeba6a106382e" Name="Diagram1">
-        <EntityTypeShape EntityType="FlockModel.Interest" Width="1.5" PointX="10.110956265642752" PointY="22.18457349677783" />
-        <EntityTypeShape EntityType="FlockModel.Project" Width="1.5" PointX="0.058147715431706853" PointY="9.16704997847185" />
+        <EntityTypeShape EntityType="FlockModel.Interest" Width="1.5" PointX="11.125" PointY="14.875" />
+        <EntityTypeShape EntityType="FlockModel.Project" Width="1.5" PointX="4" PointY="9.125" />
         <EntityTypeShape EntityType="FlockModel.Quack" Width="1.5" PointX="11.117580854854351" PointY="10.280040954370071" />
-        <EntityTypeShape EntityType="FlockModel.QuackContent" Width="1.5" PointX="2.7666242414930018" PointY="22.642090703659733" />
-        <EntityTypeShape EntityType="FlockModel.QuackType" Width="1.5" PointX="9.8644890738020141" PointY="29.54067192857185" />
-        <EntityTypeShape EntityType="FlockModel.User" Width="1.5" PointX="10.655330176770375" PointY="12.229098191591492" />
-        <EntityTypeShape EntityType="FlockModel.UserInterest" Width="1.5" PointX="10.80420106966244" PointY="23.6496049573876" />
-        <EntityTypeShape EntityType="FlockModel.UserProject" Width="1.5" PointX="6.5435698435379042" PointY="6.2669352322197218" />
+        <EntityTypeShape EntityType="FlockModel.QuackContent" Width="1.5" PointX="4" PointY="12.375" />
+        <EntityTypeShape EntityType="FlockModel.QuackType" Width="1.5" PointX="6.375" PointY="12.375" />
+        <EntityTypeShape EntityType="FlockModel.User" Width="1.5" PointX="8.625" PointY="12.25" />
+        <EntityTypeShape EntityType="FlockModel.UserInterest" Width="1.5" PointX="13.75" PointY="13.75" />
+        <EntityTypeShape EntityType="FlockModel.UserProject" Width="1.5" PointX="6.625" PointY="9.125" />
         <AssociationConnector Association="FlockModel.FK_UserInterest_Interest" />
         <AssociationConnector Association="FlockModel.FK_UserProject_Project" />
         <AssociationConnector Association="FlockModel.FK_Quack_Quack" />
