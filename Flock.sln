@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flock", "Flock\Flock.csproj", "{88A1C34B-E105-4F3A-B415-52C04229DFC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flock.Tests", "Flock.Tests\Flock.Tests.csproj", "{040F593E-D2A4-40AE-9815-E498178D0FD7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flock.DataAccess", "Flock.DataAccess\Flock.DataAccess.csproj", "{A0F51A1C-0CFE-44AC-B56D-ED647BB7015E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,10 @@ Global
 		{88A1C34B-E105-4F3A-B415-52C04229DFC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88A1C34B-E105-4F3A-B415-52C04229DFC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88A1C34B-E105-4F3A-B415-52C04229DFC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{040F593E-D2A4-40AE-9815-E498178D0FD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{040F593E-D2A4-40AE-9815-E498178D0FD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{040F593E-D2A4-40AE-9815-E498178D0FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{040F593E-D2A4-40AE-9815-E498178D0FD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0F51A1C-0CFE-44AC-B56D-ED647BB7015E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0F51A1C-0CFE-44AC-B56D-ED647BB7015E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0F51A1C-0CFE-44AC-B56D-ED647BB7015E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0F51A1C-0CFE-44AC-B56D-ED647BB7015E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

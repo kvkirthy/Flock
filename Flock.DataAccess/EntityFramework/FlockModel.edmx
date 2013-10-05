@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FlockModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="FlockModelStoreContainer">
+    <EntitySet Name="Interests" EntityType="FlockModel.Store.Interests" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Projects" EntityType="FlockModel.Store.Projects" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Quacks" EntityType="FlockModel.Store.Quacks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuackContents" EntityType="FlockModel.Store.QuackContents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuackTypes" EntityType="FlockModel.Store.QuackTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="FlockModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserInterests" EntityType="FlockModel.Store.UserInterests" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserProjects" EntityType="FlockModel.Store.UserProjects" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_UserInterest_Interest" Association="FlockModel.Store.FK_UserInterest_Interest">
+      <End Role="Interest" EntitySet="Interests" />
+      <End Role="UserInterest" EntitySet="UserInterests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProject_Project" Association="FlockModel.Store.FK_UserProject_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="UserProject" EntitySet="UserProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quack_Quack" Association="FlockModel.Store.FK_Quack_Quack">
+      <End Role="Quack" EntitySet="Quacks" />
+      <End Role="Quack1" EntitySet="Quacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quack_Quack1" Association="FlockModel.Store.FK_Quack_Quack1">
+      <End Role="Quack" EntitySet="Quacks" />
+      <End Role="Quack1" EntitySet="Quacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quack_QuackContent" Association="FlockModel.Store.FK_Quack_QuackContent">
+      <End Role="QuackContent" EntitySet="QuackContents" />
+      <End Role="Quack" EntitySet="Quacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quack_QuackType" Association="FlockModel.Store.FK_Quack_QuackType">
+      <End Role="QuackType" EntitySet="QuackTypes" />
+      <End Role="Quack" EntitySet="Quacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quack_User" Association="FlockModel.Store.FK_Quack_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Quack" EntitySet="Quacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInterest_User" Association="FlockModel.Store.FK_UserInterest_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserInterest" EntitySet="UserInterests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProject_User" Association="FlockModel.Store.FK_UserProject_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserProject" EntitySet="UserProjects" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Interests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Details" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quacks">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="ContentID" Type="int" Nullable="false" />
+    <Property Name="QuackTypeID" Type="int" Nullable="false" />
+    <Property Name="ConversationID" Type="int" Nullable="false" />
+    <Property Name="ParentQuackID" Type="int" Nullable="true" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuackContents">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="MessageText" Type="nvarchar" Nullable="false" MaxLength="140" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuackTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="AdditionalDetails" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInterests">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="InterestId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="InterestId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserProjects">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="ProjectId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_UserInterest_Interest">
+    <End Role="Interest" Type="FlockModel.Store.Interests" Multiplicity="1" />
+    <End Role="UserInterest" Type="FlockModel.Store.UserInterests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Interest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserInterest">
+        <PropertyRef Name="InterestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProject_Project">
+    <End Role="Project" Type="FlockModel.Store.Projects" Multiplicity="1" />
+    <End Role="UserProject" Type="FlockModel.Store.UserProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProject">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quack_Quack">
+    <End Role="Quack" Type="FlockModel.Store.Quacks" Multiplicity="0..1" />
+    <End Role="Quack1" Type="FlockModel.Store.Quacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quack">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Quack1">
+        <PropertyRef Name="ParentQuackID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quack_Quack1">
+    <End Role="Quack" Type="FlockModel.Store.Quacks" Multiplicity="1" />
+    <End Role="Quack1" Type="FlockModel.Store.Quacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quack">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Quack1">
+        <PropertyRef Name="ConversationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quack_QuackContent">
+    <End Role="QuackContent" Type="FlockModel.Store.QuackContents" Multiplicity="1" />
+    <End Role="Quack" Type="FlockModel.Store.Quacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuackContent">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Quack">
+        <PropertyRef Name="ContentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quack_QuackType">
+    <End Role="QuackType" Type="FlockModel.Store.QuackTypes" Multiplicity="1" />
+    <End Role="Quack" Type="FlockModel.Store.Quacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuackType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Quack">
+        <PropertyRef Name="QuackTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quack_User">
+    <End Role="User" Type="FlockModel.Store.Users" Multiplicity="1" />
+    <End Role="Quack" Type="FlockModel.Store.Quacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Quack">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInterest_User">
+    <End Role="User" Type="FlockModel.Store.Users" Multiplicity="1" />
+    <End Role="UserInterest" Type="FlockModel.Store.UserInterests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserInterest">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProject_User">
+    <End Role="User" Type="FlockModel.Store.Users" Multiplicity="1" />
+    <End Role="UserProject" Type="FlockModel.Store.UserProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserProject">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FlockModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FlockContext" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Interests" EntityType="FlockModel.Interest" />
+          <EntitySet Name="Projects" EntityType="FlockModel.Project" />
+          <EntitySet Name="Quacks" EntityType="FlockModel.Quack" />
+          <EntitySet Name="QuackContents" EntityType="FlockModel.QuackContent" />
+          <EntitySet Name="QuackTypes" EntityType="FlockModel.QuackType" />
+          <EntitySet Name="Users" EntityType="FlockModel.User" />
+          <EntitySet Name="UserInterests" EntityType="FlockModel.UserInterest" />
+          <EntitySet Name="UserProjects" EntityType="FlockModel.UserProject" />
+          <AssociationSet Name="FK_UserInterest_Interest" Association="FlockModel.FK_UserInterest_Interest">
+            <End Role="Interest" EntitySet="Interests" />
+            <End Role="UserInterest" EntitySet="UserInterests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProject_Project" Association="FlockModel.FK_UserProject_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="UserProject" EntitySet="UserProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quack_Quack" Association="FlockModel.FK_Quack_Quack">
+            <End Role="Quack" EntitySet="Quacks" />
+            <End Role="Quack1" EntitySet="Quacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quack_Quack1" Association="FlockModel.FK_Quack_Quack1">
+            <End Role="Quack" EntitySet="Quacks" />
+            <End Role="Quack1" EntitySet="Quacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quack_QuackContent" Association="FlockModel.FK_Quack_QuackContent">
+            <End Role="QuackContent" EntitySet="QuackContents" />
+            <End Role="Quack" EntitySet="Quacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quack_QuackType" Association="FlockModel.FK_Quack_QuackType">
+            <End Role="QuackType" EntitySet="QuackTypes" />
+            <End Role="Quack" EntitySet="Quacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quack_User" Association="FlockModel.FK_Quack_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Quack" EntitySet="Quacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInterest_User" Association="FlockModel.FK_UserInterest_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserInterest" EntitySet="UserInterests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProject_User" Association="FlockModel.FK_UserProject_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserProject" EntitySet="UserProjects" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Interest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="UserInterests" Relationship="FlockModel.FK_UserInterest_Interest" FromRole="Interest" ToRole="UserInterest" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Details" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserProjects" Relationship="FlockModel.FK_UserProject_Project" FromRole="Project" ToRole="UserProject" />
+        </EntityType>
+        <EntityType Name="Quack">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ContentID" Type="Int32" Nullable="false" />
+          <Property Name="QuackTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ConversationID" Type="Int32" Nullable="false" />
+          <Property Name="ParentQuackID" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Quack1" Relationship="FlockModel.FK_Quack_Quack" FromRole="Quack" ToRole="Quack1" />
+          <NavigationProperty Name="Quack2" Relationship="FlockModel.FK_Quack_Quack" FromRole="Quack1" ToRole="Quack" />
+          <NavigationProperty Name="Quack11" Relationship="FlockModel.FK_Quack_Quack1" FromRole="Quack" ToRole="Quack1" />
+          <NavigationProperty Name="Quack3" Relationship="FlockModel.FK_Quack_Quack1" FromRole="Quack1" ToRole="Quack" />
+          <NavigationProperty Name="QuackContent" Relationship="FlockModel.FK_Quack_QuackContent" FromRole="Quack" ToRole="QuackContent" />
+          <NavigationProperty Name="QuackType" Relationship="FlockModel.FK_Quack_QuackType" FromRole="Quack" ToRole="QuackType" />
+          <NavigationProperty Name="User" Relationship="FlockModel.FK_Quack_User" FromRole="Quack" ToRole="User" />
+        </EntityType>
+        <EntityType Name="QuackContent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="MessageText" Type="String" Nullable="false" MaxLength="140" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Quacks" Relationship="FlockModel.FK_Quack_QuackContent" FromRole="QuackContent" ToRole="Quack" />
+        </EntityType>
+        <EntityType Name="QuackType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Quacks" Relationship="FlockModel.FK_Quack_QuackType" FromRole="QuackType" ToRole="Quack" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="AdditionalDetails" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Quacks" Relationship="FlockModel.FK_Quack_User" FromRole="User" ToRole="Quack" />
+          <NavigationProperty Name="UserInterests" Relationship="FlockModel.FK_UserInterest_User" FromRole="User" ToRole="UserInterest" />
+          <NavigationProperty Name="UserProjects" Relationship="FlockModel.FK_UserProject_User" FromRole="User" ToRole="UserProject" />
+        </EntityType>
+        <EntityType Name="UserInterest">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="InterestId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="InterestId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Interest" Relationship="FlockModel.FK_UserInterest_Interest" FromRole="UserInterest" ToRole="Interest" />
+          <NavigationProperty Name="User" Relationship="FlockModel.FK_UserInterest_User" FromRole="UserInterest" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserProject">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Project" Relationship="FlockModel.FK_UserProject_Project" FromRole="UserProject" ToRole="Project" />
+          <NavigationProperty Name="User" Relationship="FlockModel.FK_UserProject_User" FromRole="UserProject" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_UserInterest_Interest">
+          <End Role="Interest" Type="FlockModel.Interest" Multiplicity="1" />
+          <End Role="UserInterest" Type="FlockModel.UserInterest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Interest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInterest">
+              <PropertyRef Name="InterestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProject_Project">
+          <End Role="Project" Type="FlockModel.Project" Multiplicity="1" />
+          <End Role="UserProject" Type="FlockModel.UserProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProject">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Quack_Quack">
+          <End Role="Quack" Type="FlockModel.Quack" Multiplicity="0..1" />
+          <End Role="Quack1" Type="FlockModel.Quack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quack">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Quack1">
+              <PropertyRef Name="ParentQuackID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Quack_Quack1">
+          <End Role="Quack" Type="FlockModel.Quack" Multiplicity="1" />
+          <End Role="Quack1" Type="FlockModel.Quack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quack">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Quack1">
+              <PropertyRef Name="ConversationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Quack_QuackContent">
+          <End Role="QuackContent" Type="FlockModel.QuackContent" Multiplicity="1" />
+          <End Role="Quack" Type="FlockModel.Quack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuackContent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Quack">
+              <PropertyRef Name="ContentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Quack_QuackType">
+          <End Role="QuackType" Type="FlockModel.QuackType" Multiplicity="1" />
+          <End Role="Quack" Type="FlockModel.Quack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuackType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Quack">
+              <PropertyRef Name="QuackTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Quack_User">
+          <End Role="User" Type="FlockModel.User" Multiplicity="1" />
+          <End Role="Quack" Type="FlockModel.Quack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Quack">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInterest_User">
+          <End Role="User" Type="FlockModel.User" Multiplicity="1" />
+          <End Role="UserInterest" Type="FlockModel.UserInterest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserInterest">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProject_User">
+          <End Role="User" Type="FlockModel.User" Multiplicity="1" />
+          <End Role="UserProject" Type="FlockModel.UserProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserProject">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FlockModelStoreContainer" CdmEntityContainer="FlockContext">
+    <EntitySetMapping Name="Interests">
+      <EntityTypeMapping TypeName="IsTypeOf(FlockModel.Interest)">
+        <MappingFragment StoreEntitySet="Interests">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="IsTypeOf(FlockModel.Project)">
+        <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quacks">
+      <EntityTypeMapping TypeName="IsTypeOf(FlockModel.Quack)">
+        <MappingFragment StoreEntitySet="Quacks">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ContentID" ColumnName="ContentID" />
+          <ScalarProperty Name="QuackTypeID" ColumnName="QuackTypeID" />
+          <ScalarProperty Name="ConversationID" ColumnName="ConversationID" />
+          <ScalarProperty Name="ParentQuackID" ColumnName="ParentQuackID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuackContents">
+      <EntityTypeMapping TypeName="IsTypeOf(FlockModel.QuackContent)">
+        <MappingFragment StoreEntitySet="QuackContents">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuackTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(FlockModel.QuackType)">
+        <MappingFragment StoreEntitySet="QuackTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(FlockModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="AdditionalDetails" ColumnName="AdditionalDetails" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInterests">
+      <EntityTypeMapping TypeName="IsTypeOf(FlockModel.UserInterest)">
+        <MappingFragment StoreEntitySet="UserInterests">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="InterestId" ColumnName="InterestId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProjects">
+      <EntityTypeMapping TypeName="IsTypeOf(FlockModel.UserProject)">
+        <MappingFragment StoreEntitySet="UserProjects">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

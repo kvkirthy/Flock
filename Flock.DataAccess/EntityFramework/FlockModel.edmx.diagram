@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="afdd1ea8d2134df1a977e962ee527b19" Name="Diagram1">
+        <EntityTypeShape EntityType="FlockModel.Interest" Width="1.5" PointX="3.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlockModel.Project" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlockModel.Quack" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlockModel.QuackContent" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlockModel.QuackType" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlockModel.User" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlockModel.UserInterest" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlockModel.UserProject" Width="1.5" PointX="6" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="FlockModel.FK_UserInterest_Interest" ManuallyRouted="false" />
+        <AssociationConnector Association="FlockModel.FK_UserProject_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="FlockModel.FK_Quack_Quack" ManuallyRouted="false" />
+        <AssociationConnector Association="FlockModel.FK_Quack_Quack1" ManuallyRouted="false" />
+        <AssociationConnector Association="FlockModel.FK_Quack_QuackContent" ManuallyRouted="false" />
+        <AssociationConnector Association="FlockModel.FK_Quack_QuackType" ManuallyRouted="false" />
+        <AssociationConnector Association="FlockModel.FK_Quack_User" ManuallyRouted="false" />
+        <AssociationConnector Association="FlockModel.FK_UserInterest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="FlockModel.FK_UserProject_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
