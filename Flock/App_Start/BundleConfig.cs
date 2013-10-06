@@ -34,6 +34,7 @@ namespace Flock
                 "~/JSApplication/Services/loginService.js",
                 "~/JSApplication/Controllers/registrationController.js",
                 "~/JSApplication/Controllers/messageController.js",
+                 "~/JSApplication/Controllers/userPageController.js",
                 "~/JSApplication/Services/messageService.js",
                 "~/JSApplication/Services/registrationService.js",
                 "~/JSApplication/Directives/onEnter.js",

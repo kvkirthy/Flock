@@ -256,6 +256,7 @@
     <Content Include="JSApplication\Controllers\loginController.js" />
     <Content Include="JSApplication\Controllers\messageController.js" />
     <Content Include="JSApplication\Controllers\registrationController.js" />
+    <Content Include="JSApplication\Controllers\userPageController.js" />
     <Content Include="JSApplication\Directives\onEnter.js" />
     <Content Include="JSApplication\Directives\setTitle.js" />
     <Content Include="JSApplication\main.js" />
@@ -264,6 +265,7 @@
     <Content Include="JSApplication\Services\registrationService.js" />
     <Content Include="JSApplication\Templates\firstPage.html" />
     <Content Include="JSApplication\Templates\home.html" />
+    <Content Include="JSApplication\Templates\userPage.html" />
     <Content Include="Scripts\angular.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
