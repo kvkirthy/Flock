@@ -18,6 +18,10 @@
 
 using System.Data.Entity;
 using Flock.DataAccess.EntityFramework;
+using Flock.DataAccess.Repositories.Concrete;
+using Flock.DataAccess.Repositories.Interfaces;
+using Flock.Facade.Concrete;
+using Flock.Facade.Interfaces;
 using StructureMap;
 
 namespace Flock.DI {
@@ -44,10 +48,9 @@ namespace Flock.DI {
                             
                             //x.For<IDocumentSession>().HttpContextScoped().Use(ctx => ctx.GetInstance<IDocumentStore>().OpenSession());
                             x.For<DbContext>().Use<FlockContext>();
-                            //x.For<IMessageFacade>().Use<MessageFacade>();
-                            //x.For<IMessageRepository>().Use<MessageRepository>();
-                            //x.For<IUserProfileFacade>().Use<UserProfileFacade>();
-                            //x.For<IUserProfileRepository>().Use<UserProfileRepository>();
+                            x.For<IMessageFacade>().Use<MessageFacade>();
+                            x.For<IUserFacade>().Use<UserFacade>();
+                            x.For<IUserRepository>().Use<UserRepository>();
 
                         });
             return ObjectFactory.Container;

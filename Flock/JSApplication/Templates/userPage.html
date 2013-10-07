@@ -1,48 +1,84 @@
-﻿<script src="../Controllers/userPageController.js"></script>
+﻿
 <div ng-controller="userPageController">
-
-
+    
     <div class="container">
-        <div class="span8">
-            <hr />
-            Flock 
-        <hr />
-            <hr />
-            USER INFORMATION<br />
-            Includes - Profile Picture, Username , Firstname, Lastname<br />
-            Quacks | Trends | Following | Followers | Preferences 
-        <hr />
-            <div>
-                <textarea class="span8" style="resize: none" placeholder="Your Quack..." rows="2" maxlength="140"></textarea>
+    
+        <!--Flock Page header bar-->
+        <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+                <div class="container" style="width: auto;">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li><a class="brand active" href="#" onclick="location.reload();">Flock</a></li>
+                        </ul>
+
+                        <ul class="nav pull-right">
+                            <li class="divider-vertical"></li>
+                            <li><a href="#"><i class="icon-user icon-white"></i></a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <hr />
-            <hr />
-            <a style="text-decoration: none" href="#">PARENT QUACK<br />
+        </div>
+        
+        <!--Body center-->
+        <div class="center">
+
+            <!--User Information-->
+            <div class="well span8">
+                <h4>{{user.FirstName}} </h4>
+                <img src="../../Content/images/profilePicCover.gif" />
+                <br />
+                <br />
+                <div>
+                    <span>
+                        <a href="#" style="text-decoration: none">Quacks - 125 | Trends  - 25 | Following - 5 | Followers -25 | Preferences</a>
+                    </span>
+                    <span>
+                        <input type="text" placeholder="Search" class="pull-right" /></span>
+                </div>
+            </div>
+            
+            <!--User Quack Section -->
+            <div class="span8">
+                <img src="../../Content/images/small.jpg" />&nbsp; &nbsp; &nbsp; 
+                <textarea class="span7" style="resize: none" placeholder="Your Quack..." rows="3" maxlength="140"></textarea>
+                <br/>
+            </div>
+           <div class="span1"></div>
+           <div class="span7"></div>
+
+            <div class="center">
+                <div class="span7">
+                <a style="text-decoration: none" href="#"><br/>PARENT QUACK<br />
+                    Quack-Message - PROFILE PIC + Message - Timeframe<br />
+                    <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
+                    Expand
+                    <hr />
+                    SHOUTS | LIKES | users information
+                </a>
+                <hr />
                 Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                <span class="span5"></span>Reply | Shout | Cheers, Like it<br />
+                <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
                 Expand
                 <hr />
-                SHOUTS | LIKES | users information
-            </a>
-            <hr />
                 Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                <span class="span5"></span>Reply | Shout | Cheers, Like it<br />
+                <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
                 Expand
-            <hr />
+                <hr />
                 Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                <span class="span5"></span>Reply | Shout | Cheers, Like it<br />
+                <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
                 Expand
-            <hr />
-                Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                <span class="span5"></span>Reply | Shout | Cheers, Like it<br />
-                Expand
-            <hr />
-                Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                <span class="span5"></span>Reply | Shout | Cheers, Like it<br />
-                Expand
-            <hr />
-            <hr />
-            <hr />
+                <hr />
+                    </div>
+            </div>
         </div>
     </div>
 </div>

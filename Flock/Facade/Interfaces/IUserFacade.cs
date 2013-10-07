@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Flock.DataAccess.EntityFramework;
 using Flock.Models;
 
 namespace Flock.Facade.Interfaces
 {
-    public interface IUserProfileFacade
+    public interface IUserFacade
     {
-        void RegisterUser(UserProfile message);
-        IEnumerable<UserProfile> GetUser();
+        User GetUserDetails(string userName);
     }
 }

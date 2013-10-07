@@ -31,7 +31,7 @@ namespace Flock
             bundles.Add(new StyleBundle("~/bundles/JSApplication").Include(
                 "~/JSApplication/main.js",
                 "~/JSApplication/Services/messageService.js",
-                "~/JSApplication/Services/loginService.js",
+                "~/JSApplication/Services/userService.js",
                 "~/JSApplication/Controllers/registrationController.js",
                 "~/JSApplication/Controllers/messageController.js",
                  "~/JSApplication/Controllers/userPageController.js",
