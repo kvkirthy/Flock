@@ -1,8 +1,7 @@
-﻿
-<div ng-controller="userPageController">
-    
+﻿<div ng-controller="userPageController">
+
     <div class="container">
-    
+
         <!--Flock Page header bar-->
         <div class="navbar navbar-inverse">
             <div class="navbar-inner">
@@ -27,7 +26,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!--Body center-->
         <div class="center">
 
@@ -38,46 +37,61 @@
                 <br />
                 <br />
                 <div>
-                    <span>
+                    <!--<span>
                         <a href="#" style="text-decoration: none">Quacks - 125 | Trends  - 25 | Following - 5 | Followers -25 | Preferences</a>
-                    </span>
-                    <span>
-                        <input type="text" placeholder="Search" class="pull-right" /></span>
+                    </span>-->
+               <!--     <span>
+                        <input type="text" placeholder="Search" class="pull-right" /></span>-->
                 </div>
+                
+               
+
             </div>
-            
+             <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#" style="color: steelblue">Quacks(10)</a>
+                    </li>
+                    <li><a href="#" style="color: steelblue">Trends(25)</a></li>
+                    <li><a href="#" style="color: steelblue">Following(5)</a></li>
+                    <li><a href="#" style="color: steelblue">Followers(25)</a></li>
+                 <li><a href="#" style="color: steelblue">Preferences</a></li>
+                 
+                 <li class="pull-right"><input type="text" placeholder="Search" class="pull-right" /></li>
+                </ul>
             <!--User Quack Section -->
             <div class="span8">
                 <img src="../../Content/images/small.jpg" />&nbsp; &nbsp; &nbsp; 
                 <textarea class="span7" style="resize: none" placeholder="Your Quack..." rows="3" maxlength="140"></textarea>
-                <br/>
+                <br />
             </div>
-           <div class="span1"></div>
-           <div class="span7"></div>
+            <div class="span1"></div>
+            <div class="span7"></div>
 
             <div class="center">
                 <div class="span7">
-                <a style="text-decoration: none" href="#"><br/>PARENT QUACK<br />
+                    <a style="text-decoration: none" href="#">
+                        <br />
+                        PARENT QUACK<br />
+                        Quack-Message - PROFILE PIC + Message - Timeframe<br />
+                        <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
+                        Expand
+                    <hr />
+                        SHOUTS | LIKES | users information
+                    </a>
+                    <hr />
                     Quack-Message - PROFILE PIC + Message - Timeframe<br />
                     <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
                     Expand
-                    <hr />
-                    SHOUTS | LIKES | users information
-                </a>
                 <hr />
-                Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
-                Expand
+                    Quack-Message - PROFILE PIC + Message - Timeframe<br />
+                    <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
+                    Expand
                 <hr />
-                Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
-                Expand
+                    Quack-Message - PROFILE PIC + Message - Timeframe<br />
+                    <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
+                    Expand
                 <hr />
-                Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
-                Expand
-                <hr />
-                    </div>
+                </div>
             </div>
         </div>
     </div>
