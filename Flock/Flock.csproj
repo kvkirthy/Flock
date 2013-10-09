@@ -294,7 +294,7 @@
     <Content Include="Scripts\underscore.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <Folder Include="DTO\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

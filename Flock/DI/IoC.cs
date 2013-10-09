@@ -38,6 +38,7 @@ namespace Flock.DI {
                             x.For<IUserRepository>().Use<UserRepository>();
                             x.For<IQuackRepository>().Use<QuackRepository>();
                             x.For<IQuackFacade>().Use<QuackFacade>();
+                            x.For<IQuackTypeRepository>().Use<QuackTypeRepository>();
                         });
             return ObjectFactory.Container;
         }

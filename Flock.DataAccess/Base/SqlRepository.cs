@@ -33,7 +33,7 @@ namespace Flock.DataAccess.Base
 
         public virtual void Add(T entity)
         {
-            DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
+            DbEntityEntry dbEntityEntry = _context.Entry(entity);
             if (dbEntityEntry.State != EntityState.Detached)
             {
                 dbEntityEntry.State = EntityState.Added;
@@ -41,23 +41,24 @@ namespace Flock.DataAccess.Base
             else
             {
                 DbSet.Add(entity);
+                SaveChanges();
             }
         }
 
         public virtual void Update(T entity)
         {
-            DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
+            DbEntityEntry dbEntityEntry = _context.Entry(entity);
             if (dbEntityEntry.State == EntityState.Detached)
             {
                 DbSet.Attach(entity);
-
+                SaveChanges();
             }
             dbEntityEntry.State = EntityState.Modified;
         }
 
         public virtual void Delete(T entity)
         {
-            DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
+            DbEntityEntry dbEntityEntry = _context.Entry(entity);
             if (dbEntityEntry.State != EntityState.Deleted)
             {
                 dbEntityEntry.State = EntityState.Deleted;
@@ -65,6 +66,7 @@ namespace Flock.DataAccess.Base
             else
             {
                 DbSet.Attach(entity);
+                SaveChanges();
             }
         }
 
@@ -73,6 +75,12 @@ namespace Flock.DataAccess.Base
             var entity = GetById(id);
             if (entity == null) return;
             Delete(entity);
+            SaveChanges();
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
         }
 
         private bool _disposed = false;
@@ -94,5 +102,6 @@ namespace Flock.DataAccess.Base
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
     }
 }

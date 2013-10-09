@@ -25,5 +25,10 @@ namespace Flock.DataAccess.Repositories.Concrete
         {
             base.Add(user);
         }
+
+        public User GetUserById(int id)
+        {
+            return base.GetById(id);
+        }
     }
 }
