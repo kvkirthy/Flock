@@ -61,7 +61,10 @@
             <!--User Quack Section -->
             <div class="span8">
                 <img src="../../Content/images/small.jpg" />&nbsp; &nbsp; &nbsp; 
-                <textarea class="span7" style="resize: none" placeholder="Your Quack..." rows="3" maxlength="140"></textarea>
+                <div ng-controller="autoUpdateUserTagsController">
+                    <textarea class="span7 " ng-model="quackText" style="resize: none" placeholder="Your Quack..." rows="3" maxlength="140"></textarea>
+                    <div auto-update-user-tags="quackText" list-of-users="users"></div>
+                </div>
                 <br />
             </div>
             <div class="span1"></div>

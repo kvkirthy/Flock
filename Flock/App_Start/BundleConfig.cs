@@ -28,7 +28,7 @@ namespace Flock
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new StyleBundle("~/bundles/JSApplication").Include(
+            bundles.Add(new ScriptBundle("~/bundles/JSApplication").Include(
                 "~/JSApplication/main.js",
                 "~/JSApplication/Services/messageService.js",
                 "~/JSApplication/Services/userService.js",
@@ -37,6 +37,7 @@ namespace Flock
                  "~/JSApplication/Controllers/userPageController.js",
                 "~/JSApplication/Services/messageService.js",
                 "~/JSApplication/Services/registrationService.js",
+                "~/JSApplication/Directives/autoUpdateUserTags.js",
                 "~/JSApplication/Directives/onEnter.js",
                  "~/JSApplication/Directives/setTitle.js",
                 "~/JSApplication/Controllers/loginController.js"
