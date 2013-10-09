@@ -15,25 +15,25 @@ flockApp.directive('autoUpdateUserTags', function () {
         //TODO: move this to a template file.
         template: '<div><div id="suggessions" ng-repeat="user in filteredUsers"> <span>{{user}}</span>  </div></div>',
         scope: {
-            listOfUsers: '='            
-        }, 
+            listOfUsers: '='
+        },
         controller: function ($rootScope, $scope) {
-            var self = this;            
+            var self = this;
             self.scope = $scope;
             self.isNewUserTagAttempted = false;
 
             $rootScope.$on('quackTextChanged', function (event, quackText) {
-                $scope.filteredUsers = [];                
+                $scope.filteredUsers = [];
                 if (quackText && quackText.indexOf('@') > 0) {
 
                     if (quackText.lastIndexOf('@') === (quackText.length - 1)) {
-                        self.isNewUserTagAttempted = true;                        
+                        self.isNewUserTagAttempted = true;
                     }
 
                     if (self.isNewUserTagAttempted && (quackText.lastIndexOf('@') !== (quackText.length - 1)) && quackText.lastIndexOf(' ') === (quackText.length - 2)) {
-                        self.isNewUserTagAttempted = false;                        
+                        self.isNewUserTagAttempted = false;
                     }
-                    
+
                     if (self.isNewUserTagAttempted) {
                         quackText = quackText.substring(quackText.lastIndexOf('@'), quackText.length);
                         //TODO: remove this log
@@ -51,6 +51,6 @@ flockApp.directive('autoUpdateUserTags', function () {
                     }
                 }
             });
-        }        
+        }
     };
 });

@@ -33,25 +33,11 @@ namespace Flock.DI {
                                 scan.TheCallingAssembly();
                                 scan.WithDefaultConventions();
                             });
-                            
-                            //x.For<IDocumentStore>().Singleton().Use(
-                            //   () =>
-                            //   {
-                            //       var store = new DocumentStore
-                            //       {
-                            //           ConnectionStringName = "RavenDbConnection"
-                            //       };
-                            //       store.Initialize();
-                            //       store.JsonRequestFactory.DisableRequestCompression = true;
-                            //       return store;
-                            //   });
-                            
-                            //x.For<IDocumentSession>().HttpContextScoped().Use(ctx => ctx.GetInstance<IDocumentStore>().OpenSession());
                             x.For<DbContext>().Use<FlockContext>();
-                            x.For<IMessageFacade>().Use<MessageFacade>();
                             x.For<IUserFacade>().Use<UserFacade>();
                             x.For<IUserRepository>().Use<UserRepository>();
-
+                            x.For<IQuackRepository>().Use<QuackRepository>();
+                            x.For<IQuackFacade>().Use<QuackFacade>();
                         });
             return ObjectFactory.Container;
         }

@@ -88,6 +88,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\IRepository.cs" />
     <Compile Include="Base\SqlRepository.cs" />
+    <Compile Include="Repositories\Concrete\QuackRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IQuackRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
     <Compile Include="Repositories\Concrete\UserRepository.cs" />
   </ItemGroup>

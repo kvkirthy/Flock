@@ -19,9 +19,6 @@ namespace Flock
 
     public class MvcApplication : System.Web.HttpApplication
     {
-
-    //    internal static DocumentStore FlockDocumentStore;
-
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -29,24 +26,6 @@ namespace Flock
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-         //   GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("json", "true", "application/json"));
-          //  FlockDocumentStore = new DocumentStore { Url = ConfigurationManager.AppSettings["RavenDbUrl"] };
-           // FlockDocumentStore.Initialize();
-
-         
-            //ObjectFactory.Initialize(x =>
-            //                             {
-            //                                 x.Scan(scan =>
-            //                                 {
-            //                                     scan.TheCallingAssembly();
-            //                                     scan.WithDefaultConventions();
-            //                                 });
-
-            //                                 x.AddRegistry(new RavenRegistry());
-            //                                 x.AddRegistry(new FacadeRegistry());
-            //                                 x.AddRegistry(new RepositoryRegistry());
-            //      
-                     //  });
         }
     }
 }

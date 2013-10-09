@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using Flock.DataAccess.EntityFramework;
 
+
 namespace Flock.Facade.Interfaces
 {
-    public interface IUserFacade
+    public interface IQuackFacade
     {
-        User GetUserDetails(string userName);
+        void SaveQuack(Quack quack);
+        
     }
 }
