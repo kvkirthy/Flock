@@ -20,11 +20,26 @@ flockApp.directive('autoUpdateUserTags', function () {
         controller: function ($rootScope, $scope) {
             var self = this;            
             self.scope = $scope;
+            self.isNewUserTagAttempted = false;
 
             $rootScope.$on('quackTextChanged', function (event, quackText) {
-                $scope.filteredUsers = [];
-                //TODO: filter whenever a word starts with @ symbol
-                if (quackText && quackText.indexOf('@') === 0) {
+                $scope.filteredUsers = [];                
+                if (quackText && quackText.indexOf('@') > 0) {
+
+                    if (quackText.lastIndexOf('@') === (quackText.length - 1)) {
+                        self.isNewUserTagAttempted = true;                        
+                    }
+
+                    if (self.isNewUserTagAttempted && (quackText.lastIndexOf('@') !== (quackText.length - 1)) && quackText.lastIndexOf(' ') === (quackText.length - 2)) {
+                        self.isNewUserTagAttempted = false;                        
+                    }
+                    
+                    if (self.isNewUserTagAttempted) {
+                        quackText = quackText.substring(quackText.lastIndexOf('@'), quackText.length);
+                        //TODO: remove this log
+                        console.log(quackText);
+                    }
+
                     var textFieldValue = quackText.slice(1);
                     if (textFieldValue) {
                         //TODO: implement more to show all tags?
