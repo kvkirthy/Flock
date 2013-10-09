@@ -1,7 +1,4 @@
-﻿
-
-using Flock.DataAccess.EntityFramework;
-
+﻿using Flock.DataAccess.EntityFramework;
 namespace Flock.DataAccess.Repositories.Interfaces
 {
     public interface IUserRepository
