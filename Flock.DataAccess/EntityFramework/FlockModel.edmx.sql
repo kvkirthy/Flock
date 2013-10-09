@@ -110,7 +110,7 @@ GO
 
 -- Creating table 'QuackContents'
 CREATE TABLE [dbo].[QuackContents] (
-    [ID] int  NOT NULL,
+    [ID] int IDENTITY(1,1) NOT NULL,
     [MessageText] nvarchar(140)  NOT NULL,
     [CreatedDate] datetime  NOT NULL
 );
