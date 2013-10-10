@@ -267,6 +267,7 @@
     <Content Include="JSApplication\Services\userService.js" />
     <Content Include="JSApplication\Services\messageService.js" />
     <Content Include="JSApplication\Services\registrationService.js" />
+    <Content Include="JSApplication\Templates\autoUpdateUserTagsDirectiveTemplate.html" />
     <Content Include="JSApplication\Templates\firstPage.html" />
     <Content Include="JSApplication\Templates\home.html" />
     <Content Include="JSApplication\Templates\userPage.html" />

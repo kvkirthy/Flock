@@ -4,6 +4,12 @@ flockApp.controller('autoUpdateUserTagsController', function ($scope) {
     $scope.users = ['VenCKi', 'Venki', 'Venkat']; //it should return most used tags
     $scope.quackText = "";
 
+    $scope.$on('userSelectedForTag', function (event, textInQuestion, selectedTag) {        
+        if (textInQuestion && selectedTag) {
+            $scope.quackText = $scope.quackText.replace(textInQuestion, '@' + selectedTag);
+        }
+    });
+
     $scope.$watch('quackText', function (param) {
         $scope.$emit('quackTextChanged', $scope.quackText);
     });
@@ -11,41 +17,43 @@ flockApp.controller('autoUpdateUserTagsController', function ($scope) {
 
 flockApp.directive('autoUpdateUserTags', function () {
     return {
-        restrict: 'A',
-        //TODO: move this to a template file.
-        template: '<div><div id="suggessions" ng-repeat="user in filteredUsers"> <span>{{user}}</span>  </div></div>',
+        restrict: 'A',        
+        templateUrl: '/JSApplication/Templates/autoUpdateUserTagsDirectiveTemplate.html',
         scope: {
             listOfUsers: '='            
         }, 
         controller: function ($rootScope, $scope) {
             var self = this;            
             self.scope = $scope;
-            self.isNewUserTagAttempted = false;
+            $scope.isNewUserTagAttempted = false;
+            self.textInQuestionForTag = "";
+
+            $scope.selectUser = function (user) {
+                $scope.$emit('userSelectedForTag', self.textInQuestionForTag, user);
+            };
 
             $rootScope.$on('quackTextChanged', function (event, quackText) {
                 $scope.filteredUsers = [];                
-                if (quackText && quackText.indexOf('@') > 0) {
+                if (quackText && quackText.indexOf('@') >= 0) {
 
                     if (quackText.lastIndexOf('@') === (quackText.length - 1)) {
-                        self.isNewUserTagAttempted = true;                        
+                        self.scope.isNewUserTagAttempted = true;
                     }
 
-                    if (self.isNewUserTagAttempted && (quackText.lastIndexOf('@') !== (quackText.length - 1)) && quackText.lastIndexOf(' ') === (quackText.length - 2)) {
-                        self.isNewUserTagAttempted = false;                        
+                    if (self.scope.isNewUserTagAttempted && (quackText.lastIndexOf('@') !== (quackText.length - 1)) && quackText.lastIndexOf(' ') === (quackText.length - 2)) {
+                        self.scope.isNewUserTagAttempted = false;
                     }
                     
-                    if (self.isNewUserTagAttempted) {
-                        quackText = quackText.substring(quackText.lastIndexOf('@'), quackText.length);
-                        //TODO: remove this log
-                        console.log(quackText);
+                    if (self.scope.isNewUserTagAttempted) {
+                        self.textInQuestionForTag = quackText.substring(quackText.lastIndexOf('@'), quackText.length);
                     }
 
-                    var textFieldValue = quackText.slice(1);
+                    var textFieldValue = self.textInQuestionForTag.slice(1);
                     if (textFieldValue) {
-                        //TODO: implement more to show all tags?
+                        //TODO: implement "more" option to show all tags?
                         _.find(_.last(self.scope.listOfUsers, 10), function (aUser) {
                             if (aUser.toLowerCase().indexOf(textFieldValue.toLowerCase()) === 0) {
-                                self.scope.filteredUsers.push("Tag user " + aUser);
+                                self.scope.filteredUsers.push(aUser);
                             }
                         });
                     }
