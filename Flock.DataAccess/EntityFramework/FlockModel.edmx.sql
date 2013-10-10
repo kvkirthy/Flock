@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/05/2013 18:12:53
+-- Date Created: 10/11/2013 02:04:54
 -- Generated from EDMX file: C:\local\Flock\Flock.DataAccess\EntityFramework\FlockModel.edmx
 -- --------------------------------------------------
 
@@ -18,60 +18,57 @@ GO
 -- --------------------------------------------------
 
 IF OBJECT_ID(N'[dbo].[FK_Quack_Quack]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Quack] DROP CONSTRAINT [FK_Quack_Quack];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Quack_Quack1]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Quack] DROP CONSTRAINT [FK_Quack_Quack1];
+    ALTER TABLE [dbo].[Quacks] DROP CONSTRAINT [FK_Quack_Quack];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Quack_QuackContent]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Quack] DROP CONSTRAINT [FK_Quack_QuackContent];
+    ALTER TABLE [dbo].[Quacks] DROP CONSTRAINT [FK_Quack_QuackContent];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Quack_QuackType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Quack] DROP CONSTRAINT [FK_Quack_QuackType];
+    ALTER TABLE [dbo].[Quacks] DROP CONSTRAINT [FK_Quack_QuackType];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Quack_User]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Quack] DROP CONSTRAINT [FK_Quack_User];
+    ALTER TABLE [dbo].[Quacks] DROP CONSTRAINT [FK_Quack_User];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserInterest_Interest]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserInterest] DROP CONSTRAINT [FK_UserInterest_Interest];
+    ALTER TABLE [dbo].[UserInterests] DROP CONSTRAINT [FK_UserInterest_Interest];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserInterest_User]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserInterest] DROP CONSTRAINT [FK_UserInterest_User];
+    ALTER TABLE [dbo].[UserInterests] DROP CONSTRAINT [FK_UserInterest_User];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserProject_Project]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserProject] DROP CONSTRAINT [FK_UserProject_Project];
+    ALTER TABLE [dbo].[UserProjects] DROP CONSTRAINT [FK_UserProject_Project];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserProject_User]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserProject] DROP CONSTRAINT [FK_UserProject_User];
+    ALTER TABLE [dbo].[UserProjects] DROP CONSTRAINT [FK_UserProject_User];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Interest]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Interest];
+IF OBJECT_ID(N'[dbo].[Interests]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Interests];
 GO
-IF OBJECT_ID(N'[dbo].[Project]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Project];
+IF OBJECT_ID(N'[dbo].[Projects]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Projects];
 GO
-IF OBJECT_ID(N'[dbo].[Quack]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Quack];
+IF OBJECT_ID(N'[dbo].[QuackContents]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[QuackContents];
 GO
-IF OBJECT_ID(N'[dbo].[QuackContent]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[QuackContent];
+IF OBJECT_ID(N'[dbo].[Quacks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Quacks];
 GO
-IF OBJECT_ID(N'[dbo].[QuackType]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[QuackType];
+IF OBJECT_ID(N'[dbo].[QuackTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[QuackTypes];
 GO
-IF OBJECT_ID(N'[dbo].[User]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[User];
+IF OBJECT_ID(N'[dbo].[UserInterests]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserInterests];
 GO
-IF OBJECT_ID(N'[dbo].[UserInterest]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UserInterest];
+IF OBJECT_ID(N'[dbo].[UserProjects]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserProjects];
 GO
-IF OBJECT_ID(N'[dbo].[UserProject]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UserProject];
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
 GO
 
 -- --------------------------------------------------
@@ -98,7 +95,7 @@ GO
 
 -- Creating table 'Quacks'
 CREATE TABLE [dbo].[Quacks] (
-    [ID] int  NOT NULL,
+    [ID] int IDENTITY(1,1) NOT NULL,
     [UserID] int  NOT NULL,
     [ContentID] int  NOT NULL,
     [QuackTypeID] int  NOT NULL,
@@ -247,20 +244,6 @@ ADD CONSTRAINT [FK_Quack_Quack]
 CREATE INDEX [IX_FK_Quack_Quack]
 ON [dbo].[Quacks]
     ([ParentQuackID]);
-GO
-
--- Creating foreign key on [ConversationID] in table 'Quacks'
-ALTER TABLE [dbo].[Quacks]
-ADD CONSTRAINT [FK_Quack_Quack1]
-    FOREIGN KEY ([ConversationID])
-    REFERENCES [dbo].[Quacks]
-        ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_Quack_Quack1'
-CREATE INDEX [IX_FK_Quack_Quack1]
-ON [dbo].[Quacks]
-    ([ConversationID]);
 GO
 
 -- Creating foreign key on [ContentID] in table 'Quacks'

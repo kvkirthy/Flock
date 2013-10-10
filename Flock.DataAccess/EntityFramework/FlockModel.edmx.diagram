@@ -16,7 +16,6 @@
         <AssociationConnector Association="FlockModel.FK_UserInterest_Interest" ManuallyRouted="false" />
         <AssociationConnector Association="FlockModel.FK_UserProject_Project" ManuallyRouted="false" />
         <AssociationConnector Association="FlockModel.FK_Quack_Quack" ManuallyRouted="false" />
-        <AssociationConnector Association="FlockModel.FK_Quack_Quack1" ManuallyRouted="false" />
         <AssociationConnector Association="FlockModel.FK_Quack_QuackContent" ManuallyRouted="false" />
         <AssociationConnector Association="FlockModel.FK_Quack_QuackType" ManuallyRouted="false" />
         <AssociationConnector Association="FlockModel.FK_Quack_User" ManuallyRouted="false" />

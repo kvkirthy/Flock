@@ -17,7 +17,6 @@ namespace Flock.DataAccess.EntityFramework
         public Quack()
         {
             this.Quack1 = new HashSet<Quack>();
-            this.Quack11 = new HashSet<Quack>();
         }
     
         public int ID { get; set; }
@@ -30,8 +29,6 @@ namespace Flock.DataAccess.EntityFramework
     
         public virtual ICollection<Quack> Quack1 { get; set; }
         public virtual Quack Quack2 { get; set; }
-        public virtual ICollection<Quack> Quack11 { get; set; }
-        public virtual Quack Quack3 { get; set; }
         public virtual QuackContent QuackContent { get; set; }
         public virtual QuackType QuackType { get; set; }
         public virtual User User { get; set; }
