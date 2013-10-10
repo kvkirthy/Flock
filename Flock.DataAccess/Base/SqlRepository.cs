@@ -1,26 +1,28 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using Flock.DataAccess.EntityFramework;
-using Flock.DataAccess.RepositoryBase;
 
 namespace Flock.DataAccess.Base
 {
     public class SqlRepository<T> : IRepository<T> where T : class
     {
+        private readonly FlockContext _context;
         protected DbContext DbContext { get; set; }
         protected DbSet<T> DbSet { get; set; }
 
-        public SqlRepository()
+        public SqlRepository(FlockContext context)
         {
-            DbContext = new FlockContext();
-            DbSet = DbContext.Set<T>();
+            _context = context;
+            DbSet = _context.Set<T>();
         }
 
         public virtual IQueryable<T> GetAll()
         {
             return DbSet;
+
         }
 
         public virtual T GetById(int id)
@@ -31,7 +33,7 @@ namespace Flock.DataAccess.Base
 
         public virtual void Add(T entity)
         {
-            DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
+            DbEntityEntry dbEntityEntry = _context.Entry(entity);
             if (dbEntityEntry.State != EntityState.Detached)
             {
                 dbEntityEntry.State = EntityState.Added;
@@ -39,25 +41,24 @@ namespace Flock.DataAccess.Base
             else
             {
                 DbSet.Add(entity);
-                CommitChanges();
+                SaveChanges();
             }
         }
 
         public virtual void Update(T entity)
         {
-            DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
+            DbEntityEntry dbEntityEntry = _context.Entry(entity);
             if (dbEntityEntry.State == EntityState.Detached)
             {
                 DbSet.Attach(entity);
-                CommitChanges();
-              
+                SaveChanges();
             }
             dbEntityEntry.State = EntityState.Modified;
         }
 
         public virtual void Delete(T entity)
         {
-            DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
+            DbEntityEntry dbEntityEntry = _context.Entry(entity);
             if (dbEntityEntry.State != EntityState.Deleted)
             {
                 dbEntityEntry.State = EntityState.Deleted;
@@ -65,29 +66,42 @@ namespace Flock.DataAccess.Base
             else
             {
                 DbSet.Attach(entity);
-                DbSet.Remove(entity);
-                CommitChanges();
+                SaveChanges();
             }
         }
 
         public virtual void Delete(int id)
         {
             var entity = GetById(id);
-            if (entity == null) return; 
+            if (entity == null) return;
             Delete(entity);
-            CommitChanges();
+            SaveChanges();
         }
 
-        void CommitChanges()
+        public void SaveChanges()
         {
-            try
-            {
-                DbContext.SaveChanges();
-            }
-            finally
-            {
-                DbContext.Dispose();
-            }
+            _context.SaveChanges();
         }
+
+        private bool _disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+            }
+            this._disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
     }
 }

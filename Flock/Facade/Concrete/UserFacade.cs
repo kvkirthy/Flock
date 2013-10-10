@@ -2,7 +2,6 @@
 using Flock.DataAccess.EntityFramework;
 using Flock.DataAccess.Repositories.Interfaces;
 using Flock.Facade.Interfaces;
-using Flock.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

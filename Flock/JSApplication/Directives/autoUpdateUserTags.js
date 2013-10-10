@@ -17,7 +17,7 @@ flockApp.controller('autoUpdateUserTagsController', function ($scope) {
 
 flockApp.directive('autoUpdateUserTags', function () {
     return {
-        restrict: 'A',        
+        restrict: 'A',
         templateUrl: '/JSApplication/Templates/autoUpdateUserTagsDirectiveTemplate.html',
         scope: {
             listOfUsers: '='            

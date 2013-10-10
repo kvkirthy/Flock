@@ -8,7 +8,7 @@ using AttributeRouting;
 using AttributeRouting.Web.Mvc;
 using Flock.DataAccess.EntityFramework;
 using Flock.Facade.Interfaces;
-using Flock.Models;
+
 
 namespace Flock.Controllers
 {

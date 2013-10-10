@@ -9,6 +9,11 @@ namespace Flock.DataAccess.Repositories.Concrete
 {
     public class UserRepository : SqlRepository<User>, IUserRepository
     {
+        public UserRepository(FlockContext context)
+            : base(context)
+        {
+        }
+
         public User GetUserByUserName(string userName)
         {
             var users = base.GetAll();
@@ -19,6 +24,11 @@ namespace Flock.DataAccess.Repositories.Concrete
         public void SaveUser(User user)
         {
             base.Add(user);
+        }
+
+        public User GetUserById(int id)
+        {
+            return base.GetById(id);
         }
     }
 }

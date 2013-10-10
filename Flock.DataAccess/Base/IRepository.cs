@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Flock.DataAccess.RepositoryBase
+namespace Flock.DataAccess.Base
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> : IDisposable where T : class
     {
         IQueryable<T> GetAll();
         T GetById(int id);
@@ -14,5 +11,6 @@ namespace Flock.DataAccess.RepositoryBase
         void Update(T entity);
         void Delete(T entity);
         void Delete(int id);
+        void SaveChanges();
     }
 }
