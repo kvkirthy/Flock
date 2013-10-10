@@ -25,7 +25,6 @@ namespace Flock.Facade.Concrete
 
         public void SaveQuack(Quack q)
         {
-            //TODO: fix the self referecing graph dependencies issue
             var quack = new Quack {QuackTypeID = 1, UserID =1, ParentQuackID =null, CreatedDate = DateTime.Now  };
             quack.ConversationID = quack.ID;
 
@@ -39,7 +38,15 @@ namespace Flock.Facade.Concrete
             quack.QuackContent = quackContent;
             
             _quackRepository.SaveQuack(quack);
-            
+            GetQuack(5);
         }
+
+        public void GetQuack(int id)
+        {
+             _quackRepository.GetQuack(id);
+
+
+        }
+
     }
 }

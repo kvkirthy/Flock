@@ -22,3 +22,10 @@
 2013-10-10 01:57:08,248 [10] DEBUG Rhino.Licensing.AbstractLicenseValidator [(null)] - License accepted for EntityFramework Profiler
 2013-10-10 01:57:08,257 [6] INFO  HibernatingRhinos.Profiler.Client.Infrastructure.AutoUpdate.ProfilerAutoUpdate [(null)] - Checking for updates...
 2013-10-10 01:57:08,346 [10] DEBUG Rhino.Licensing.AbstractLicenseValidator [(null)] - License accepted for EntityFramework Profiler
+2013-10-11 02:46:38,596 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2209
+2013-10-11 02:46:39,367 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2013-10-11 02:46:39,368 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully
+2013-10-11 02:46:43,417 [7] WARN  Rhino.Licensing.AbstractLicenseValidator [(null)] - License expiration date is 11/08/2013 00:00:00
+2013-10-11 02:46:43,596 [7] DEBUG Rhino.Licensing.AbstractLicenseValidator [(null)] - License accepted for EntityFramework Profiler
+2013-10-11 02:46:43,599 [10] INFO  HibernatingRhinos.Profiler.Client.Infrastructure.AutoUpdate.ProfilerAutoUpdate [(null)] - Checking for updates...
+2013-10-11 02:46:43,703 [7] DEBUG Rhino.Licensing.AbstractLicenseValidator [(null)] - License accepted for EntityFramework Profiler

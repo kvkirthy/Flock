@@ -8,8 +8,9 @@ using Flock.DataAccess.EntityFramework;
 
 namespace Flock.DataAccess.Repositories.Interfaces
 {
-   public  interface IQuackRepository
+    public interface IQuackRepository
     {
         void SaveQuack(Quack quack);
+        void GetQuack(int id);
     }
 }
