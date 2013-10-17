@@ -35,6 +35,11 @@ namespace Flock.Controllers
             return Request.CreateResponse(HttpStatusCode.Created, quack);
         }
 
+        public IEnumerable<QuackEntity> Get()
+        {
+           return _quackFacade.GetAllQuacks();
+        }
+
         
     }
 }

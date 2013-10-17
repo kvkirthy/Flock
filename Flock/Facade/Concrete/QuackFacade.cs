@@ -48,5 +48,28 @@ namespace Flock.Facade.Concrete
 
         }
 
+        public IEnumerable<QuackEntity> GetAllQuacks()
+        {
+            var quacks = _quackRepository.GetAllQuacks();
+
+            //TODO: Use Auto-mapper
+            var returnData = new List<QuackEntity>();
+
+            foreach(var quack in quacks)
+            {
+                returnData.Add(new QuackEntity(){
+                    ID = quack.ID,
+                    UserID = quack.UserID,
+                    UserName = quack.User.UserName,
+                    ContentID = quack.ContentID,
+                    ConversationID = quack.ConversationID,
+                    ParentQuackID = quack.ParentQuackID,
+                    CreatedDate = quack.CreatedDate,
+                    QuackMessage = quack.QuackContent.MessageText
+                });
+            }
+
+            return returnData;
+        }
     }
 }

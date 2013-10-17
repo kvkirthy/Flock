@@ -175,6 +175,7 @@
     <Compile Include="DI\IoC.cs" />
     <Compile Include="DI\StructureMapDependencyResolver.cs" />
     <Compile Include="DI\StructureMapDependencyScope.cs" />
+    <Compile Include="Facade\QuackEntity.cs" />
     <Compile Include="Facade\Concrete\UserFacade.cs" />
     <Compile Include="Facade\Interfaces\IQuackFacade.cs" />
     <Compile Include="Facade\Concrete\QuackFacade.cs" />

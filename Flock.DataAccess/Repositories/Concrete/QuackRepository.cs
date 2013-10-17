@@ -34,5 +34,13 @@ namespace Flock.DataAccess.Repositories.Concrete
                 .Include("QuackType").ToList() ;
 
         }
+
+        IEnumerable<Quack> IQuackRepository.GetAllQuacks()
+        {
+            return _context.Quacks
+                .Include("QuackContent")
+                .Include("User")
+                .Include("QuackType").ToList();
+        }
     }
 }
