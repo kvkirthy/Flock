@@ -1,4 +1,5 @@
 ﻿using System.DirectoryServices;
+using Flock.DTO;
 using Flock.DataAccess.EntityFramework;
 using Flock.DataAccess.Repositories.Interfaces;
 using Flock.Facade.Interfaces;
@@ -6,20 +7,34 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AutoMapper;
+using Flock.MapperProfile;
 
 namespace Flock.Facade.Concrete
 {
     public class UserFacade : IUserFacade
     {
         private readonly IUserRepository _userRepository;
+        private readonly IAutoMap _autoMap;
 
-        public UserFacade(IUserRepository userRepository)
+        public UserFacade(IUserRepository userRepository, IAutoMap autoMap)
         {
             _userRepository = userRepository;
+            _autoMap = autoMap;
+        }
+
+        public void SaveUser(UserDto user)
+        {
+            _userRepository.SaveUser(_autoMap.Map<UserDto, User>(user));
+        }
+
+        public void UpdateUser(UserDto user)
+        {
+            _userRepository.UpdateUser(_autoMap.Map<UserDto, User>(user));
         }
 
 
-        public User GetUserDetails(string userName)
+        public UserDto GetUserDetails(string userName)
         {
             var currentUser = _userRepository.GetUserByUserName(userName);
             if(currentUser == null)
@@ -28,10 +43,10 @@ namespace Flock.Facade.Concrete
                 if(currentUser!=null )
                 {
                     _userRepository.SaveUser(currentUser);
-                    return currentUser;
+                    return _autoMap.Map<User, UserDto>(currentUser);
                 }
             }
-            return currentUser;
+            return   _autoMap.Map<User,UserDto>(currentUser ) ;
         }
 
         private User ReadUserDetailsFromActiveDirectory(string userName)

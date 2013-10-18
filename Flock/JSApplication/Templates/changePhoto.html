@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../../Content/imgareaselect-animated.css" rel="stylesheet" />
+    <link href="../../Content/imgareaselect-default.css" rel="stylesheet" />
+    <link href="../../Content/imgareaselect-deprecated.css" rel="stylesheet" />
+
+    <script src="../../Scripts/jquery.min.js"></script>
+    <script src="../../Scripts/jquery.imgareaselect.min.js"></script>
+    <link href="../../Content/FlockApplication.css" rel="stylesheet" />
+    
+    <script type="text/javascript ">
+
+        $(document).ready(function () {
+            $('#uplodedPic').imgAreaSelect({
+                handles: true,
+                resizable: true,
+                maxHeight: 193,
+                maxWidth: 770,
+                minHeight: 193,
+                minWidth:770
+            });
+
+            $('#close').click(function () {
+                $('#uplodedPic').imgAreaSelect({
+                    hide: true
+                });
+            });
+            
+            $('#preview').click(function () {
+                $('#uplodedPic').imgAreaSelect({
+                    hide: true
+                });
+            });
+
+            $('#save').click(function () {
+                $('#uplodedPic').imgAreaSelect({
+                    hide: true
+                });
+            });
+
+            $('#hiddenFields').hide();
+            $('#uplodedPic').imgAreaSelect({
+                onSelectEnd: function (img, selection) {
+                    $('#X').val(selection.x1);
+                    $('#Y').val(selection.y1);
+                    $('#width').val(selection.width);
+                    $('#height').val(selection.height);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="changePictureModel" ng-controller="uploadImageController"class="modal hide fade" style="margin-left: -414px; margin-top: -5px; height: 750px !important; width: 805px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <h3 id="myModalLabel">Change Cover Photo</h3>
+            <button id="close" class="btn pull-right span1" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button id="preview" class="btn btn-primary pull-right span1" ng-show="showPreview" ng-click="imagePreview()">Preview</button>
+            <button id="save" class="btn btn-primary pull-right span1" data-dismiss="modal"  ng-show="showSave" ng-click="saveImage()">Save</button><br/>  <br/>
+            <div style="height:40px; ">
+            <label class="control-label alert-block alert-error"  ng-show="showErrorMessage">&nbsp;Upload Failed - Picture size should be minimum of 800 X 200px</label>
+                </div>
+            
+            <br/>
+        </div>
+       
+        <div style="height: 600px !important;">
+            <div style="margin-left: 14px; margin-right: 14px;">
+               
+                <div>
+                    <div class="control-group">
+                        <div>
+                            <label class="control-label text-info">&nbsp;Upload Picture - Minimum size of 800 X 200px</label>
+                        </div>
+                        <img id="uplodedPic" ng-src="../../Content/images/sss.png" />
+                        <div>
+                            <input type="file" name="file" id="imgProfilePic" />
+                        </div>
+                    </div>
+                    <div id="hiddenFields">
+                        <input id="url" type="text" />
+                        <input id="X" type="text" />
+                        <input id="Y" type="text" />
+                        <input id="width" type="text" />
+                        <input id="height" type="text" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

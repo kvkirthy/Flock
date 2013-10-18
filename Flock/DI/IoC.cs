@@ -22,6 +22,7 @@ using Flock.DataAccess.Repositories.Concrete;
 using Flock.DataAccess.Repositories.Interfaces;
 using Flock.Facade.Concrete;
 using Flock.Facade.Interfaces;
+using Flock.MapperProfile;
 using StructureMap;
 
 namespace Flock.DI {
@@ -39,6 +40,7 @@ namespace Flock.DI {
                             x.For<IQuackRepository>().Use<QuackRepository>();
                             x.For<IQuackFacade>().Use<QuackFacade>();
                             x.For<IQuackTypeRepository>().Use<QuackTypeRepository>();
+                            x.For<IAutoMap>().Use<AutoMap>();
                         });
             return ObjectFactory.Container;
         }

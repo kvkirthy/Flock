@@ -11,5 +11,6 @@ namespace Flock.Facade.Interfaces
     {
         void SaveQuack(Quack quack);
         void GetQuack(int id);
+        IEnumerable<QuackEntity> GetAllQuacks();
     }
 }

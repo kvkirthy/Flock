@@ -1,4 +1,6 @@
 ﻿using System.Web.Http.Dispatcher;
+using Flock.Facade;
+using Flock.MapperProfile;
 using Raven.Client.Document;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using StructureMap;
+using AutoMapper; 
 
 namespace Flock
 {
@@ -28,6 +31,7 @@ namespace Flock
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             App_Start.EntityFrameworkProfilerBootstrapper.PreStart();
+            Mapper.Initialize(facadeProfile => facadeProfile.AddProfile(new FacadeProfile()));
         }
     }
 }

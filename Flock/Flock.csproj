@@ -51,6 +51,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AttributeRouting.3.5.6\lib\net40\AttributeRouting.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="HibernatingRhinos.Profiler.Appender">
       <HintPath>..\packages\EntityFrameworkProfiler.2.0.2209.0\lib\HibernatingRhinos.Profiler.Appender.dll</HintPath>
     </Reference>
@@ -175,7 +181,12 @@
     <Compile Include="DI\IoC.cs" />
     <Compile Include="DI\StructureMapDependencyResolver.cs" />
     <Compile Include="DI\StructureMapDependencyScope.cs" />
+    <Compile Include="DTO\UserDto.cs" />
+    <Compile Include="DTO\UserImageDto.cs" />
+    <Compile Include="Facade\QuackEntity.cs" />
     <Compile Include="Facade\Concrete\UserFacade.cs" />
+    <Compile Include="MapperProfile\AutoMap.cs" />
+    <Compile Include="MapperProfile\FacadeProfile.cs" />
     <Compile Include="Facade\Interfaces\IQuackFacade.cs" />
     <Compile Include="Facade\Concrete\QuackFacade.cs" />
     <Compile Include="Facade\Interfaces\IUserFacade.cs" />
@@ -184,6 +195,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MapperProfile\IAutoMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -192,16 +204,28 @@
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\border-anim-h.gif" />
+    <Content Include="Content\border-anim-v.gif" />
+    <Content Include="Content\border-h.gif" />
+    <Content Include="Content\border-v.gif" />
     <Content Include="Content\flock.css" />
     <Content Include="Content\FlockApplication.css" />
     <Content Include="Content\images\Avatar.gif" />
+    <Content Include="Content\images\defaultCoverPic.png" />
     <Content Include="Content\images\duck.png" />
     <Content Include="Content\images\flock.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\michael-jackson-dancing-wallpaper_133509.jpg" />
+    <Content Include="Content\images\profilepic.png" />
     <Content Include="Content\images\profilePicCover.gif" />
     <Content Include="Content\images\small.jpg" />
+    <Content Include="Content\images\sss.png" />
     <Content Include="Content\images\ThumbsUp.jpg" />
+    <Content Include="Content\images\X.jpg" />
+    <Content Include="Content\imgareaselect-animated.css" />
+    <Content Include="Content\imgareaselect-default.css" />
+    <Content Include="Content\imgareaselect-deprecated.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -258,6 +282,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="JSApplication\Controllers\uploadImageController.js" />
     <Content Include="JSApplication\Controllers\userPageController.js" />
     <Content Include="JSApplication\Directives\autoUpdateUserTags.js" />
     <Content Include="JSApplication\Directives\onEnter.js" />
@@ -265,7 +290,9 @@
     <Content Include="JSApplication\Services\userService.js" />
     <Content Include="JSApplication\Templates\autoUpdateUserTagsDirectiveTemplate.html" />
     <Content Include="JSApplication\Services\quackService.js" />
+    <Content Include="JSApplication\Templates\changePhoto.html" />
     <Content Include="JSApplication\Templates\userPage.html" />
+    <Content Include="JSApplication\Templates\userPreferences.html" />
     <Content Include="Scripts\angular.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -276,6 +303,10 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.imgareaselect.js" />
+    <Content Include="Scripts\jquery.imgareaselect.min.js" />
+    <Content Include="Scripts\jquery.imgareaselect.pack.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -299,9 +330,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTO\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

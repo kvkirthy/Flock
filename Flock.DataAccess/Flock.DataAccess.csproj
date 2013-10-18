@@ -99,6 +99,9 @@
     <Compile Include="EntityFramework\QuackContent.cs">
       <DependentUpon>FlockModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityFramework\QuackLike.cs">
+      <DependentUpon>FlockModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityFramework\QuackType.cs">
       <DependentUpon>FlockModel.tt</DependentUpon>
     </Compile>

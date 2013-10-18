@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Flock.DTO;
 using Flock.DataAccess.EntityFramework;
 
 namespace Flock.Facade.Interfaces
 {
     public interface IUserFacade
     {
-        User GetUserDetails(string userName);
+        UserDto GetUserDetails(string userName);
+        void SaveUser(UserDto user);
+        void UpdateUser(UserDto user);
     }
 }

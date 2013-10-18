@@ -59,32 +59,24 @@
             <div class="span1"></div>
             <div class="span7"></div>
 
-            <div class="center">
+            <div class="center">               
+               <!-- Quacks go here -->
+                
+                    <div ng-repeat="quack in quacks">                        
+                        <div class="span12">
+                                
+                                <div class="span1">
+                                    <img src="http://localhost:55886/Content/images/small.jpg" />
+                                    <br /><br /><br />
+                                </div>
 
-                <div class="span7">
-                    <a style="text-decoration: none" href="#">
-                        <br />
-                        PARENT QUACK<br />
-                        Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                        <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
-                        Expand
-                        <hr />
-                        SHOUTS | LIKES | users information
-                    </a>
-                    <hr />
-                    Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                    <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
-                    Expand
-                    <hr />
-                    Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                    <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
-                    Expand
-                    <hr />
-                    Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                    <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
-                    Expand
-                    <hr />
-                </div>
+                                <div class="span10">
+                                    <strong class="span12">{{quack.UserName}}</strong>
+                                    <div class="span12">{{quack.QuackMessage}}</div>
+                                </div>                                
+                            
+                            </div>                        
+                    </div>                
             </div>
         </div>
     </div>

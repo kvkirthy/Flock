@@ -15,7 +15,16 @@ flockApp.service('userService', function ($http, $q) {
         return self.deferred.promise;
     };
 
-
-
+    this.uploadImage = function (image) {
+        self.deferred = $q.defer();
+        $http.post("/api/user/uploadImage", image)
+        .success(function (data) {
+            self.deferred.resolve(data);
+        }).
+        error(function (error) {
+            throw Error(error);
+        });
+        return self.deferred.promise;
+    };
 
 });

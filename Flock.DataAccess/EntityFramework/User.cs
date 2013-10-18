@@ -28,6 +28,8 @@ namespace Flock.DataAccess.EntityFramework
         public bool Active { get; set; }
         public string AdditionalDetails { get; set; }
         public System.DateTime CreatedDate { get; set; }
+        public byte[] CoverImage { get; set; }
+        public byte[] ProfileImage { get; set; }
     
         public virtual ICollection<Quack> Quacks { get; set; }
         public virtual ICollection<UserInterest> UserInterests { get; set; }

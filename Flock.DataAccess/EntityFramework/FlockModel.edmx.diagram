@@ -21,6 +21,7 @@
         <AssociationConnector Association="FlockModel.FK_Quack_User" ManuallyRouted="false" />
         <AssociationConnector Association="FlockModel.FK_UserInterest_User" ManuallyRouted="false" />
         <AssociationConnector Association="FlockModel.FK_UserProject_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FlockModel.QuackLike" Width="1.5" PointX="4.6319549291543449" PointY="8.3220642396817279" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

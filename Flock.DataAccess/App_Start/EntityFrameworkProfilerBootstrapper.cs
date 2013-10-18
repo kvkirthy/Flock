@@ -14,6 +14,7 @@ namespace Flock.DataAccess.App_Start
 			// which you can use for later analysis by loading the file into the profiler.
 			// var filename = @"c:\profiler-log";
 			// EntityFrameworkProfiler.InitializeOfflineProfiling(filename);
+
 		}
 	}
 }

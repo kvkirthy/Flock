@@ -9,6 +9,13 @@
           <EntitySet Name="Interests" EntityType="FlockModel.Store.Interests" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Projects" EntityType="FlockModel.Store.Projects" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="QuackContents" EntityType="FlockModel.Store.QuackContents" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuackLikes" EntityType="FlockModel.Store.QuackLikes" store:Type="Tables" store:Schema="dbo" store:Name="QuackLikes">
+            <DefiningQuery>SELECT 
+      [QuackLikes].[Id] AS [Id], 
+      [QuackLikes].[QuackId] AS [QuackId], 
+      [QuackLikes].[UserId] AS [UserId]
+      FROM [dbo].[QuackLikes] AS [QuackLikes]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Quacks" EntityType="FlockModel.Store.Quacks" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="QuackTypes" EntityType="FlockModel.Store.QuackTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserInterests" EntityType="FlockModel.Store.UserInterests" store:Type="Tables" Schema="dbo" />
@@ -72,6 +79,20 @@
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MessageText" Type="nvarchar" Nullable="false" MaxLength="140" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="QuackImage" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Flock.dbo.QuackLikes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="QuackLikes">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="QuackId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QuackId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Quacks">
           <Key>
@@ -121,6 +142,8 @@
           <Property Name="Active" Type="bit" Nullable="false" />
           <Property Name="AdditionalDetails" Type="nvarchar(max)" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CoverImage" Type="varbinary(max)" />
+          <Property Name="ProfileImage" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Quack_Quack">
           <End Role="Quacks" Type="FlockModel.Store.Quacks" Multiplicity="0..1" />
@@ -263,6 +286,7 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserProject" EntitySet="UserProjects" />
           </AssociationSet>
+          <EntitySet Name="QuackLikes" EntityType="FlockModel.QuackLike" />
         </EntityContainer>
         <EntityType Name="Interest">
           <Key>
@@ -309,6 +333,7 @@
           <Property Name="MessageText" Type="String" Nullable="false" MaxLength="140" Unicode="true" FixedLength="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Quacks" Relationship="FlockModel.FK_Quack_QuackContent" FromRole="QuackContent" ToRole="Quack" />
+          <Property Type="Binary" Name="QuackImage" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="QuackType">
           <Key>
@@ -332,6 +357,8 @@
           <NavigationProperty Name="Quacks" Relationship="FlockModel.FK_Quack_User" FromRole="User" ToRole="Quack" />
           <NavigationProperty Name="UserInterests" Relationship="FlockModel.FK_UserInterest_User" FromRole="User" ToRole="UserInterest" />
           <NavigationProperty Name="UserProjects" Relationship="FlockModel.FK_UserProject_User" FromRole="User" ToRole="UserProject" />
+          <Property Type="Binary" Name="CoverImage" MaxLength="Max" FixedLength="false" />
+          <Property Type="Binary" Name="ProfileImage" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="UserInterest">
           <Key>
@@ -451,6 +478,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="QuackLike">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="QuackId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="QuackId" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -493,7 +530,8 @@
     <EntitySetMapping Name="QuackContents">
       <EntityTypeMapping TypeName="IsTypeOf(FlockModel.QuackContent)">
         <MappingFragment StoreEntitySet="QuackContents">
-          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="QuackImage" ColumnName="QuackImage" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="MessageText" ColumnName="MessageText" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
         </MappingFragment>
@@ -510,7 +548,9 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="IsTypeOf(FlockModel.User)">
         <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+                <ScalarProperty Name="CoverImage" ColumnName="CoverImage" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -538,6 +578,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="QuackLikes">
+            <EntityTypeMapping TypeName="FlockModel.QuackLike">
+              <MappingFragment StoreEntitySet="QuackLikes">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="QuackId" ColumnName="QuackId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

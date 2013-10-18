@@ -26,6 +26,14 @@ namespace Flock.DataAccess.Repositories.Concrete
             base.Add(user);
         }
 
+        public void UpdateUser(User user)
+        {
+            var obj = base.GetById(1);
+            obj.FirstName = "mnc";
+            obj.CoverImage = user.CoverImage; 
+            base.Update( obj);
+        }
+
         public User GetUserById(int id)
         {
             return base.GetById(id);

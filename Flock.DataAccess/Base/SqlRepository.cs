@@ -48,12 +48,13 @@ namespace Flock.DataAccess.Base
         public virtual void Update(T entity)
         {
             DbEntityEntry dbEntityEntry = _context.Entry(entity);
-            if (dbEntityEntry.State == EntityState.Detached)
-            {
+            //if (dbEntityEntry.State == EntityState.Detached)
+            //{
                 DbSet.Attach(entity);
-                SaveChanges();
-            }
+                
+            //}
             dbEntityEntry.State = EntityState.Modified;
+            SaveChanges();
         }
 
         public virtual void Delete(T entity)

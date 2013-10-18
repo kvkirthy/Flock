@@ -33,5 +33,6 @@ namespace Flock.DataAccess.EntityFramework
         public DbSet<User> Users { get; set; }
         public DbSet<UserInterest> UserInterests { get; set; }
         public DbSet<UserProject> UserProjects { get; set; }
+        public DbSet<QuackLike> QuackLikes { get; set; }
     }
 }
