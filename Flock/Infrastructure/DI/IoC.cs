@@ -22,10 +22,10 @@ using Flock.DataAccess.Repositories.Concrete;
 using Flock.DataAccess.Repositories.Interfaces;
 using Flock.Facade.Concrete;
 using Flock.Facade.Interfaces;
-using Flock.MapperProfile;
+using Flock.Infrastructure.MapperProfile;
 using StructureMap;
 
-namespace Flock.DI {
+namespace Flock.Infrastructure.DI {
     public static class IoC {
         public static IContainer Initialize() {
             ObjectFactory.Initialize(x =>
@@ -41,6 +41,7 @@ namespace Flock.DI {
                             x.For<IQuackFacade>().Use<QuackFacade>();
                             x.For<IQuackTypeRepository>().Use<QuackTypeRepository>();
                             x.For<IAutoMap>().Use<AutoMap>();
+                            x.For<IImageFacade>().Use<ImageFacade>();
                         });
             return ObjectFactory.Container;
         }

@@ -5,7 +5,13 @@ flockApp.controller('uploadImageController', function ($scope, userService, quac
     $scope.showPreview = true;
     $scope.showSave = false;
     $scope.imageSource = "";
-    
+
+    $timeout(function () {
+        $("#uplodedPic").attr("src", $scope.imageUrl);
+    }, 2000);
+
+    $scope.imageSourceOriginal = "";
+
 
     var readUrl = function (input) {
         if (input.files && input.files[0]) {
@@ -15,13 +21,14 @@ flockApp.controller('uploadImageController', function ($scope, userService, quac
 
                 var userImage = {};
                 userImage.sourceUrl = e.target.result;
-                userImage.action = 0;
+                userImage.action = "VerifyCoverPic";
                 userService.uploadImage(userImage).then(function (data) {
-                    if (data == "true") {
+
+                    if (data.Message == "true") {
                         $scope.showErrorMessage = false;
                         $scope.imageSource = e.target.result;
+                        $scope.imageSourceOriginal = e.target.result;
                         $('#uplodedPic').attr('src', e.target.result);
-                        $('#url').val(e.target.result);
                         $scope.showPreview = true;
                         $scope.showSave = false;
                     } else {
@@ -48,41 +55,44 @@ flockApp.controller('uploadImageController', function ($scope, userService, quac
         readUrl(this);
     });
 
-    $scope.user = {};
-    $scope.userPreferences = "User Preferences";
-    $scope.image = "x";
-
-
     $scope.imagePreview = function () {
         var userImage = {};
         userImage.sourceUrl = $scope.imageSource;
-        userImage.x = document.getElementById("X").value;
-        userImage.y = document.getElementById("Y").value;
-        userImage.width = document.getElementById("width").value;
-        userImage.height = document.getElementById("height").value;
-        userImage.action = 1;
-        
-        userService.uploadImage(userImage).then(function (data) {
-            document.getElementById("uplodedPic").setAttribute("src", "data:image/jpeg;base64," + data.Message);
-            $scope.imageSource = "data:image/jpeg;base64," + data.Message;
-            $scope.showPreview = false;
-            $scope.showSave = true;
-        });
+        userImage.x = $("#X").val();
+        userImage.y = $("#Y").val();
+        userImage.width =$("#width").val();
+        userImage.height = $("#height").val();
+
+        if (!(userImage.x == "" || userImage.y == "")) {
+            userImage.action = "PreviewCoverPic";
+            userService.uploadImage(userImage).then(function (data) {
+                $("#uplodedPic").attr("src", "data:image/jpeg;base64," + data.Message);
+                $scope.imageSource = "data:image/jpeg;base64," + data.Message;
+                $scope.showPreview = false;
+                $scope.showSave = true;
+            });
+        }
     };
-    
+
     $scope.saveImage = function () {
         var userImage = {};
         userImage.sourceUrl = $scope.imageSource;
-        userImage.action = 2;
+        userImage.action = "SaveCoverPic";
+        userImage.userId = $scope.user.id;
         $scope.imageUrl = $scope.imageSource;
-        document.getElementById("mncss").setAttribute("src", $scope.imageUrl);
-        console.log($scope.imageUrl);
+        $("#userCoverPic").attr("src", $scope.imageUrl);
         userService.uploadImage(userImage).then(function (data) {
             $scope.showPreview = false;
             $scope.showSave = true;
             $scope.imageUrl = data.Message;
-            console.log(data);
+
         });
     };
 
+    $scope.reset = function () {
+       $("#uplodedPic").attr("src", $scope.imageSourceOriginal);
+        $scope.imageSource = angular.copy($scope.imageSourceOriginal);
+        $scope.showPreview = true;
+        $scope.showSave = false;
+    };
 });

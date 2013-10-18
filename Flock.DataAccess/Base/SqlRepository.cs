@@ -48,11 +48,7 @@ namespace Flock.DataAccess.Base
         public virtual void Update(T entity)
         {
             DbEntityEntry dbEntityEntry = _context.Entry(entity);
-            //if (dbEntityEntry.State == EntityState.Detached)
-            //{
-                DbSet.Attach(entity);
-                
-            //}
+            DbSet.Attach(entity);
             dbEntityEntry.State = EntityState.Modified;
             SaveChanges();
         }

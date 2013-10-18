@@ -17,7 +17,7 @@
 
 using System.Web.Http;
 using System.Web.Mvc;
-using Flock.DI;
+using Flock.Infrastructure.DI;
 using StructureMap;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Flock.App_Start.StructuremapMvc), "Start")]

@@ -16,10 +16,10 @@
             $('#uplodedPic').imgAreaSelect({
                 handles: true,
                 resizable: true,
-                maxHeight: 193,
-                maxWidth: 770,
-                minHeight: 193,
-                minWidth:770
+                maxHeight: 195,
+                maxWidth: 775,
+                minHeight: 195,
+                minWidth:775
             });
 
             $('#close').click(function () {
@@ -57,6 +57,7 @@
         <div class="modal-header">
             <h3 id="myModalLabel">Change Cover Photo</h3>
             <button id="close" class="btn pull-right span1" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button id="Button1" class="btn pull-right span1" ng-click="reset()"  aria-hidden="true">Reset</button>
             <button id="preview" class="btn btn-primary pull-right span1" ng-show="showPreview" ng-click="imagePreview()">Preview</button>
             <button id="save" class="btn btn-primary pull-right span1" data-dismiss="modal"  ng-show="showSave" ng-click="saveImage()">Save</button><br/>  <br/>
             <div style="height:40px; ">
@@ -74,13 +75,12 @@
                         <div>
                             <label class="control-label text-info">&nbsp;Upload Picture - Minimum size of 800 X 200px</label>
                         </div>
-                        <img id="uplodedPic" ng-src="../../Content/images/sss.png" />
+                        <img id="uplodedPic" src="../../Content/images/sss.png" />
                         <div>
                             <input type="file" name="file" id="imgProfilePic" />
                         </div>
                     </div>
                     <div id="hiddenFields">
-                        <input id="url" type="text" />
                         <input id="X" type="text" />
                         <input id="Y" type="text" />
                         <input id="width" type="text" />

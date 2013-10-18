@@ -22,7 +22,7 @@ using System.Web.Http.Dependencies;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
-namespace Flock.DI
+namespace Flock.Infrastructure.DI
 {
     /// <summary>
     /// The structure map dependency scope.

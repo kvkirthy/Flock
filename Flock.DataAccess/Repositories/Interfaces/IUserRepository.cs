@@ -6,6 +6,7 @@ namespace Flock.DataAccess.Repositories.Interfaces
         User GetUserByUserName(string userName);
         void SaveUser(User user);
         User GetUserById(int id);
-        void UpdateUser(User user);
+        void UpdateUserCoverImage(User user);
+        void UpdateUserProfileImage(User user);
     }
 }

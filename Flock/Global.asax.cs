@@ -1,6 +1,6 @@
 ﻿using System.Web.Http.Dispatcher;
 using Flock.Facade;
-using Flock.MapperProfile;
+using Flock.Infrastructure.MapperProfile;
 using Raven.Client.Document;
 using System;
 using System.Collections.Generic;

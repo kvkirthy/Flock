@@ -18,7 +18,6 @@ namespace Flock.DataAccess.Repositories.Concrete
         {
             var users = base.GetAll();
             return users.FirstOrDefault(user => user.UserName == userName);
-
         }
 
         public void SaveUser(User user)
@@ -26,12 +25,18 @@ namespace Flock.DataAccess.Repositories.Concrete
             base.Add(user);
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUserCoverImage(User user)
         {
-            var obj = base.GetById(1);
-            obj.FirstName = "mnc";
-            obj.CoverImage = user.CoverImage; 
-            base.Update( obj);
+            var currentUser = base.GetById(user.ID);
+            currentUser.CoverImage = user.CoverImage;
+            base.Update(currentUser);
+        }
+
+        public void UpdateUserProfileImage(User user)
+        {
+            var currentUser = base.GetById(user.ID);
+            currentUser.ProfileImage = user.ProfileImage;
+            base.Update(currentUser);
         }
 
         public User GetUserById(int id)

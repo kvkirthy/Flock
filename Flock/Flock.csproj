@@ -178,15 +178,18 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="DI\IoC.cs" />
-    <Compile Include="DI\StructureMapDependencyResolver.cs" />
-    <Compile Include="DI\StructureMapDependencyScope.cs" />
+    <Compile Include="Facade\Concrete\ImageFacade.cs" />
+    <Compile Include="Facade\Interfaces\IImageFacade.cs" />
+    <Compile Include="Infrastructure\Constants\Constants.cs" />
+    <Compile Include="Infrastructure\DI\IoC.cs" />
+    <Compile Include="Infrastructure\DI\StructureMapDependencyResolver.cs" />
+    <Compile Include="Infrastructure\DI\StructureMapDependencyScope.cs" />
     <Compile Include="DTO\UserDto.cs" />
     <Compile Include="DTO\UserImageDto.cs" />
     <Compile Include="Facade\QuackEntity.cs" />
     <Compile Include="Facade\Concrete\UserFacade.cs" />
-    <Compile Include="MapperProfile\AutoMap.cs" />
-    <Compile Include="MapperProfile\FacadeProfile.cs" />
+    <Compile Include="Infrastructure\MapperProfile\AutoMap.cs" />
+    <Compile Include="Infrastructure\MapperProfile\FacadeProfile.cs" />
     <Compile Include="Facade\Interfaces\IQuackFacade.cs" />
     <Compile Include="Facade\Concrete\QuackFacade.cs" />
     <Compile Include="Facade\Interfaces\IUserFacade.cs" />
@@ -195,7 +198,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MapperProfile\IAutoMap.cs" />
+    <Compile Include="Infrastructure\MapperProfile\IAutoMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

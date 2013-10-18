@@ -12,6 +12,7 @@ namespace Flock.DTO
         public int Y { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-        public int Action { get; set; }
+        public String Action { get; set; }
+        public int UserId { get; set; }
     }
 }

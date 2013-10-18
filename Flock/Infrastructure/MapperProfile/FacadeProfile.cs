@@ -2,7 +2,7 @@
 using Flock.DTO;
 using Flock.DataAccess.EntityFramework;
 
-namespace Flock.MapperProfile
+namespace Flock.Infrastructure.MapperProfile
 {
     public class FacadeProfile : Profile
     {

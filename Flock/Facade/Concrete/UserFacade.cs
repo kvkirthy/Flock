@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
-using Flock.MapperProfile;
+using Flock.Infrastructure.MapperProfile;
 
 namespace Flock.Facade.Concrete
 {
@@ -30,7 +30,7 @@ namespace Flock.Facade.Concrete
 
         public void UpdateUser(UserDto user)
         {
-            _userRepository.UpdateUser(_autoMap.Map<UserDto, User>(user));
+            //_userRepository.UpdateUser(_autoMap.Map<UserDto, User>(user));
         }
 
 
