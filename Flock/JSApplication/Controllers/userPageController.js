@@ -53,6 +53,14 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
         }
     });
 
+    $scope.quacks = [];
+
+    quackService.getAllQuacks().then(function (data) {
+        if (data && _.isArray(data)) {
+            $scope.quacks = data;            
+        }
+    });
+
     userService.getUser().then(function (user) {
         console.log(user);
         $scope.user = user;
