@@ -59,31 +59,11 @@
             <div class="span1"></div>
             <div class="span7"></div>
 
-            <div class="center">
-
-                <div class="span7">
-                    <a style="text-decoration: none" href="#">
-                        <br />
-                        PARENT QUACK<br />
-                        Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                        <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
-                        Expand
-                        <hr />
-                        SHOUTS | LIKES | users information
-                    </a>
-                    <hr />
-                    Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                    <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
-                    Expand
-                    <hr />
-                    Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                    <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
-                    Expand
-                    <hr />
-                    Quack-Message - PROFILE PIC + Message - Timeframe<br />
-                    <span class="span4"></span>Reply | Shout | Cheers, Like it<br />
-                    Expand
-                    <hr />
+            <div class="center">               
+               <!-- Quacks go here -->
+                <div ng-repeat="quack in quacks">
+                    <div>{{quack.UserName}}</div>
+                    <div>{{quack.QuackMessage}}</div>
                 </div>
             </div>
         </div>
