@@ -7,8 +7,7 @@ flockApp.controller('userPageController', function ($scope , userService, quackS
 
     quackService.getAllQuacks().then(function (data) {
         if (data && _.isArray(data)) {
-            $scope.quacks = data;
-            console.log($scope.quacks);
+            $scope.quacks = data;            
         }
     });
 
