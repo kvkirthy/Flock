@@ -78,7 +78,8 @@ flockApp.controller('uploadImageController', function ($scope, userService, quac
         var userImage = {};
         userImage.sourceUrl = $scope.imageSource;
         userImage.action = "SaveCoverPic";
-        userImage.userId = $scope.user.id;
+        console.log($scope.user);
+        userImage.userId = $scope.user.ID;
         $scope.imageUrl = $scope.imageSource;
         $("#userCoverPic").attr("src", $scope.imageUrl);
         userService.uploadImage(userImage).then(function (data) {
