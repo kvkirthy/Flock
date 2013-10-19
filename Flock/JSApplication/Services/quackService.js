@@ -22,6 +22,16 @@
 
         return self.deferred.promise;
     };
+
+    this.deleteQuack = function(quackId) {
+        self.deferred = $q.defer();
+        $http.put("/api/quack/deleteQuack?quackId="+quackId)
+        .success(function (data) {
+            self.deferred.resolve(data);
+        });
+
+        return self.deferred.promise;
+    };
     
 });
 

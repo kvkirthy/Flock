@@ -42,9 +42,17 @@ namespace Flock.DataAccess.Repositories.Concrete
                 .Include("User")
                 .Include("QuackType");
             //TODO: Paging
-            return quacks.OrderByDescending(quack => quack.CreatedDate)
+            return quacks.Where(quack=>quack.Active  )
+                .OrderByDescending(quack => quack.LastModifiedDate )
                 .Take(200)
                 .ToList();
+        }
+
+        public void DeleteQuack(int quackId)
+        {
+            var quack = base.GetById(quackId);
+            quack.Active = false;
+            base.Update(quack);
         }
     }
 }

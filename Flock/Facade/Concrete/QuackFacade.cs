@@ -27,6 +27,8 @@ namespace Flock.Facade.Concrete
         public void SaveQuack(Quack quack)
         {
             quack.CreatedDate = DateTime.Now;
+            quack.LastModifiedDate = DateTime.Now;
+            quack.Active = true;
             var quackType = _quackTypeRepository.GetQuackByQuackType(quack.QuackTypeID);
             
             quack.QuackType = quackType;
@@ -88,6 +90,11 @@ namespace Flock.Facade.Concrete
                     result = "Few seconds ago";
                 }
             return result;
+        }
+
+        public void DeleteQuack(int id)
+        {
+            _quackRepository.DeleteQuack(id);
         }
         
     }

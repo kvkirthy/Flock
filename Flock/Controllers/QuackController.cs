@@ -36,6 +36,13 @@ namespace Flock.Controllers
             return Request.CreateResponse(HttpStatusCode.Created, "true");
         }
 
+        [PUT("deleteQuack")]
+        public HttpResponseMessage Put(int quackId)
+        {
+            _quackFacade.DeleteQuack(quackId);
+            return Request.CreateResponse(HttpStatusCode.Created, "true");
+        }
+
         [GET("activeQuacks")]
         public IList<QuackDto> GetAllActiveQuacks()
         {
