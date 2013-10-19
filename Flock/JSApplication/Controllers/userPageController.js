@@ -5,7 +5,7 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
 
     
     $scope.userName = "";
-    $scope.imageUrl = "";
+    
     $scope.maxCharacters = 200;
     $scope.user = {};
     $scope.userPreferences = "User Preferences";

@@ -55,8 +55,8 @@
                     <!--<div style="margin-left: 100px;" auto-update-user-tags="quackText" list-of-users="users"></div>-->
 
                     <div class="media well span7" style="height: 65px; margin-top: -15px; border: none; background: white;">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" ng-src={{userProfilePicUrl}} /></a>
+                        <a class="pull-left" href="#changeProfilePictureModel" style="font-size:9px;" data-toggle="modal" data-backdrop="false">
+                            <img class="media-object" ng-src={{userProfilePicUrl}} /> Change Picture </a>
                         <div class="media-body">
                             <textarea id="quackText" class="span6" style="width: 575px; resize: none; font-family:arial; font-size:13px;   " placeholder="Your Quack..." rows="3" maxlength="200" ng-model="messageContent" on-enter="saveQuack()"></textarea>
                              <p class="text-success" style="font-size: 10px; font-family:arial;  margin-top:-12px; ">{{maxCharacters - messageContent.length}} characters remaining...</p>
@@ -325,6 +325,7 @@
 
     <ng-include src="'JSApplication/Templates/changePhoto.html'"></ng-include>
     <ng-include src="'JSApplication/Templates/quackDetail.html'"></ng-include>
+    <!--<ng-include src="'JSApplication/Templates/changeProfilePic.html'"></ng-include>-->
 </div>
 
 

@@ -287,6 +287,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="JSApplication\Controllers\uploadImageController.js" />
+    <Content Include="JSApplication\Controllers\uploadProfileImageController.js" />
     <Content Include="JSApplication\Controllers\userPageController.js" />
     <Content Include="JSApplication\Directives\autoUpdateUserTags.js" />
     <Content Include="JSApplication\Directives\onEnter.js" />
@@ -295,6 +296,7 @@
     <Content Include="JSApplication\Templates\autoUpdateUserTagsDirectiveTemplate.html" />
     <Content Include="JSApplication\Services\quackService.js" />
     <Content Include="JSApplication\Templates\changePhoto.html" />
+    <Content Include="JSApplication\Templates\changeProfilePic.html" />
     <Content Include="JSApplication\Templates\quackDetail.html" />
     <Content Include="JSApplication\Templates\userPage.html" />
     <Content Include="JSApplication\Templates\userPreferences.html" />

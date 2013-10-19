@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-flockApp.controller('uploadImageController', function ($scope, userService, quackService, $timeout) {
+flockApp.controller('uploadProfileImageController', function ($scope, userService, quackService, $timeout) {
     $scope.showErrorMessage = false;
     $scope.showPreview = true;
     $scope.showSave = false;
@@ -61,17 +61,17 @@ flockApp.controller('uploadImageController', function ($scope, userService, quac
         userImage.sourceUrl = $scope.imageSource;
         userImage.x = $("#X").val();
         userImage.y = $("#Y").val();
-        userImage.width =$("#width").val();
+        userImage.width = $("#width").val();
         userImage.height = $("#height").val();
 
         //if (!(userImage.x == "" || userImage.y == "")) {
-            userImage.action = "PreviewCoverPic";
-            userService.uploadImage(userImage).then(function (data) {
-                $("#uplodedPic").attr("src", "data:image/jpeg;base64," + data.Message);
-                $scope.imageSource = "data:image/jpeg;base64," + data.Message;
-                $scope.showPreview = false;
-                $scope.showSave = true;
-            });
+        userImage.action = "PreviewCoverPic";
+        userService.uploadImage(userImage).then(function (data) {
+            $("#uplodedPic").attr("src", "data:image/jpeg;base64," + data.Message);
+            $scope.imageSource = "data:image/jpeg;base64," + data.Message;
+            $scope.showPreview = false;
+            $scope.showSave = true;
+        });
         //}
     };
 
@@ -94,7 +94,7 @@ flockApp.controller('uploadImageController', function ($scope, userService, quac
     };
 
     $scope.reset = function () {
-       $("#uplodedPic").attr("src", $scope.imageSourceOriginal);
+        $("#uplodedPic").attr("src", $scope.imageSourceOriginal);
         $scope.imageSource = angular.copy($scope.imageSourceOriginal);
         $scope.showPreview = true;
         $scope.showSave = false;
