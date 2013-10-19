@@ -104,7 +104,8 @@ CREATE TABLE [dbo].[Quacks] (
     [QuackTypeID] int  NOT NULL,
     [ConversationID] int  NOT NULL,
     [ParentQuackID] int  NULL,
-    [CreatedDate] datetime  NOT NULL
+    [CreatedDate] datetime  NOT NULL,
+    [Active] bit  NOT NULL
 );
 GO
 
