@@ -9,13 +9,7 @@
           <EntitySet Name="Interests" EntityType="FlockModel.Store.Interests" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Projects" EntityType="FlockModel.Store.Projects" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="QuackContents" EntityType="FlockModel.Store.QuackContents" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="QuackLikes" EntityType="FlockModel.Store.QuackLikes" store:Type="Tables" store:Schema="dbo" store:Name="QuackLikes">
-            <DefiningQuery>SELECT 
-      [QuackLikes].[Id] AS [Id], 
-      [QuackLikes].[QuackId] AS [QuackId], 
-      [QuackLikes].[UserId] AS [UserId]
-      FROM [dbo].[QuackLikes] AS [QuackLikes]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="QuackLikes" EntityType="FlockModel.Store.QuackLikes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Quacks" EntityType="FlockModel.Store.Quacks" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="QuackTypes" EntityType="FlockModel.Store.QuackTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserInterests" EntityType="FlockModel.Store.UserInterests" store:Type="Tables" Schema="dbo" />
@@ -77,13 +71,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="MessageText" Type="nvarchar" Nullable="false" MaxLength="140" />
+          <Property Name="MessageText" Type="nvarchar" Nullable="false" MaxLength="200" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="QuackImage" Type="varbinary(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'Flock.dbo.QuackLikes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="QuackLikes">
           <Key>
             <PropertyRef Name="Id" />
@@ -330,7 +321,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="MessageText" Type="String" Nullable="false" MaxLength="140" Unicode="true" FixedLength="false" />
+          <Property Name="MessageText" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Quacks" Relationship="FlockModel.FK_Quack_QuackContent" FromRole="QuackContent" ToRole="Quack" />
           <Property Type="Binary" Name="QuackImage" MaxLength="Max" FixedLength="false" />

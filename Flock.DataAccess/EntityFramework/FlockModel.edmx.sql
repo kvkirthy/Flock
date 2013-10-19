@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/11/2013 02:04:54
+-- Date Created: 10/19/2013 13:28:52
 -- Generated from EDMX file: C:\local\Flock\Flock.DataAccess\EntityFramework\FlockModel.edmx
 -- --------------------------------------------------
 
@@ -54,6 +54,9 @@ IF OBJECT_ID(N'[dbo].[Projects]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[QuackContents]', 'U') IS NOT NULL
     DROP TABLE [dbo].[QuackContents];
+GO
+IF OBJECT_ID(N'[FlockModelStoreContainer].[QuackLikes]', 'U') IS NOT NULL
+    DROP TABLE [FlockModelStoreContainer].[QuackLikes];
 GO
 IF OBJECT_ID(N'[dbo].[Quacks]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Quacks];
@@ -107,9 +110,10 @@ GO
 
 -- Creating table 'QuackContents'
 CREATE TABLE [dbo].[QuackContents] (
-    [ID] int IDENTITY(1,1) NOT NULL,
-    [MessageText] nvarchar(140)  NOT NULL,
-    [CreatedDate] datetime  NOT NULL
+    [ID] int  IDENTITY(1,1) NOT NULL,
+    [MessageText] nvarchar(200)  NOT NULL,
+    [CreatedDate] datetime  NOT NULL,
+    [QuackImage] varbinary(max)  NULL
 );
 GO
 
@@ -128,7 +132,9 @@ CREATE TABLE [dbo].[Users] (
     [LastName] nvarchar(50)  NOT NULL,
     [Active] bit  NOT NULL,
     [AdditionalDetails] nvarchar(max)  NULL,
-    [CreatedDate] datetime  NOT NULL
+    [CreatedDate] datetime  NOT NULL,
+    [CoverImage] varbinary(max)  NULL,
+    [ProfileImage] varbinary(max)  NULL
 );
 GO
 
@@ -145,6 +151,14 @@ CREATE TABLE [dbo].[UserProjects] (
     [UserId] int IDENTITY(1,1) NOT NULL,
     [ProjectId] int  NOT NULL,
     [CreatedDate] datetime  NOT NULL
+);
+GO
+
+-- Creating table 'QuackLikes'
+CREATE TABLE [dbo].[QuackLikes] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [QuackId] int  NOT NULL,
+    [UserId] int  NOT NULL
 );
 GO
 
@@ -198,6 +212,12 @@ GO
 ALTER TABLE [dbo].[UserProjects]
 ADD CONSTRAINT [PK_UserProjects]
     PRIMARY KEY CLUSTERED ([UserId], [ProjectId] ASC);
+GO
+
+-- Creating primary key on [Id], [QuackId], [UserId] in table 'QuackLikes'
+ALTER TABLE [dbo].[QuackLikes]
+ADD CONSTRAINT [PK_QuackLikes]
+    PRIMARY KEY CLUSTERED ([Id], [QuackId], [UserId] ASC);
 GO
 
 -- --------------------------------------------------

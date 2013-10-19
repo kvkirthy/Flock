@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using Flock.DataAccess.EntityFramework;
 
@@ -77,7 +78,16 @@ namespace Flock.DataAccess.Base
 
         public void SaveChanges()
         {
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch(DbEntityValidationException ex)
+            {
+                foreach (var failure in ex.EntityValidationErrors) {
+          
+            }
+            }
         }
 
         private bool _disposed = false;

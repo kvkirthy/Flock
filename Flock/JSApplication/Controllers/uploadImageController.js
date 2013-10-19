@@ -63,7 +63,7 @@ flockApp.controller('uploadImageController', function ($scope, userService, quac
         userImage.width =$("#width").val();
         userImage.height = $("#height").val();
 
-        if (!(userImage.x == "" || userImage.y == "")) {
+        //if (!(userImage.x == "" || userImage.y == "")) {
             userImage.action = "PreviewCoverPic";
             userService.uploadImage(userImage).then(function (data) {
                 $("#uplodedPic").attr("src", "data:image/jpeg;base64," + data.Message);
@@ -71,7 +71,7 @@ flockApp.controller('uploadImageController', function ($scope, userService, quac
                 $scope.showPreview = false;
                 $scope.showSave = true;
             });
-        }
+        //}
     };
 
     $scope.saveImage = function () {
@@ -86,6 +86,8 @@ flockApp.controller('uploadImageController', function ($scope, userService, quac
             $scope.showPreview = false;
             $scope.showSave = true;
             $scope.imageUrl = data.Message;
+            $("#X").val(0);
+            $("#Y").val(0);
 
         });
     };
@@ -95,5 +97,7 @@ flockApp.controller('uploadImageController', function ($scope, userService, quac
         $scope.imageSource = angular.copy($scope.imageSourceOriginal);
         $scope.showPreview = true;
         $scope.showSave = false;
+        $("#X").val(0);
+        $("#Y").val(0);
     };
 });
