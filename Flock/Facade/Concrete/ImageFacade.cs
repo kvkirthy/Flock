@@ -39,7 +39,7 @@ namespace Flock.Facade.Concrete
                     break;
                 case "VerifyProfilePic":
                     {
-
+                        result = VerifyProfilePicImageSize(img.SourceUrl);
                     }
                     break;
                 case "PreviewCoverPic":
@@ -47,11 +47,7 @@ namespace Flock.Facade.Concrete
                         result = ImagePreview(img, 800, 450);
                     }
                     break;
-                case "PreviewProfilePic":
-                    {
-
-                    }
-                    break;
+               
                 case "SaveCoverPic":
                     {
                         result = SaveCoverImage(img);
@@ -59,15 +55,10 @@ namespace Flock.Facade.Concrete
                     break;
                 case "SaveProfilePic":
                     {
-
+                        result = SaveProfileImage(img);
                     }
                     break;
-                case "PostImage":
-                    {
-
-                    }
-                    break;
-                default:
+             default:
                     return String.Empty;
             }
             return result;
@@ -80,6 +71,22 @@ namespace Flock.Facade.Concrete
 
             Image imgPhoto = Image.FromStream(new MemoryStream(data));
             if (imgPhoto.Height < minHeight || imgPhoto.Width < minWidth)
+            {
+                return "false";
+            }
+            else
+            {
+                return "true";
+            }
+        }
+
+        private string VerifyProfilePicImageSize(String imageSource)
+        {
+            var uploadedImg = imageSource.Substring(imageSource.IndexOf(',') + 1);
+            byte[] data = Convert.FromBase64String(uploadedImg);
+
+            Image imgPhoto = Image.FromStream(new MemoryStream(data));
+            if (imgPhoto.Height < 64 || imgPhoto.Width < 64 || imgPhoto.Height > 400 || imgPhoto.Width > 400)
             {
                 return "false";
             }
@@ -149,6 +156,26 @@ namespace Flock.Facade.Concrete
             byte[] data = Convert.FromBase64String(src);
             user.CoverImage = data;
             _userRepository.UpdateUserCoverImage(_autoMap.Map<UserDto,User >(user));
+            return img.SourceUrl;
+        }
+
+        private string SaveProfileImage(UserImageDto img)
+        {
+            var imgMemoryStream = new MemoryStream();
+            var user = new UserDto { ID = img.UserId };
+            var src = img.SourceUrl.Substring(img.SourceUrl.IndexOf(',') + 1);
+            byte[] data = Convert.FromBase64String(src);
+            
+            Image imgPhoto = Image.FromStream(new MemoryStream(data));
+            var newImage = new Bitmap(160, 160);
+            Graphics.FromImage(newImage).DrawImage(imgPhoto, 0, 0, 160, 160);
+
+            newImage.Save(imgMemoryStream, ImageFormat.Jpeg);
+            
+            byte[] modifiedImage = imgMemoryStream.GetBuffer();
+            user.ProfileImage = modifiedImage;
+            _userRepository.UpdateUserProfileImage(_autoMap.Map<UserDto, User>(user));
+            
             return img.SourceUrl;
         }
 

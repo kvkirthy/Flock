@@ -56,12 +56,12 @@
     <div id="changePictureModel" ng-controller="uploadImageController"class="modal hide fade" style="margin-left: -33%; margin-top: -7px; height: 800px !important; width: 810px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <h3 id="myModalLabel">Change Cover Photo</h3>
-            <button id="close" class="btn pull-right span1" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            <button id="Button1" class="btn pull-right span1" ng-click="reset()"  aria-hidden="true">Reset</button>
-            <button id="preview" class="btn btn-primary pull-right span1" ng-show="showPreview" ng-click="imagePreview()">Preview</button>
-            <button id="save" class="btn btn-primary pull-right span1" data-dismiss="modal"  ng-show="showSave" ng-click="saveImage()">Save</button><br/>  <br/>
+            <button id="close" class="btn pull-right" style="margin-left:3px;" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button id="Button1" class="btn pull-right " style="margin-left:3px;" ng-click="reset()"  aria-hidden="true">Reset</button>
+            <button id="preview" class="btn btn-primary pull-right " style="margin-left:3px;" ng-show="showPreview" ng-click="imagePreview()">Preview</button>
+            <button id="save" class="btn btn-primary pull-right " style="margin-left:3px;" data-dismiss="modal"  ng-show="showSave" ng-click="saveImage()">Save</button><br/>  <br/>
             <div style="height:40px; ">
-            <label class="control-label alert-block alert-error"  ng-show="showErrorMessage">&nbsp;Upload Failed - Picture size should be minimum of 800 X 200px</label>
+            <label class="control-label alert-block alert-error"  ng-show="showErrorMessage">&nbsp;Upload Failed - Picture size should be minimum of 800 X 200 px</label>
                 </div>
             
             <br/>
@@ -73,7 +73,7 @@
                 <div>
                     <div class="control-group">
                         <div>
-                            <label class="control-label text-info">&nbsp;Upload Picture - Minimum size of 800 X 200px</label>
+                            <label class="control-label text-info">&nbsp;Upload Picture - Minimum size of 800 X 200 px</label>
                         </div>
                         <img id="uplodedPic" ng-src="{{coverPicImageSource}}" />
                         <div>

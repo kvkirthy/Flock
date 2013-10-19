@@ -1,94 +1,29 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-    <link href="../../Content/imgareaselect-animated.css" rel="stylesheet" />
-    <link href="../../Content/imgareaselect-default.css" rel="stylesheet" />
-    <link href="../../Content/imgareaselect-deprecated.css" rel="stylesheet" />
-
-    <script src="../../Scripts/jquery.min.js"></script>
-    <script src="../../Scripts/jquery.imgareaselect.min.js"></script>
-    <link href="../../Content/FlockApplication.css" rel="stylesheet" />
-    
-    <script type="text/javascript ">
-
-        $(document).ready(function () {
-            $('#uplodedPic').imgAreaSelect({
-                handles: true,
-                resizable: true,
-                maxHeight: 195,
-                maxWidth: 775,
-                minHeight: 195,
-                minWidth: 775
-            });
-
-            $('#close').click(function () {
-                $('#uplodedPic').imgAreaSelect({
-                    hide: true
-                });
-            });
-
-            $('#preview').click(function () {
-                $('#uplodedPic').imgAreaSelect({
-                    hide: true
-                });
-            });
-
-            $('#save').click(function () {
-                $('#uplodedPic').imgAreaSelect({
-                    hide: true
-                });
-            });
-
-            $('#hiddenFields').hide();
-            $('#uplodedPic').imgAreaSelect({
-                onSelectEnd: function (img, selection) {
-                    $('#X').val(selection.x1);
-                    $('#Y').val(selection.y1);
-                    $('#width').val(selection.width);
-                    $('#height').val(selection.height);
-                }
-            });
-        });
-    </script>
-</head>
-<body>
-    <div id="changeProfilePictureModel" ng-controller="uploadProfileImageController" class="modal hide fade" style="margin-left: -33%; margin-top: -7px; height: 800px !important; width: 810px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+﻿
+    <div id="changeProfilePictureModel" ng-controller="uploadProfileImageController" class="modal hide fade" style="margin-left: -33%; margin-top: -7px; height: 450px !important; width: 810px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
-            <h3 id="myModalLabel">Change Profile Photo</h3>
-            <button id="close" class="btn pull-right span1" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            <button id="save" class="btn btn-primary pull-right span1" data-dismiss="modal"  ng-show="showSave" ng-click="saveImage()">Save</button><br/>  <br/>
+            <h3 id="myPictureModalLabel">Change Profile Photo</h3>
+            <button id="closePictureModal" class="btn pull-right" style="margin-left:3px;" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button id="savePictureModal" class="btn btn-primary pull-right"  style="margin-left:3px;" data-dismiss="modal"  ng-show="showPictureSave" ng-click="saveProfileImage()">Save</button><br/>  <br/>
             <div style="height:40px; ">
-            <label class="control-label alert-block alert-error"  ng-show="showErrorMessage">&nbsp;Upload Failed - Picture size should be minimum of 800 X 200px</label>
+            <label class="control-label alert-block alert-error"  ng-show="showPictureModalErrorMessage">&nbsp;Upload Failed - Picture size should be Min(64 X 64 px) Max(400 X 400 px)</label>
                 </div>
-            
             <br/>
         </div>
-       
-        <div style="height: 600px !important;">
-            <div style="margin-left: 14px; margin-right: 14px;">
-               
+        <div style="height: 400px !important;">
+            <div style="margin-left: 155px; margin-right: 14px;">
                 <div>
                     <div class="control-group">
                         <div>
-                            <label class="control-label text-info">&nbsp;Upload Picture - Minimum size of 400 X 400px</label>
+                            <label class="control-label text-info">&nbsp;Upload Picture - Size Min(64 X 64 px) Max(400 X 400 px)</label>
                         </div>
-                        <img id="uplodedPic" ng-src="../../Content/images/Avatar.gif" style="height:200px; width:200px; border-color:black ; border-width:2px;  "  />
+                        <img id="uplodedProfilePic" ng-src="{{profilePicImageSource}}" style="height:160px; width:160px; border-color:black ; border-width:2px;  "  />
                         <div>
-                            <input type="file" name="file" id="imgProfilePic" />
+                            <input type="file" name="file" id="imgUploadProfilePic"/>
                         </div>
                     </div>
-                    <div id="hidePictureFields">
-                        <input id="X" type="text" />
-                        <input id="Y" type="text" />
-                        <input id="width" type="text" />
-                        <input id="height" type="text" />
-                    </div>
-
                 </div>
             </div>
         </div>
         
     </div>
-</body>
-</html>
+
