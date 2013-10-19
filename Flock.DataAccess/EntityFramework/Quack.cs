@@ -27,6 +27,7 @@ namespace Flock.DataAccess.EntityFramework
         public Nullable<int> ParentQuackID { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public bool Active { get; set; }
+        public Nullable<System.DateTime> LastModifiedDate { get; set; }
     
         public virtual ICollection<Quack> Quack1 { get; set; }
         public virtual Quack Quack2 { get; set; }

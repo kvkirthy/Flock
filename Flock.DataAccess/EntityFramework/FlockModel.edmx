@@ -97,6 +97,7 @@
           <Property Name="ParentQuackID" Type="int" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="QuackTypes">
           <Key>
@@ -317,6 +318,7 @@
           <NavigationProperty Name="QuackType" Relationship="FlockModel.FK_Quack_QuackType" FromRole="Quack" ToRole="QuackType" />
           <NavigationProperty Name="User" Relationship="FlockModel.FK_Quack_User" FromRole="Quack" ToRole="User" />
           <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
         </EntityType>
         <EntityType Name="QuackContent">
           <Key>
@@ -510,7 +512,8 @@
     <EntitySetMapping Name="Quacks">
       <EntityTypeMapping TypeName="IsTypeOf(FlockModel.Quack)">
         <MappingFragment StoreEntitySet="Quacks">
-          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="ContentID" ColumnName="ContentID" />
