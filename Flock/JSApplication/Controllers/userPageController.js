@@ -12,6 +12,7 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
     $scope.userPreferences = "User Preferences";
     $scope.userProfilePicUrl = "";
     $scope.quacks = [];
+    $scope.replyMode = false;
 
     var getQuacks = function () {
         refreshQuacks();
@@ -42,36 +43,58 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
         }
         $scope.messageContent = "";
     };
+    
+
+    $scope.saveReply = function (quackId) {
+        var quack = {};
+        quack.userId = $scope.user.ID;
+        quack.parentQuackId = null;
+        quack.quackTypeId = 2;
+        quack.quackContent = {};
+        quack.conversationId = quackId;
+        quack.quackContent.messageText = $('#replyContent').val();
+        if (quack.quackContent.replyContent != "") {
+            quackService.saveQuack(quack).then(function () {
+                $scope.replyMode = false;
+                refreshQuacks();
+            });
+        }
+        $('#replyContent').val('');
+    };
 
     var refreshQuacks = function () {
-        quackService.getAllQuacks().then(function (data) {
-            for (var i = 0; i < data.length; i++) {
-                data[i].UserImage = "data:image/jpeg;base64," + data[i].UserImage;
-                data[i].ShowConversation = false;
-                data[i].ExpandOrCollapse = "Expand";
-                if ($scope.user.ID == data[i].UserId) {
-                    data[i].ShowDelete = true;
-                } else {
-                    data[i].ShowDelete = false;
+        if(!($scope.replyMode )){
+            quackService.getAllQuacks().then(function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    data[i].UserImage = "data:image/jpeg;base64," + data[i].UserImage;
+                    data[i].ShowConversation = false;
+                    data[i].ExpandOrCollapse = "Expand";
+                    if ($scope.user.ID == data[i].UserId) {
+                        data[i].ShowDelete = true;
+                    } else {
+                        data[i].ShowDelete = false;
+                    }
                 }
-            }
-            console.log(data);
-            $scope.quacks = data;
-        });
+                console.log(data);
+                $scope.quacks = data;
+            });
+        }
     };
+
     //setInterval(function () {
-    //    quackService.getAllQuacks().then(function (data) {
-    //        for (var i = 0; i < data.length ; i++) {
-    //            data[i].UserImage = "data:image/jpeg;base64," + data[i].UserImage;
-    //        }
-    //        console.log(data);
-    //        $scope.quacks = data;
-    //    });
-    //}, 3000);
+    //    refreshQuacks();
+    //}, 10000);
 
     $scope.expandClick = function (quack) {
         quack.ShowConversation = !quack.ShowConversation;
         quack.ExpandOrCollapse = quack.ExpandOrCollapse == "Expand" ? "Collapse" : "Expand";
+        
+        if(quack.ExpandOrCollapse == "Expand") {
+            $scope.replyMode = false;
+        }
+        else {
+            $scope.replyMode = true;
+        }
     };
 
     $scope.deleteQuack = function (quackId) {

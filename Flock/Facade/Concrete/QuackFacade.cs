@@ -28,6 +28,11 @@ namespace Flock.Facade.Concrete
 
         public void SaveQuack(Quack quack)
         {
+            if(quack.QuackTypeID  == 2 )
+            {
+                _quackRepository.UpdateQuack(quack.ConversationID);
+            }
+
             quack.CreatedDate = DateTime.Now;
             quack.LastModifiedDate = DateTime.Now;
             quack.Active = true;
@@ -65,39 +70,46 @@ namespace Flock.Facade.Concrete
                                                   Likes = quack.QuackLikes.Count(q => q.Active),  
                                                   Message = quack.QuackContent.MessageText,
                                                   Replies = 10,
-                                                  TimeSpan = GetTimeSpanInformation(quack.CreatedDate),
+                                                  TimeSpan = GetTimeSpanInformation(quack.LastModifiedDate),
                                                   UserName = quack.User.FirstName,
                                                   UserImage = quack.User.ProfileImage,
                                                   UserId = quack.User.ID,
-                                                  LikeOrUnlike = VerifyLikeOrUnLike(quack)
+                                                  LikeOrUnlike = VerifyLikeOrUnLike(quack),
+                                                  IsNew  = quack.QuackTypeID ==1? true:false  
 
                                               }).ToList();
         }
 
-        private string GetTimeSpanInformation(DateTime date)
+        private string GetTimeSpanInformation(DateTime? d)
         {
-            TimeSpan timeSpan = DateTime.Now.Subtract(date);
             var result = "";
+            if (d != null)
+            {
+                var date = (DateTime) d;
+                TimeSpan timeSpan = DateTime.Now.Subtract(date);
+           
 
-            if (timeSpan.Days > 2)
-            {
-                result = date.ToString("MMMM dd, yyyy") + " at " + date.ToString("hh:mm tt");
-            }
-            else if (timeSpan.Days > 0)
-            {
-                result = timeSpan.Days + " days ago";
-            }
-            else if (timeSpan.Hours > 0)
-            {
-                result = timeSpan.Hours + " hours ago";
-            }
-            else if (timeSpan.Minutes > 0)
-            {
-                result = timeSpan.Minutes + " minutes ago";
-            }
-            else
-            {
-                result = "Few seconds ago";
+                if (timeSpan.Days > 2)
+                {
+                    result = date.ToString("MMMM dd, yyyy") + " at " + date.ToString("hh:mm tt");
+                }
+                else if (timeSpan.Days > 0)
+                {
+                    result = timeSpan.Days + " days ago";
+                }
+                else if (timeSpan.Hours > 0)
+                {
+                    result = timeSpan.Hours + " hours ago";
+                }
+                else if (timeSpan.Minutes > 0)
+                {
+                    result = timeSpan.Minutes + " minutes ago";
+                }
+                else
+                {
+                    result = "Few seconds ago";
+                }
+               
             }
             return result;
         }

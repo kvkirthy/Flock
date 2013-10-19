@@ -42,8 +42,8 @@ namespace Flock.DataAccess.Repositories.Concrete
                 .Include("User")
                 .Include("QuackType");
             //TODO: Paging
-            return quacks.Where(quack=>quack.Active  )
-                .OrderByDescending(quack => quack.LastModifiedDate )
+            return quacks.Where(quack => quack.Active)
+                .OrderByDescending(quack => quack.CreatedDate )
                 .Take(200)
                 .ToList();
         }
@@ -53,6 +53,13 @@ namespace Flock.DataAccess.Repositories.Concrete
             var quack = base.GetById(quackId);
             quack.Active = false;
             base.Update(quack);
+        }
+
+        public void UpdateQuack(int quackId)
+        {
+            var currentQuack = base.GetById(quackId);
+            currentQuack.LastModifiedDate = DateTime.Now;
+            base.Update(currentQuack);
         }
     }
 }
