@@ -22,6 +22,7 @@ flockApp.controller('uploadProfileImageController', function ($scope, userServic
                     if (data.Message == "true") {
                         $scope.showPictureModalErrorMessage = false;
                         $('#uplodedProfilePic').attr('src', e.target.result);
+                        $scope.profilePicImageSource = e.target.result;
                         $scope.showPictureSave = true;
                     }
                     else {
