@@ -3,9 +3,7 @@
 
 flockApp.controller('userPageController', function ($scope, userService, quackService) {
 
-  
     
-
     $scope.userName = "";
     $scope.imageUrl = "";
 
@@ -28,9 +26,14 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
 
     $scope.saveQuack = function () {
         var quack = {};
-        quack.id = 11;
-        quack.userId = 12;
+        quack.userId = $scope.user.ID;
+        quack.parentQuackId = null;
+        quack.quackTypeId = 1;
+        quack.quackContent = {};
+        quack.quackContent.messageText = $('#quackText').val();
         quackService.saveQuack(quack);
+
+        console.log(quack);
     };
     
 });
