@@ -49,6 +49,12 @@ namespace Flock.Controllers
            return _quackFacade.GetAllQuacks();
         }
 
+        [POST("likeOrUnlikeQuack")]
+        public HttpResponseMessage Post(int quackId, int userId, bool isLike)
+        {
+            _quackFacade.LikeOrUnlikeQuack(quackId, userId, isLike);
+            return Request.CreateResponse(HttpStatusCode.Created, "true");
+        }
         
     }
 }

@@ -19,6 +19,7 @@ namespace Flock.DataAccess.EntityFramework
             this.Quacks = new HashSet<Quack>();
             this.UserInterests = new HashSet<UserInterest>();
             this.UserProjects = new HashSet<UserProject>();
+            this.QuackLikes = new HashSet<QuackLike>();
         }
     
         public int ID { get; set; }
@@ -34,5 +35,6 @@ namespace Flock.DataAccess.EntityFramework
         public virtual ICollection<Quack> Quacks { get; set; }
         public virtual ICollection<UserInterest> UserInterests { get; set; }
         public virtual ICollection<UserProject> UserProjects { get; set; }
+        public virtual ICollection<QuackLike> QuackLikes { get; set; }
     }
 }

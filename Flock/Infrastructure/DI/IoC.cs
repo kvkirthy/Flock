@@ -42,6 +42,7 @@ namespace Flock.Infrastructure.DI {
                             x.For<IQuackTypeRepository>().Use<QuackTypeRepository>();
                             x.For<IAutoMap>().Use<AutoMap>();
                             x.For<IImageFacade>().Use<ImageFacade>();
+                            x.For<IQuackLikeRepository>().Use<QuackLikeRepository>();
                         });
             return ObjectFactory.Container;
         }

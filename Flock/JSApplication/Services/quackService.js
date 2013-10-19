@@ -33,6 +33,16 @@
         return self.deferred.promise;
     };
     
+    this.likeOrUnlikeQuack = function (quackId, userId, isLike) {
+        self.deferred = $q.defer();
+        $http.post("/api/quack/likeOrUnlikeQuack?quackId=" + quackId+"&userId="+userId+"&isLike="+isLike)
+        .success(function (data) {
+            self.deferred.resolve(data);
+        });
+
+        return self.deferred.promise;
+    };
+    
 });
 
 

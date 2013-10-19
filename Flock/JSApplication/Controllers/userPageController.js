@@ -79,4 +79,11 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
             refreshQuacks();
         });
     };
+
+    $scope.likeOrUnlikeQuack = function(quack) {
+        quackService.likeOrUnlikeQuack(quack.Id, quack.UserId,
+            quack.LikeOrUnlike == "Like" ? true : false).then(function () {
+            refreshQuacks();
+        } );
+    };
 });

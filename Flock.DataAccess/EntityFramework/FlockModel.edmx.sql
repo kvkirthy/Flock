@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/19/2013 13:28:52
+-- Date Created: 10/19/2013 23:04:59
 -- Generated from EDMX file: C:\local\Flock\Flock.DataAccess\EntityFramework\FlockModel.edmx
 -- --------------------------------------------------
 
@@ -28,6 +28,12 @@ IF OBJECT_ID(N'[dbo].[FK_Quack_QuackType]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_Quack_User]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Quacks] DROP CONSTRAINT [FK_Quack_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_QuackLikes_Quacks]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[QuackLikes] DROP CONSTRAINT [FK_QuackLikes_Quacks];
+GO
+IF OBJECT_ID(N'[dbo].[FK_QuackLikes_Users]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[QuackLikes] DROP CONSTRAINT [FK_QuackLikes_Users];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserInterest_Interest]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserInterests] DROP CONSTRAINT [FK_UserInterest_Interest];
@@ -55,8 +61,8 @@ GO
 IF OBJECT_ID(N'[dbo].[QuackContents]', 'U') IS NOT NULL
     DROP TABLE [dbo].[QuackContents];
 GO
-IF OBJECT_ID(N'[FlockModelStoreContainer].[QuackLikes]', 'U') IS NOT NULL
-    DROP TABLE [FlockModelStoreContainer].[QuackLikes];
+IF OBJECT_ID(N'[dbo].[QuackLikes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[QuackLikes];
 GO
 IF OBJECT_ID(N'[dbo].[Quacks]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Quacks];
@@ -98,7 +104,7 @@ GO
 
 -- Creating table 'Quacks'
 CREATE TABLE [dbo].[Quacks] (
-    [ID] int IDENTITY(1,1) NOT NULL,
+    [ID] int  IDENTITY(1,1) NOT NULL,
     [UserID] int  NOT NULL,
     [ContentID] int  NOT NULL,
     [QuackTypeID] int  NOT NULL,
@@ -160,7 +166,8 @@ GO
 CREATE TABLE [dbo].[QuackLikes] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [QuackId] int  NOT NULL,
-    [UserId] int  NOT NULL
+    [UserId] int  NOT NULL,
+    [Active] bit  NOT NULL
 );
 GO
 
@@ -216,10 +223,10 @@ ADD CONSTRAINT [PK_UserProjects]
     PRIMARY KEY CLUSTERED ([UserId], [ProjectId] ASC);
 GO
 
--- Creating primary key on [Id], [QuackId], [UserId] in table 'QuackLikes'
+-- Creating primary key on [Id] in table 'QuackLikes'
 ALTER TABLE [dbo].[QuackLikes]
 ADD CONSTRAINT [PK_QuackLikes]
-    PRIMARY KEY CLUSTERED ([Id], [QuackId], [UserId] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -326,6 +333,34 @@ ADD CONSTRAINT [FK_UserProject_User]
     REFERENCES [dbo].[Users]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [QuackId] in table 'QuackLikes'
+ALTER TABLE [dbo].[QuackLikes]
+ADD CONSTRAINT [FK_QuackLikes_Quacks]
+    FOREIGN KEY ([QuackId])
+    REFERENCES [dbo].[Quacks]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_QuackLikes_Quacks'
+CREATE INDEX [IX_FK_QuackLikes_Quacks]
+ON [dbo].[QuackLikes]
+    ([QuackId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'QuackLikes'
+ALTER TABLE [dbo].[QuackLikes]
+ADD CONSTRAINT [FK_QuackLikes_Users]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_QuackLikes_Users'
+CREATE INDEX [IX_FK_QuackLikes_Users]
+ON [dbo].[QuackLikes]
+    ([UserId]);
 GO
 
 -- --------------------------------------------------
