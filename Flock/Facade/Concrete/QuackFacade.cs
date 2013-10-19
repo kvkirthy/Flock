@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Flock.DTO;
 using Flock.DataAccess.Base;
 using Flock.DataAccess.EntityFramework;
 using Flock.DataAccess.Repositories.Interfaces;
@@ -44,28 +45,50 @@ namespace Flock.Facade.Concrete
 
         }
 
-        public IEnumerable<QuackEntity> GetAllQuacks()
+        public IList<QuackDto> GetAllQuacks()
         {
             var quacks = _quackRepository.GetAllQuacks();
 
-            //TODO: Use Auto-mapper
-            var returnData = new List<QuackEntity>();
-
-            foreach(var quack in quacks)
-            {
-                returnData.Add(new QuackEntity(){
-                    ID = quack.ID,
-                    UserID = quack.UserID,
-                    UserName = quack.User.UserName,
-                    ContentID = quack.ContentID,
-                    ConversationID = quack.ConversationID,
-                    ParentQuackID = quack.ParentQuackID,
-                    CreatedDate = quack.CreatedDate,
-                    QuackMessage = quack.QuackContent.MessageText
-                });
-            }
-
-            return returnData;
+            return quacks.Select(quack => new QuackDto
+                                              {
+                                                  Id = quack.ID,
+                                                  Likes = 5,
+                                                  Message = quack.QuackContent.MessageText,
+                                                  Replies = 10,
+                                                  TimeSpan = GetTimeSpanInformation(quack.CreatedDate),
+                                                  UserName = quack.User.FirstName,
+                                                  UserImage = quack.User.ProfileImage,
+                                                  UserId =quack.User.ID,
+                                              }).ToList();
         }
+        
+        private string GetTimeSpanInformation(DateTime date)
+        {
+            TimeSpan timeSpan = DateTime.Now.Subtract(date);
+            var result = "";
+
+                if (timeSpan.Days > 2)
+                {
+                    result= date.ToString("MMMM dd, yyyy") + " at " + date.ToString("hh:mm tt");
+                }
+                else if (timeSpan.Days > 0)
+                {
+                    result = timeSpan.Days + " days ago";
+                }
+                else if (timeSpan.Hours > 0)
+                {
+                    result = timeSpan.Hours + " hours ago";
+                }
+                else if (timeSpan.Minutes > 0)
+                {
+                    result = timeSpan.Minutes + " minutes ago";
+                }
+                else
+                {
+                    result = "Few seconds ago";
+                }
+            return result;
+        }
+        
     }
 }

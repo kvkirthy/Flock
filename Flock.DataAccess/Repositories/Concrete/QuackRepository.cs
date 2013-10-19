@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Flock.DataAccess.Base;
 using Flock.DataAccess.EntityFramework;
 using Flock.DataAccess.Repositories.Interfaces;
-using System.Data.Entity;  
+using System.Data.Entity;
 
 namespace Flock.DataAccess.Repositories.Concrete
 {
@@ -31,16 +31,20 @@ namespace Flock.DataAccess.Repositories.Concrete
                 .Where(q => q.ID == id)
                 .Include("QuackContent")
                 .Include("User")
-                .Include("QuackType").ToList() ;
+                .Include("QuackType").ToList();
 
         }
 
-        IEnumerable<Quack> IQuackRepository.GetAllQuacks()
+        IList<Quack> IQuackRepository.GetAllQuacks()
         {
-            return _context.Quacks
+            var quacks = _context.Quacks
                 .Include("QuackContent")
                 .Include("User")
-                .Include("QuackType").ToList();
+                .Include("QuackType");
+            //TODO: Paging
+            return quacks.OrderByDescending(quack => quack.CreatedDate)
+                .Take(200)
+                .ToList();
         }
     }
 }

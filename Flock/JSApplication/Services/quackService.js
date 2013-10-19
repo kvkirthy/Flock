@@ -15,7 +15,7 @@
 
     this.getAllQuacks = function () {
         self.deferred = $q.defer();
-        $http.get("/api/quack")
+        $http.get("/api/quack/activeQuacks")
         .success(function (data) {
             self.deferred.resolve(data);
         });

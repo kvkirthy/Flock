@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Flock.DTO;
 using Flock.DataAccess.EntityFramework;
 
 
@@ -11,6 +12,6 @@ namespace Flock.Facade.Interfaces
     {
         void SaveQuack(Quack quack);
         void GetQuack(int id);
-        IEnumerable<QuackEntity> GetAllQuacks();
+        IList<QuackDto> GetAllQuacks();
     }
 }

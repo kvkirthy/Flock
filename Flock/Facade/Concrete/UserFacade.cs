@@ -32,7 +32,7 @@ namespace Flock.Facade.Concrete
 
         public void UpdateUser(UserDto user)
         {
-            //_userRepository.UpdateUser(_autoMap.Map<UserDto, User>(user));
+         
         }
 
 

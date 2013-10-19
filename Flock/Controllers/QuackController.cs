@@ -4,6 +4,7 @@ using System.Web.Security;
 using System.Web.Services.Description;
 using AttributeRouting;
 using AttributeRouting.Web.Mvc;
+using Flock.DTO;
 using Flock.DataAccess.EntityFramework;
 using Flock.Facade;
 using Flock.Facade.Interfaces;
@@ -35,7 +36,8 @@ namespace Flock.Controllers
             return Request.CreateResponse(HttpStatusCode.Created, "true");
         }
 
-        public IEnumerable<QuackEntity> Get()
+        [GET("activeQuacks")]
+        public IList<QuackDto> GetAllActiveQuacks()
         {
            return _quackFacade.GetAllQuacks();
         }
