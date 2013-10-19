@@ -37,7 +37,7 @@ flockApp.controller('uploadImageController', function ($scope, userService, quac
 
                         $timeout(function () {
                             $scope.showErrorMessage = false;
-                        }, 3000);
+                        }, 4000);
                     }
                 });
             };

@@ -31,8 +31,8 @@ namespace Flock.Controllers
         [POST("save")]
         public HttpResponseMessage Post(Quack quack)
         {
-            _quackFacade.SaveQuack(quack  );
-            return Request.CreateResponse(HttpStatusCode.Created, quack);
+            _quackFacade.SaveQuack(quack);
+            return Request.CreateResponse(HttpStatusCode.Created, "true");
         }
 
         public IEnumerable<QuackEntity> Get()

@@ -15,14 +15,12 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
    
 
     userService.getUser().then(function (user) {
-        
         $scope.user = user;
         $scope.userName = user.FirstName;
         $("#userCoverPic").attr("src", "data:image/jpeg;base64," + user.CoverImage);
         $scope.userProfilePicUrl = "data:image/jpeg;base64,"+user.ProfileImage;
         $scope.imageUrl = "data:image/jpeg;base64," + user.CoverImage;
         $scope.profilePicimageUrl = $scope.userProfilePicUrl;
-        
         
     });
 
@@ -32,10 +30,13 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
         quack.parentQuackId = null;
         quack.quackTypeId = 1;
         quack.quackContent = {};
-        quack.quackContent.messageText = $('#quackText').val();
-        quackService.saveQuack(quack);
-
-        console.log(quack);
+        quack.quackContent.messageText = $scope.messageContent;
+        if(quack.quackContent.messageText!=""  ) {
+            quackService.saveQuack(quack).then(function () {
+                
+            });
+        }
+        $scope.messageContent = "";
     };
     
 });

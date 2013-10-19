@@ -44,7 +44,7 @@
             <br />
 
             <div>
-                <div ng-controller="autoUpdateUserTagsController">
+                <div>
                     <!-- <img id="userProfilePic" src="../../Content/images/profilepic - Copy.png" />
                     <textarea class="span7" style="margin-top: 8px;" ng-model="quackText" style="resize: none" placeholder="Your Quack..." rows="3" maxlength="200" on-enter="saveQuack()"></textarea>
                     <div style="margin-top: -5px">
@@ -58,7 +58,7 @@
                         <a class="pull-left" href="#changeProfilePictureModel" style="font-size:9px;" data-toggle="modal" data-backdrop="false">
                             <img id="userProfilePic" class="media-object" ng-src={{userProfilePicUrl}} style="width:64px; height:64px ;box-shadow:3px 3px 1px #888888;"/> Change Picture </a>
                         <div class="media-body">
-                            <textarea id="quackText" class="span6" style="width: 575px; resize: none; font-family:arial; font-size:13px;   " placeholder="Your Quack..." rows="3" maxlength="200" ng-model="messageContent" on-enter="saveQuack()"></textarea>
+                            <textarea id="quackText"  class="span6" style="width: 575px; resize: none; font-family:arial; font-size:13px;   " placeholder="Your Quack..." rows="3" maxlength="200" ng-model="messageContent" on-enter="saveQuack()"></textarea>
                              <p class="text-success" style="font-size: 10px; font-family:arial;  margin-top:-12px; ">{{maxCharacters - messageContent.length}} characters remaining...</p>
                             <br />
                         </div>
