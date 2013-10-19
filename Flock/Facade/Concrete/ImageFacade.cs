@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web;
 using Flock.DTO;
@@ -149,6 +150,13 @@ namespace Flock.Facade.Concrete
             user.CoverImage = data;
             _userRepository.UpdateUserCoverImage(_autoMap.Map<UserDto,User >(user));
             return img.SourceUrl;
+        }
+
+        public byte[] GetImageFromUrl(String imageUrl)
+        {
+            var webClient = new WebClient();
+            byte[] data = webClient.DownloadData(imageUrl);
+            return data;
         }
     }
 }

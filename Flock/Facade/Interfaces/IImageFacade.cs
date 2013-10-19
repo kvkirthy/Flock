@@ -10,5 +10,6 @@ namespace Flock.Facade.Interfaces
     public interface IImageFacade
     {
         String ProcessImageByAction(UserImageDto img);
+        byte[] GetImageFromUrl(String imageUrl);
     }
 }

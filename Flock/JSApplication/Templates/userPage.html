@@ -56,9 +56,10 @@
 
                     <div class="media well span7" style="height: 65px; margin-top: -15px; border: none; background: white;">
                         <a class="pull-left" href="#">
-                            <img class="media-object" src="../../Content/images/profilepic.png" /></a>
+                            <img class="media-object" ng-src={{userProfilePicUrl}} /></a>
                         <div class="media-body">
-                            <textarea id="quackText" class="span6" style="width: 575px" style="resize: none" placeholder="Your Quack..." rows="3" maxlength="200" on-enter="saveQuack()"></textarea>
+                            <textarea id="quackText" class="span6" style="width: 575px; resize: none; font-family:arial; font-size:13px;   " placeholder="Your Quack..." rows="3" maxlength="200" ng-model="messageContent" on-enter="saveQuack()"></textarea>
+                             <p class="text-success" style="font-size: 10px; font-family:arial;  margin-top:-12px; ">{{maxCharacters - messageContent.length}} characters remaining...</p>
                             <br />
                         </div>
                     </div>

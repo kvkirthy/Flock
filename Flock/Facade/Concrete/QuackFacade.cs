@@ -34,21 +34,7 @@ namespace Flock.Facade.Concrete
 
             quack.QuackContent.CreatedDate = DateTime.Now;
             _quackRepository.SaveQuack(quack);
-
-            //var quack = new Quack {QuackTypeID = 1, UserID =1, ParentQuackID =null, CreatedDate = DateTime.Now  };
-            //quack.ConversationID = quack.ID;
-
-            //var quackType = _quackTypeRepository.GetQuackByQuackType(quack.QuackTypeID );
-            //quack.QuackType = quackType;
-
-            //var user = _userRepository.GetUserById(quack.UserID);
-            //quack.User = user;
-
-            //var quackContent = new QuackContent {MessageText = "First Quack", CreatedDate = DateTime.Now};
-            //quack.QuackContent = quackContent;
-
-            //_quackRepository.SaveQuack(quack);
-            //GetQuack(5);
+          
         }
 
         public void GetQuack(int id)

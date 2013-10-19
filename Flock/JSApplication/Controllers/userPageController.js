@@ -6,20 +6,24 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
     
     $scope.userName = "";
     $scope.imageUrl = "";
-
+    $scope.maxCharacters = 200;
     $scope.user = {};
     $scope.userPreferences = "User Preferences";
-    
+    $scope.userProfilePicUrl = "";
     //quackService.getAllQuacks().then(function (data) {
     //    if (data && _.isArray(data)) {
     //        $scope.quacks = data;            
     //    }
     //});
 
+   
+
     userService.getUser().then(function (user) {
+        
         $scope.user = user;
         $scope.userName = user.FirstName;
         $("#userCoverPic").attr("src", "data:image/jpeg;base64," + user.CoverImage);
+        $scope.userProfilePicUrl = "data:image/jpeg;base64,"+user.ProfileImage;
         $scope.imageUrl = "data:image/jpeg;base64," + user.CoverImage;
         
     });

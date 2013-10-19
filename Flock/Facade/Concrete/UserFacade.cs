@@ -16,11 +16,13 @@ namespace Flock.Facade.Concrete
     {
         private readonly IUserRepository _userRepository;
         private readonly IAutoMap _autoMap;
+        private readonly IImageFacade  _imageFacade;
 
-        public UserFacade(IUserRepository userRepository, IAutoMap autoMap)
+        public UserFacade(IUserRepository userRepository, IAutoMap autoMap, IImageFacade imageFacade)
         {
             _userRepository = userRepository;
             _autoMap = autoMap;
+            _imageFacade = imageFacade;
         }
 
         public void SaveUser(UserDto user)
@@ -36,12 +38,19 @@ namespace Flock.Facade.Concrete
 
         public UserDto GetUserDetails(string userName)
         {
+            const string defaultCoverPicUrl = "http://localhost:55886/Content/images/defaultCoverPic.png";
+            const string defaultProfilePicUrl = "http://localhost:55886/Content/images/profilepic.png";
+            
             var currentUser = _userRepository.GetUserByUserName(userName);
             if(currentUser == null)
             {
                 currentUser = ReadUserDetailsFromActiveDirectory(userName);
                 if(currentUser!=null )
                 {
+
+                    currentUser.CoverImage = _imageFacade.GetImageFromUrl(defaultCoverPicUrl);
+                    currentUser.ProfileImage = _imageFacade.GetImageFromUrl(defaultProfilePicUrl);
+
                     _userRepository.SaveUser(currentUser);
                     return _autoMap.Map<User, UserDto>(currentUser);
                 }
