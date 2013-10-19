@@ -1,16 +1,18 @@
-﻿<div ng-controller="userPageController">
+﻿<div ng-controller="userPageController" style="background: lightslategrey">
+    <!--Header Section-->
+    <div style="height: 155px; background: paleturquoise">
+    </div>
 
-    <div class="container">
 
-        <!--Flock Page header bar-->
-        <div class="navbar navbar-inverse">
-            <div class="navbar-inner">
-                <div class="container" style="width: auto;">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
+
+    <div class="container center">
+        <!--Cover Pic Section-->
+        <div class="well span8" style="background: white; height: 375px; margin-top: -125px; border-top-width: 2px; border-color: dimgray; border-left-width: 2px; border-right-width: 2px; border-bottom-color: white">
+            <!--Flock Page header bar-->
+            <div class="navbar navbar-inverse">
+                <div class="navbar-inner">
+
+
                     <div class="nav-collapse">
                         <ul class="nav">
                             <li><a class="brand active" href="#" onclick="location.reload();">Flock</a></li>
@@ -23,36 +25,187 @@
                             <li><a href="#">Contact</a></li>
                         </ul>
                     </div>
+
                 </div>
             </div>
-        </div>
-
-        <!--Body center-->
-        <div class="center">
 
             <!--User Information-->
-            <div class="well span8">
-                <h4>{{userName}} </h4>
-                <img id="userCoverPic"/>
-                <br />
-                <span><a class="pull-right" href="#changePictureModel" style="font-size: 11px" data-toggle="modal" data-backdrop="false">Change Cover</a></span>
-                <br />
+            <div style="background: white; margin-top: -25px;">
 
+                <img id="userCoverPic" />
+
+                <span style="font: 14px; font-family: verdana; font-weight: bold;"><a>{{userName}}</a> </span>
+
+                <span>
+                    <a class="pull-right" href="#changePictureModel" style="font-size: 11px" data-toggle="modal" data-backdrop="false">Change Cover</a>
+                </span>
+                <br />
             </div>
+            <br />
 
-            <div class="center1">
+            <div>
                 <div ng-controller="autoUpdateUserTagsController">
-                    <img id="userCoverPic" ng-src=""/>
-                    <textarea class="span6" style="margin-top: 8px;" ng-model="quackText" style="resize: none" placeholder="Your Quack..." rows="3" maxlength="140" on-enter="saveQuack()"></textarea>
-                    <div style="margin-top: -11px"><a href="#" style="font-size: 11px">&nbsp;change pic</a></div>
-                    <div auto-update-user-tags="quackText" list-of-users="users"></div>
+                    <!-- <img id="userProfilePic" src="../../Content/images/profilepic - Copy.png" />
+                    <textarea class="span7" style="margin-top: 8px;" ng-model="quackText" style="resize: none" placeholder="Your Quack..." rows="3" maxlength="200" on-enter="saveQuack()"></textarea>
+                    <div style="margin-top: -5px">
+                        <a href="#" style="font-size: 11px">Change Picture</a>
+                        <a href="#" class="pull-right" style="font-size: 11px; margin-right:8px; margin-top:-5px;  ">Attach Image</a>
+                    </div>-->
+                    <!--TOD0: Commented for Draft implementation--- need to get the css correct-->
+                    <!--<div style="margin-left: 100px;" auto-update-user-tags="quackText" list-of-users="users"></div>-->
+
+                    <div class="media well span7" style="height: 65px; margin-top: -15px; border: none; background: white;">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="../../Content/images/profilepic.png" /></a>
+                        <div class="media-body">
+                            <textarea class="span6" style="width: 575px" ng-model="quackText" style="resize: none" placeholder="Your Quack..." rows="3" maxlength="200" on-enter="saveQuack()"></textarea>
+                            <br />
+                        </div>
+                    </div>
                 </div>
                 <br />
             </div>
-            <div class="span1"></div>
-            <div class="span7"></div>
 
-            <div class="center">
+
+
+
+        </div>
+
+        <div class="well span8" style="background: white; margin-top: -40px; border-color: dimgray; border-left-width: 2px; border-right-width: 2px; border-bottom-width: 1px; border-top-color: white">
+
+
+            <div class="media well span7" style="height: 65px; margin-top: -20px; background: white; border: none;">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="../../Content/images/profilepic.png" />
+                </a>
+                <div class="media-body">
+                    <span class="media-heading"
+                        style="color: steelblue; font-weight: bold;">Sachin Tendulkar
+                    </span>
+                    <span
+                        style="color: slategray; font-size: 11px;">&nbsp;-5 days ago
+                    </span>
+                    <span style="color: green ; font-size: 11px;" class="pull-right">(10) Likes | (5) Replies</span>
+                    <p style="font-size: 12px; font-family:arial;  ">I've got a span that's 350 pixels wide. If there's more text than that, it just goes straight out to the right off to the side of the span. How do I force the text to wrap down into a paragraph? I've
+                         <a href="#quackDetail" style="color:blue; font-size:11px; " class="pull-right" data-toggle="modal" data-backdrop="false">More...</a></p>
+                    
+                    <!-- Nested media object -->
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+  <div class="media well span7" style="height: 65px; margin-top: -20px; background: white; border: none;">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="../../Content/images/profilepic.png" />
+                </a>
+                <div class="media-body">
+                    <span class="media-heading"
+                        style="color: steelblue; font-weight: bold;">Shashank
+                    </span>
+                    <span
+                        style="color: slategray; font-size: 11px;">&nbsp;-5 days ago
+                    </span>
+                    <span style="color: green ; font-size: 11px;" class="pull-right">(10) Likes | (5) Replies</span>
+                    <p style="font-size: 12px; font-family:arial;  ">I've got a span that's 350 pixels wide. If there's more text than that, it just goes straight out to the right off to the side of the span. How do I force the text to wrap down into a paragraph? I've </p>
+
+                    <!-- Nested media object -->
+
+
+
+                </div>
+  </div>
+            
+            <div class="media well span7" style="height: 65px; margin-top: -20px; background: white; border: none;">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="../../Content/images/profilepic.png" />
+                </a>
+                <div class="media-body">
+                    <span class="media-heading"
+                          style="color: steelblue; font-weight: bold;">Shashank
+                    </span>
+                    <span
+                        style="color: slategray; font-size: 11px;">&nbsp;-5 days ago
+                    </span>
+                    <span style="color: green ; font-size: 11px;" class="pull-right">(10) Likes | (5) Replies</span>
+                    <p style="font-size: 12px; font-family:arial;  ">I've got a span that's 350 pixels wide. If there's more text than that, it just goes straight out to the right off to the side of the span. How do I force the text to wrap down into a paragraph? I've </p>
+
+                    <!-- Nested media object -->
+
+
+
+                </div>
+            </div>
+            
+            
+            <div class="media well span7" style="height: 65px; margin-top: -20px; background: white; border: none;">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="../../Content/images/profilepic.png" />
+                </a>
+                <div class="media-body">
+                    <span class="media-heading"
+                          style="color: steelblue; font-weight: bold;">Shashank
+                    </span>
+                    <span
+                        style="color: slategray; font-size: 11px;">&nbsp;-5 days ago
+                    </span>
+                    <span style="color: green ; font-size: 11px;" class="pull-right">(10) Likes | (5) Replies</span>
+                    <p style="font-size: 12px; font-family:arial;  ">I've got a span that's 350 pixels wide. If there's more text than that, it just goes straight out to the right off to the side of the span. How do I force the text to wrap down into a paragraph? I've </p>
+
+                    <!-- Nested media object -->
+
+
+
+                </div>
+            </div>
+            
+            <div class="media well span7" style="height: 65px; margin-top: -20px; background: white; border: none;">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="../../Content/images/profilepic.png" />
+                </a>
+                <div class="media-body">
+                    <span class="media-heading"
+                          style="color: steelblue; font-weight: bold;">Shashank
+                    </span>
+                    <span
+                        style="color: slategray; font-size: 11px;">&nbsp;-5 days ago
+                    </span>
+                    <span style="color: green ; font-size: 11px;" class="pull-right">(10) Likes | (5) Replies</span>
+                    <p style="font-size: 12px; font-family:arial;  ">I've got a span that's 350 pixels wide. If there's more text than that, it just goes straight out to the right off to the side of the span. How do I force the text to wrap down into a paragraph? I've </p>
+
+                    <!-- Nested media object -->
+
+
+
+                </div>
+            </div>
+            
+    
+            
+       
+            
+            
+            
+            
+            
+            
+            
+
+
+        </div>
+
+
+
+        <!--     <div class="span1"></div>
+            <div class="span7"></div>-->
+
+        <!--  <div>
                 <div class="span7">
                     <a style="text-decoration: none" href="#">
                         <br />
@@ -77,11 +230,12 @@
                     Expand
                     <hr />
                 </div>
-            </div>
-        </div>
+            </div>-->
+
     </div>
 
     <ng-include src="'JSApplication/Templates/changePhoto.html'"></ng-include>
+    <ng-include src="'JSApplication/Templates/quackDetail.html'"></ng-include>
 </div>
 
 

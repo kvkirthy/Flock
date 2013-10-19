@@ -220,6 +220,7 @@
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\michael-jackson-dancing-wallpaper_133509.jpg" />
+    <Content Include="Content\images\profilepic - Copy.png" />
     <Content Include="Content\images\profilepic.png" />
     <Content Include="Content\images\profilePicCover.gif" />
     <Content Include="Content\images\small.jpg" />
@@ -294,6 +295,7 @@
     <Content Include="JSApplication\Templates\autoUpdateUserTagsDirectiveTemplate.html" />
     <Content Include="JSApplication\Services\quackService.js" />
     <Content Include="JSApplication\Templates\changePhoto.html" />
+    <Content Include="JSApplication\Templates\quackDetail.html" />
     <Content Include="JSApplication\Templates\userPage.html" />
     <Content Include="JSApplication\Templates\userPreferences.html" />
     <Content Include="Scripts\angular.js" />

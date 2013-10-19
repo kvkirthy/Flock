@@ -3,15 +3,18 @@
 
 .center
 {
-margin-left:12%;
-margin-right:auto;
-width:70%;
+    margin-left: 15%; 
+    margin-right: auto;
+    width: 100%; 
+    display: inline-block;
 }
 
 
 .morecenter
 {
-margin-left:15%;
+margin-left:auto;
 margin-right:auto;
 width:70%;
 }
+
+

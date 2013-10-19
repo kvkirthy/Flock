@@ -2,6 +2,10 @@
 'use strict';
 
 flockApp.controller('userPageController', function ($scope, userService, quackService) {
+
+  
+    
+
     $scope.userName = "";
     $scope.imageUrl = "";
 
@@ -19,6 +23,7 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
         $scope.userName = user.FirstName;
         $("#userCoverPic").attr("src", "data:image/jpeg;base64," + user.CoverImage);
         $scope.imageUrl = "data:image/jpeg;base64," + user.CoverImage;
+        
     });
 
     $scope.saveQuack = function () {
