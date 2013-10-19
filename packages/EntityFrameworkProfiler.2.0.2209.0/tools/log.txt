@@ -74,3 +74,18 @@
    at NAppUpdate.Framework.Sources.SimpleWebSource.GetUpdatesFeed()
    at NAppUpdate.Framework.UpdateManager.CheckForUpdates(IUpdateSource source, Action`1 callback)
    at NAppUpdate.Framework.UpdateManager.<>c__DisplayClass2.<CheckForUpdateAsync>b__1()
+2013-10-20 03:54:28,086 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Profiler initialized. Build: 2209
+2013-10-20 03:54:28,404 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - Attempt to start HTTP listener
+2013-10-20 03:54:28,405 [1] DEBUG HibernatingRhinos.Profiler.Client.Host.ClientService [(null)] - HTTP listener started successfully
+2013-10-20 03:54:31,441 [6] WARN  Rhino.Licensing.AbstractLicenseValidator [(null)] - License expiration date is 11/08/2013 00:00:00
+2013-10-20 03:54:31,573 [6] DEBUG Rhino.Licensing.AbstractLicenseValidator [(null)] - License accepted for EntityFramework Profiler
+2013-10-20 03:54:31,576 [4] INFO  HibernatingRhinos.Profiler.Client.Infrastructure.AutoUpdate.ProfilerAutoUpdate [(null)] - Checking for updates...
+2013-10-20 03:54:31,663 [6] DEBUG Rhino.Licensing.AbstractLicenseValidator [(null)] - License accepted for EntityFramework Profiler
+2013-10-20 03:54:32,928 [13] DEBUG HibernatingRhinos.Profiler.Client.Infrastructure.AutoUpdate.ProfilerAutoUpdate [(null)] - This is an error that is handled internally, so you can safely ignore this error log. NAppUpdate had the following error internally: System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it 216.121.112.226:80
+   at System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.GetResponse()
+   at NAppUpdate.Framework.Sources.SimpleWebSource.GetUpdatesFeed()
+   at NAppUpdate.Framework.UpdateManager.CheckForUpdates(IUpdateSource source, Action`1 callback)
+   at NAppUpdate.Framework.UpdateManager.<>c__DisplayClass2.<CheckForUpdateAsync>b__1()

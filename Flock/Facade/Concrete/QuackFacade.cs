@@ -28,10 +28,7 @@ namespace Flock.Facade.Concrete
 
         public void SaveQuack(Quack quack)
         {
-            if(quack.QuackTypeID  == 2 )
-            {
-                _quackRepository.UpdateQuack(quack.ConversationID);
-            }
+           
 
             quack.CreatedDate = DateTime.Now;
             quack.LastModifiedDate = DateTime.Now;
@@ -53,6 +50,12 @@ namespace Flock.Facade.Concrete
 
 
         }
+        public IList<QuackDto> GetQuacksInfo(int conversationId)
+        {
+            var quacks = _quackRepository.GetQuacksInfo(conversationId);
+            var quacksInfo = quacks.Select(QuackMapper).ToList();
+            return quacksInfo;
+        }
 
         private string VerifyLikeOrUnLike(Quack quack)
         {
@@ -63,21 +66,41 @@ namespace Flock.Facade.Concrete
         public IList<QuackDto> GetAllQuacks()
         {
             var quacks = _quackRepository.GetAllQuacks();
+            var quackResults = new List<QuackDto>();
+ 
+            foreach(var quack in quacks)
+            {
+                var q = new QuackDto();
+                q = QuackMapper(quack);
+                var replies = _quackRepository.GetAllReplies(quack.ID );
+                var qReplies = (from reply in replies let qreply = new QuackDto() select QuackMapper(reply)).ToList();
+                q.QuackReplies = qReplies;
+                q.Replies = replies.Count(qq => qq.Active);
+                quackResults.Add(q); 
 
-            return quacks.Select(quack => new QuackDto
-                                              {
-                                                  Id = quack.ID,
-                                                  Likes = quack.QuackLikes.Count(q => q.Active),  
-                                                  Message = quack.QuackContent.MessageText,
-                                                  Replies = 10,
-                                                  TimeSpan = GetTimeSpanInformation(quack.LastModifiedDate),
-                                                  UserName = quack.User.FirstName,
-                                                  UserImage = quack.User.ProfileImage,
-                                                  UserId = quack.User.ID,
-                                                  LikeOrUnlike = VerifyLikeOrUnLike(quack),
-                                                  IsNew  = quack.QuackTypeID ==1? true:false  
+            }
 
-                                              }).ToList();
+            return quackResults;
+        }
+
+
+        private QuackDto QuackMapper(Quack quack)
+        {
+            return new QuackDto
+                       {
+                           Id = quack.ID,
+                           Likes = quack.QuackLikes.Count(q => q.Active),
+                           Message = quack.QuackContent.MessageText,
+                           Replies = 10,
+                           TimeSpan = GetTimeSpanInformation(quack.LastModifiedDate),
+                           UserName = quack.User.FirstName,
+                           UserImage = quack.User.ProfileImage,
+                           UserId = quack.User.ID,
+                           LikeOrUnlike = VerifyLikeOrUnLike(quack),
+                           IsNew = quack.QuackTypeID == 1 ? true : false,
+                           UserNickName = quack.User.UserName.Replace("DS\\", ""),
+                           ConversationId =quack.ConversationID  
+                       };
         }
 
         private string GetTimeSpanInformation(DateTime? d)

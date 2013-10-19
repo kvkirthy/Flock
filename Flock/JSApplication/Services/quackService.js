@@ -42,6 +42,16 @@
 
         return self.deferred.promise;
     };
+
+    this.getQuackInformation = function(conversationId) {
+        self.deferred = $q.defer();
+        $http.get("/api/quack/getQuackInfo?conversationId=" + conversationId)
+        .success(function (data) {
+            self.deferred.resolve(data);
+        });
+
+        return self.deferred.promise;
+    };
     
 });
 

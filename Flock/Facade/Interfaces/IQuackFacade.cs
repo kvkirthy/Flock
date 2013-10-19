@@ -15,5 +15,6 @@ namespace Flock.Facade.Interfaces
         IList<QuackDto> GetAllQuacks();
         void DeleteQuack(int id);
         void LikeOrUnlikeQuack(int quackId, int userId, Boolean isLike);
+        IList<QuackDto> GetQuacksInfo(int conversationId);
     }
 }

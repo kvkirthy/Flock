@@ -16,5 +16,6 @@ namespace Flock.DTO
         public byte[] ProfileImage { get; set; }
         public String CoverImg { get; set; }
         public String ProfileImg { get; set; }
+       
     }
 }

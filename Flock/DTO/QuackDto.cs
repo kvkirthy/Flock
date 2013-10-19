@@ -18,5 +18,7 @@ namespace Flock.DTO
         public string LikeOrUnlike { get; set; }
         public List<QuackDto> QuackReplies { get; set; }
         public bool IsNew { get; set; }
+        public string UserNickName { get; set; }
+        public int ConversationId { get; set; }
     }
 }

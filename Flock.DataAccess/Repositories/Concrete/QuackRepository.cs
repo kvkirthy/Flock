@@ -61,5 +61,31 @@ namespace Flock.DataAccess.Repositories.Concrete
             currentQuack.LastModifiedDate = DateTime.Now;
             base.Update(currentQuack);
         }
+
+        public IList<Quack>  GetAllReplies(int quackId)
+        {
+            var quacks = _context.Quacks
+                .Include("QuackContent")
+                .Include("User")
+                .Include("QuackType");
+            //TODO: Paging
+            return quacks.Where(quack => quack.Active && quack.QuackTypeID == 2 && quack.ConversationID == quackId)
+                .OrderBy(quack => quack.CreatedDate)
+                .Take(200)
+                .ToList();
+        }
+
+        public IList<Quack > GetQuacksInfo(int conversationId)
+        {
+            var quacks = _context.Quacks
+                .Include("QuackContent")
+                .Include("User")
+                .Include("QuackType");
+            //TODO: Paging
+            return quacks.Where(quack => quack.Active && ( quack.ConversationID == conversationId || quack.ID == conversationId ))
+                .OrderBy(quack => quack.CreatedDate)
+                .Take(200)
+                .ToList();
+        }
     }
 }

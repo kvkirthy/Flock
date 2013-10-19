@@ -38,28 +38,40 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
         quack.quackContent.messageText = $scope.messageContent;
         if (quack.quackContent.messageText != "") {
             quackService.saveQuack(quack).then(function () {
+                $scope.replyMode = false;
                 refreshQuacks();
+                $scope.messageContent = "";
             });
         }
-        $scope.messageContent = "";
+        
     };
     
 
-    $scope.saveReply = function (quackId) {
+    $scope.saveReply = function (quackId, element, isNew, conversationId) {
+        console.log(element);
         var quack = {};
         quack.userId = $scope.user.ID;
         quack.parentQuackId = null;
         quack.quackTypeId = 2;
         quack.quackContent = {};
-        quack.conversationId = quackId;
-        quack.quackContent.messageText = $('#replyContent').val();
-        if (quack.quackContent.replyContent != "") {
+        
+        if (isNew) {
+            quack.conversationId = quackId;
+        }
+        else {
+            quack.conversationId = conversationId;
+        }
+
+
+        quack.quackContent.messageText = $('#'+element).val();
+        if (quack.quackContent.messageText != "") {
             quackService.saveQuack(quack).then(function () {
                 $scope.replyMode = false;
                 refreshQuacks();
+                $scope.replyContent = "";
             });
         }
-        $('#replyContent').val('');
+        
     };
 
     var refreshQuacks = function () {
@@ -74,12 +86,17 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
                     } else {
                         data[i].ShowDelete = false;
                     }
+                    for (var j = 0; j < data[i].QuackReplies.length ; j++) {
+                        data[i].QuackReplies[j].UserImage = "data:image/jpeg;base64," + data[i].QuackReplies[j].UserImage;
+                    }
                 }
                 console.log(data);
                 $scope.quacks = data;
             });
         }
     };
+
+
 
     //setInterval(function () {
     //    refreshQuacks();
@@ -95,10 +112,34 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
         else {
             $scope.replyMode = true;
         }
+
+       for(var i=0; i<$scope.quacks.length  ; i++) {
+            if(quack.Id == $scope.quacks[i].Id ) {
+                
+            }
+            else {
+                $scope.quacks[i].ExpandOrCollapse = "Expand";
+                $scope.quacks[i].ShowConversation = false;
+            }
+        }
+        
+       if (!(quack.IsNew) && quack.ExpandOrCollapse == "Collapse") {
+           quackService.getQuackInformation(quack.ConversationId).then(function(data)
+           {
+               console.log(data);
+               for (var f = 0;  f< data.length ; f++) {
+                   data[f].UserImage = "data:image/jpeg;base64," + data[f].UserImage;
+               }
+               quack.QuackReplies = data;
+           });
+       }
+
+
     };
 
     $scope.deleteQuack = function (quackId) {
         quackService.deleteQuack(quackId).then(function () {
+            $scope.replyMode = false;
             refreshQuacks();
         });
     };
@@ -106,6 +147,7 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
     $scope.likeOrUnlikeQuack = function(quack) {
         quackService.likeOrUnlikeQuack(quack.Id, quack.UserId,
             quack.LikeOrUnlike == "Like" ? true : false).then(function () {
+                $scope.replyMode = false;
             refreshQuacks();
         } );
     };

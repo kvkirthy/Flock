@@ -55,6 +55,13 @@ namespace Flock.Controllers
             _quackFacade.LikeOrUnlikeQuack(quackId, userId, isLike);
             return Request.CreateResponse(HttpStatusCode.Created, "true");
         }
-        
+
+
+        [GET("getQuackInfo")]
+        public IList<QuackDto> GetQuackInfo(int conversationId)
+        {
+            return _quackFacade.GetQuacksInfo(conversationId );
+        }
+
     }
 }

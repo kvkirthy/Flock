@@ -16,5 +16,7 @@ namespace Flock.DataAccess.Repositories.Interfaces
         IList<Quack> GetAllQuacks();
         void DeleteQuack(int id);
         void UpdateQuack(int quackId);
+        IList<Quack> GetAllReplies(int quackId);
+        IList<Quack> GetQuacksInfo(int conversationId);
     }
 }
