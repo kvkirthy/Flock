@@ -26,5 +26,18 @@ flockApp.service('userService', function ($http, $q) {
         });
         return self.deferred.promise;
     };
+    
+    this.getUserLikesInfo = function(quackId) {
+        self.deferred = $q.defer();
+        $http.get("/api/user/getUserLikesInfo?quackId="+quackId )
+        .success(function (data) {
+            self.deferred.resolve(data);
+        }).
+        error(function (error) {
+            throw Error(error);
+        });
+        return self.deferred.promise;
+    };
+    
 
 });

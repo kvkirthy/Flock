@@ -179,6 +179,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DTO\QuackDto.cs" />
+    <Compile Include="DTO\UserLikesDto.cs" />
     <Compile Include="Facade\Concrete\ImageFacade.cs" />
     <Compile Include="Facade\Interfaces\IImageFacade.cs" />
     <Compile Include="Infrastructure\Constants\Constants.cs" />
@@ -286,6 +287,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="JSApplication\Controllers\quackUserLikesController.js" />
     <Content Include="JSApplication\Controllers\uploadImageController.js" />
     <Content Include="JSApplication\Controllers\uploadProfileImageController.js" />
     <Content Include="JSApplication\Controllers\userPageController.js" />
@@ -297,6 +299,7 @@
     <Content Include="JSApplication\Services\quackService.js" />
     <Content Include="JSApplication\Templates\changePhoto.html" />
     <Content Include="JSApplication\Templates\changeProfilePic.html" />
+    <Content Include="JSApplication\Templates\quackUserLikes.html" />
     <Content Include="JSApplication\Templates\userPage.html" />
     <Content Include="Scripts\angular.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />

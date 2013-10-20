@@ -1,0 +1,17 @@
+﻿
+
+
+<div id="quackUserLikes" ng-controller="quackUserLikesController" class="modal hide fade" style="margin-left: 5%; margin-top: -7px; height: 400px !important; width: 300px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <button type="button" class="close pull-right" style="margin-left: 2px; margin-right: 10px;  font-size: 16px !important;" data-dismiss="modal" aria-hidden="true">x</button>
+    
+    <div class="modal-header ">
+      <h5>This Quack is liked by </h5>
+    </div>
+      <div class="modal-body" ng-repeat="userLike in userLikes">
+        <div class="span1" style="width:32px !important; height:32px !important;  ">
+            <img ng-src="{{userLike.UserPic}}"/>
+           
+        </div>
+          &nbsp;&nbsp; <span style="font-family:arial; font-size:14px; color:steelblue   ; font-weight:bold   ">{{userLike.UserName}}</span>
+    </div>
+</div>

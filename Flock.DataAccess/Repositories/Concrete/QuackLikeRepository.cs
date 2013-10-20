@@ -36,5 +36,11 @@ namespace Flock.DataAccess.Repositories.Concrete
             }
             
         }
+
+        public List<QuackLike> GetUserLikesInfo(int quackId)
+        {
+            var userLikesInfo = base.GetAll();
+            return userLikesInfo.Where(x => x.QuackId == quackId).ToList();
+        }
     }
 }

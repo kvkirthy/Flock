@@ -54,6 +54,11 @@ namespace Flock.Facade.Concrete
         {
             var quacks = _quackRepository.GetQuacksInfo(conversationId);
             var quacksInfo = quacks.Select(QuackMapper).ToList();
+             
+             foreach (var q in quacksInfo )
+             {
+                 q.Replies = quacksInfo.Count - 1;
+             }
             return quacksInfo;
         }
 
@@ -91,7 +96,6 @@ namespace Flock.Facade.Concrete
                            Id = quack.ID,
                            Likes = quack.QuackLikes.Count(q => q.Active),
                            Message = quack.QuackContent.MessageText,
-                           Replies = 10,
                            TimeSpan = GetTimeSpanInformation(quack.LastModifiedDate),
                            UserName = quack.User.FirstName,
                            UserImage = quack.User.ProfileImage,

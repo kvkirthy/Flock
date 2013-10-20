@@ -10,5 +10,6 @@ namespace Flock.DataAccess.Repositories.Interfaces
     public interface  IQuackLikeRepository
     {
         void UpdateQuackLike(QuackLike quackLike);
+        List<QuackLike> GetUserLikesInfo(int quackId);
     }
 }

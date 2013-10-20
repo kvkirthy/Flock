@@ -15,14 +15,16 @@ namespace Flock.Facade.Concrete
     public class UserFacade : IUserFacade
     {
         private readonly IUserRepository _userRepository;
+        private readonly IQuackLikeRepository  _quackLikeRepository;
         private readonly IAutoMap _autoMap;
         private readonly IImageFacade  _imageFacade;
 
-        public UserFacade(IUserRepository userRepository, IAutoMap autoMap, IImageFacade imageFacade)
+        public UserFacade(IUserRepository userRepository, IAutoMap autoMap, IImageFacade imageFacade, IQuackLikeRepository quackLikeRepository)
         {
             _userRepository = userRepository;
             _autoMap = autoMap;
             _imageFacade = imageFacade;
+            _quackLikeRepository = quackLikeRepository;
         }
 
         public void SaveUser(UserDto user)
@@ -80,5 +82,22 @@ namespace Flock.Facade.Concrete
             }
             return currentUser;
         }
+
+        public List<UserLikesDto > GetUserLikesInfo(int quackId)
+        {
+            var userLikesInfo = _quackLikeRepository.GetUserLikesInfo(quackId);
+            var result = new List<UserLikesDto>();
+
+            foreach(var usr in userLikesInfo )
+            {
+                var userDto = new UserLikesDto();
+                var user = _userRepository.GetUserById(usr.UserId);
+                userDto.UserPic = user.ProfileImage;
+                userDto.UserName = user.FirstName;
+                result.Add(userDto);
+            }
+            return result;
+        }
+       
     }
 }

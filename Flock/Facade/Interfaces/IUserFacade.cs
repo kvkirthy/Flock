@@ -12,5 +12,6 @@ namespace Flock.Facade.Interfaces
         UserDto GetUserDetails(string userName);
         void SaveUser(UserDto user);
         void UpdateUser(UserDto user);
+        List<UserLikesDto> GetUserLikesInfo(int quackId);
     }
 }

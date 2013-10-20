@@ -13,6 +13,12 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
     $scope.userProfilePicUrl = "";
     $scope.quacks = [];
     $scope.replyMode = false;
+    $scope.userLikeQuackId = "";
+
+    $scope.setQuackId = function(quackId, likes) {
+            $scope.userLikeQuackId = quackId;
+            $scope.$broadcast('quackUserLikesController.showUserLikes');
+    };
 
     var getQuacks = function () {
         refreshQuacks();

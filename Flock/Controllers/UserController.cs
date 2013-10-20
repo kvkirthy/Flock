@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
@@ -34,6 +35,12 @@ namespace Flock.Controllers
             var response = _imageFacade.ProcessImageByAction(img);
             return Request.CreateErrorResponse(HttpStatusCode.Created, response);
 
+        }
+
+        [GET("getUserLikesInfo")]
+        public List<UserLikesDto> GetUserLikesInfo(int quackId)
+        {
+            return _userFacade.GetUserLikesInfo(quackId);
         }
     }
 }
