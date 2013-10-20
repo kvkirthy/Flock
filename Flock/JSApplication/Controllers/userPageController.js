@@ -104,9 +104,9 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
 
 
 
-    //setInterval(function () {
-    //    refreshQuacks();
-    //}, 10000);
+    setInterval(function () {
+        refreshQuacks();
+    }, 10000);
 
     $scope.expandClick = function (quack) {
         quack.ShowConversation = !quack.ShowConversation;
