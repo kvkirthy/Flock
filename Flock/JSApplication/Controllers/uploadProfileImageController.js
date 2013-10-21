@@ -50,7 +50,8 @@ flockApp.controller('uploadProfileImageController', function ($scope, userServic
         $scope.userProfilePicUrl = $scope.profilePicImageSource;
         $("#userProfilePic").attr("src", $scope.profilePicImageSource);
         userService.uploadImage(userImage).then(function () {
-          
+            $scope.replyMode = false;
+            $scope.refreshQuacks();
         });
     };
    
