@@ -144,6 +144,14 @@ namespace Flock.Facade.Concrete
         public void DeleteQuack(int id)
         {
             _quackRepository.DeleteQuack(id);
+
+            var conversations =_quackRepository.GetAllReplies(id);
+            foreach(var conversation in conversations )
+            {
+                _quackRepository.DeleteQuack(conversation.ID );
+            }
+
+
         }
 
         public void LikeOrUnlikeQuack(int quackId, int userId, Boolean isLike)
