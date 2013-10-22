@@ -178,6 +178,7 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserViewController.cs" />
     <Compile Include="DTO\QuackDto.cs" />
     <Compile Include="DTO\UserLikesDto.cs" />
     <Compile Include="Facade\Concrete\ImageFacade.cs" />
@@ -337,6 +338,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Views\UserView\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
