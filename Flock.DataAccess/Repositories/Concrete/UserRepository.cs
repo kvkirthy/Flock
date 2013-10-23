@@ -4,6 +4,8 @@ using System.Linq;
 using Flock.DataAccess.Base;
 using Flock.DataAccess.EntityFramework;
 using Flock.DataAccess.Repositories.Interfaces;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Flock.DataAccess.Repositories.Concrete
 {
@@ -12,6 +14,11 @@ namespace Flock.DataAccess.Repositories.Concrete
         public UserRepository(FlockContext context)
             : base(context)
         {
+        }
+
+        public IEnumerable<User> GetAllUsers()
+        {
+            return base.GetAll();
         }
 
         public User GetUserByUserName(string userName)

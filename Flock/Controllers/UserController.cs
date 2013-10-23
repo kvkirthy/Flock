@@ -7,6 +7,7 @@ using AttributeRouting;
 using AttributeRouting.Web.Mvc;
 using Flock.DTO;
 using Flock.Facade.Interfaces;
+using System;
 
 namespace Flock.Controllers
 {
@@ -22,10 +23,18 @@ namespace Flock.Controllers
             _imageFacade = imageFacade;
         }
 
+        //[GET("allUserNames")]
+        //public IEnumerable<string> getAllUserNames()
+        //{
+        //    return _userFacade.GetAllUsers();
+        //}
+
+
         [GET("getUser")]
         public UserDto GetUser()
         {
             var userName = HttpContext.Current.User.Identity.Name;
+            
             return _userFacade.GetUserDetails(userName);
         }
 

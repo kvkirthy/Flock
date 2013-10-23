@@ -40,8 +40,9 @@ namespace Flock.Facade.Concrete
 
         public UserDto GetUserDetails(string userName)
         {
-            const string defaultCoverPicUrl = "http://localhost:55886/Content/images/defaultCoverPic.png";
-            const string defaultProfilePicUrl = "http://localhost:55886/Content/images/profilepic.png";
+            //TODO: Urls should move as default vaules in database. This approach is bad
+            string defaultCoverPicUrl = "http://" + System.Web.HttpContext.Current.Request.Url.Authority + "/Content/images/defaultCoverPic.png";
+            string defaultProfilePicUrl = "http://" + System.Web.HttpContext.Current.Request.Url.Authority + "/Content/images/profilepic.png";
             
             var currentUser = _userRepository.GetUserByUserName(userName);
             if(currentUser == null)
@@ -98,6 +99,17 @@ namespace Flock.Facade.Concrete
             }
             return result;
         }
-       
+
+        IEnumerable<string> IUserFacade.GetAllUsers()
+        {
+            var users = _userRepository.GetAllUsers();
+            var returnUsers = new List<string>();
+            foreach (var user in users)
+            {
+                returnUsers.Add(user.UserName);
+            }
+
+            return returnUsers;
+        }
     }
 }
