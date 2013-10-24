@@ -1,0 +1,80 @@
+﻿
+ <div id="userDetails" class="container" ng-controller="userProfileController">
+        <div class="row-fluid">
+            <div>
+                <img class="img800200" style="margin: auto; position: absolute; left: 0; right: 0" src="../../Content/images/defaultCoverPic.png" />
+                <br />
+            </div>
+        </div>
+        <div class="media divcentre div800200">
+            <a class="pull-left" href="#">
+                <img class="media-object img200200 float-left" src="../../Content/images/ContributorsPicz/nishant.jpg" />
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading" style="text-align: center">Personal Details</h4>
+
+                <table>
+                    <tr>
+                        <td>
+                            <span class="span1">
+                                <label for="firstName">FirstName:</label>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="span2">
+                                <label>{{userProfile.FirstName}}</label>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="span1">
+                                <label for="lastName">LastName:</label>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="span2">
+                                <label>{{userProfile.LastName}}</label>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="span1">
+                                <label for="EmailId">EmailId:</label>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="span2">
+                                <label>{{userProfile.EmailId}}</label>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="span1">
+                                <label for="Project">Project:</label>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="span2">
+                                <label>{{userProfile.Project}}</label>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <tr>
+                    <td>
+                        <span class="span1">
+                            <label for="Interests">Interests:</label>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="span2">
+                            <label>{{userProfile.Interests}}</label>
+                        </span>
+                    </td>
+                </tr>
+            </div>
+        </div>
+ </div>

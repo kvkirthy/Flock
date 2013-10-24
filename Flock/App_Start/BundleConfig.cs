@@ -40,6 +40,8 @@ namespace Flock
                 "~/JSApplication/Controllers/uploadProfileImageController.js",
                  "~/JSApplication/Controllers/quackUserLikesController.js",
                  "~/JSApplication/Controllers/userPageController.js",
+                 "~/JSApplication/Controllers/userInfoController.js",
+                 "~/JSApplication/Controllers/userProfileController.js",
                 "~/JSApplication/Services/messageService.js",
                 "~/JSApplication/Services/registrationService.js",
                 "~/JSApplication/Directives/autoUpdateUserTags.js",

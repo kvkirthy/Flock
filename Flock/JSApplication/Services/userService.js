@@ -39,5 +39,13 @@ flockApp.service('userService', function ($http, $q) {
         return self.deferred.promise;
     };
     
+    this.saveUserDetails = function (userDetails) {
+        self.deffered = $q.defer();
+        $http.put("api/user/saveUserDetails", userDetails)
+            .success(function (data) { self.deffered.resolve(data); })
+            .error(function (error) { throw Error(error); });
 
+        return self.deffered.promise;
+
+    };
 });

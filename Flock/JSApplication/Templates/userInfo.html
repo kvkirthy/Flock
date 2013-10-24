@@ -1,0 +1,74 @@
+﻿<div id="userInfoModal" ng-controller="userInfoController" class="modal hide fade" style="width: 450px; height: 350px">
+
+        <div class="modal-header header-bg font-20">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Personal Information</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="row-fluid">
+                <div class="control-group">
+                    <span class="control-label">First Name</span>
+                    <span class="controls pull-right">
+                        <input name="userFirstName" type="text" placeholder="First Name" maxlength="25" ng-model="userPreferences.FirstName" />
+                    </span>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="control-group">
+                    <span class="control-label">Last Name</span>
+                    <span class="controls pull-right">
+                        <input name="userLastName" type="text" placeholder="Last Name" maxlength="25" ng-model="userPreferences.LastName" />
+                    </span>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="control-group">
+                    <span class="control-label">Email Id</span>
+                    <span class="controls pull-right">
+                        <input name="userEmailId" type="text" placeholder="email@email.com" maxlength="25" ng-model="userPreferences.EmailId" />
+                    </span>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="control-group">
+                    <span class="control-label">Project</span>
+                    <span class="controls pull-right">
+                        <select name="userProject" ng-model="userPreferences.Project">
+                            <option value="ADP Credit">ADP Credit</option>
+                            <option value="ALM">ALM</option>
+                            <option value="Autobots">Autobots</option>
+                            <option value="BOL">BOL</option>
+                            <option value="CDS">CDS</option>
+                            <option value="CIS">CIS</option>
+                            <option value="CRM">CRM</option>
+                            <option value="Customer Touch">Customer Touch</option>
+                            <option value="Deal Data">Deal Data</option>
+                            <option value="Desking">Desking</option>
+                            <option value="DIS">DIS</option>
+                            <option value="eRater">eRater</option>
+                            <option value="Inventory">Inventory</option>
+                            <option value="Lead Manager">Lead Manager</option>
+                            <option value="Menu">Menu</option>
+                            <option value="PID">PID</option>
+                            <option value="Platform">Platform</option>
+                            <option value="Quoting">Quoting</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="control-group">
+                    <span class="control-label">Interests</span>
+                    <span class="controls pull-right">
+                        <textarea name="userInterests" type="text" placeholder="Your Interests" ng-model="userPreferences.Interests"></textarea>
+                    </span>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Close</a>
+                <a href="#" class="btn btn-primary" data-dismiss="modal" ng-click="savePreferences()">Save</a>
+            </div>
+        </div>
+ </div>
