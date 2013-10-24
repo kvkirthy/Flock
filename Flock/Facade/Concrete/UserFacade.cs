@@ -106,7 +106,7 @@ namespace Flock.Facade.Concrete
             var returnUsers = new List<string>();
             foreach (var user in users)
             {
-                returnUsers.Add(user.UserName);
+                returnUsers.Add(user.LastName);
             }
 
             return returnUsers;

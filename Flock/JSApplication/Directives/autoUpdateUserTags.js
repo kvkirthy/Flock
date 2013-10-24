@@ -1,7 +1,15 @@
 ﻿//TODO: This controller should be in real controllers folder?
-flockApp.controller('autoUpdateUserTagsController', function ($scope) {
+flockApp.controller('autoUpdateUserTagsController', function ($scope, searchService) {
     //TODO: connect this with server side code.
-    $scope.users = ['VenCKi', 'Venki', 'Venkat']; //it should return most used tags
+
+    searchService.getAllUserTags()
+        .then(function (result) {
+            $scope.users = result;
+        },function (result) {
+        throw new Error(result);
+    });
+
+    $scope.users = []; 
     $scope.quackText = "";
 
     $scope.$on('userSelectedForTag', function (event, textInQuestion, selectedTag) {        
@@ -18,6 +26,7 @@ flockApp.controller('autoUpdateUserTagsController', function ($scope) {
 flockApp.directive('autoUpdateUserTags', function () {
     return {
         restrict: 'A',
+        require: '^autoUpdateUserTagsController',
         templateUrl: '/JSApplication/Templates/autoUpdateUserTagsDirectiveTemplate.html',
         scope: {
             listOfUsers: '='            

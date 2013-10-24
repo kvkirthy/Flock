@@ -30,6 +30,7 @@ namespace Flock
 
             bundles.Add(new ScriptBundle("~/bundles/JSApplication").Include(
                 "~/JSApplication/main.js",
+                "~/JSApplication/Services/searchService.js",
                 "~/JSApplication/Services/messageService.js",
                 "~/JSApplication/Services/userService.js",
                 "~/JSApplication/Services/quackService.js",

@@ -23,13 +23,6 @@ namespace Flock.Controllers
             _imageFacade = imageFacade;
         }
 
-        //[GET("allUserNames")]
-        //public IEnumerable<string> getAllUserNames()
-        //{
-        //    return _userFacade.GetAllUsers();
-        //}
-
-
         [GET("getUser")]
         public UserDto GetUser()
         {

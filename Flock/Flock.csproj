@@ -177,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserViewController.cs" />
     <Compile Include="DTO\QuackDto.cs" />
@@ -295,12 +296,14 @@
     <Content Include="JSApplication\Directives\autoUpdateUserTags.js" />
     <Content Include="JSApplication\Directives\onEnter.js" />
     <Content Include="JSApplication\main.js" />
+    <Content Include="JSApplication\Services\searchService.js" />
     <Content Include="JSApplication\Services\userService.js" />
     <Content Include="JSApplication\Templates\autoUpdateUserTagsDirectiveTemplate.html" />
     <Content Include="JSApplication\Services\quackService.js" />
     <Content Include="JSApplication\Templates\changePhoto.html" />
     <Content Include="JSApplication\Templates\changeProfilePic.html" />
     <Content Include="JSApplication\Templates\quackUserLikes.html" />
+    <Content Include="JSApplication\Templates\SearchWindow.html" />
     <Content Include="JSApplication\Templates\userPage.html" />
     <Content Include="Scripts\angular.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
