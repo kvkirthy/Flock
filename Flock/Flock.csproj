@@ -217,6 +217,13 @@
     <Content Include="Content\flock.css" />
     <Content Include="Content\FlockApplication.css" />
     <Content Include="Content\images\Avatar.gif" />
+    <Content Include="Content\images\ContributorsPicz\harshaV.jpg" />
+    <Content Include="Content\images\ContributorsPicz\kotaru.jpg" />
+    <Content Include="Content\images\ContributorsPicz\niranjan.jpg" />
+    <Content Include="Content\images\ContributorsPicz\nishant.jpg" />
+    <Content Include="Content\images\ContributorsPicz\sandeep.jpg" />
+    <Content Include="Content\images\ContributorsPicz\shashanka.jpg" />
+    <Content Include="Content\images\ContributorsPicz\srini.jpg" />
     <Content Include="Content\images\defaultCoverPic.png" />
     <Content Include="Content\images\duck.png" />
     <Content Include="Content\images\flock.png" />
