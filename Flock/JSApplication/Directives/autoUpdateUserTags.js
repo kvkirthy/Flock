@@ -1,7 +1,7 @@
 ﻿//TODO: This controller should be in real controllers folder?
 flockApp.controller('autoUpdateUserTagsController', function ($scope, searchService) {
-    //TODO: connect this with server side code.
 
+    //TODO: enter should support server search.
     searchService.getAllUserTags()
         .then(function (result) {
             $scope.users = result;
