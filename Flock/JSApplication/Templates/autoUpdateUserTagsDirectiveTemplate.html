@@ -1,1 +1,5 @@
-﻿<div><div id="suggessions" style="margin-left:20px" ng-show="isNewUserTagAttempted" ng-repeat="user in filteredUsers"><span class="btn-link" ng-click="selectUser(user)"> User {{user}}</span>  </div></div>
+﻿<div>
+    <div id="suggessions" style="margin-left:20px" ng-show="isNewUserTagAttempted" ng-repeat="user in filteredUsers">
+        <a class="btn-link" href="UserView/Index?userName={{user}}" ng-click="selectUser(user)"> User {{user}}</a>
+    </div>
+</div>

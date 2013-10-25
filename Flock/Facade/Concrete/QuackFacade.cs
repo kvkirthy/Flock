@@ -97,7 +97,7 @@ namespace Flock.Facade.Concrete
                            Likes = quack.QuackLikes.Count(q => q.Active),
                            Message = quack.QuackContent.MessageText,
                            TimeSpan = GetTimeSpanInformation(quack.LastModifiedDate),
-                           UserName = quack.User.FirstName,
+                           UserName = quack.User.UserName,
                            UserImage = quack.User.ProfileImage,
                            UserId = quack.User.ID,
                            LikeOrUnlike = VerifyLikeOrUnLike(quack),

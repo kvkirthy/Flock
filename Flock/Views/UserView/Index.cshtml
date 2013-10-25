@@ -1,7 +1,10 @@
 ﻿@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "../Shared/_Layout.cshtml";
 }
 
-<h2>User Details</h2>
-<h1>Hello User!</h1>
+<div>
+
+    <ng-include src="'../JSApplication/Templates/userProfile.html'"></ng-include>
+
+</div>

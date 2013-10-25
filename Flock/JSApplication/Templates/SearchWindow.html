@@ -1,7 +1,15 @@
-﻿<div id="searchModel" ng-controller="autoUpdateUserTagsController" class="modal hide fade span12" style="margin-left: -33%; margin-top: -7px; height: 800px !important; width: 810px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">    
+﻿<div id="searchModel" ng-controller="autoUpdateUserTagsController" class="modal hide fade span12" style="margin-left: -33%; margin-top: -7px; height: 800px !important; width: 810px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <button style="margin-right:7px; margin-top: 7px" id="close" class="btn btn-small btn-mini pull-right" data-dismiss="modal" aria-hidden="true">X</button>
-    <div style="margin-left: 20px; margin-top:20px" class="span8"><span class="span12">Search: </span> <span class="span12"><input type="text" ng-model="quackText" placeholder="For user search start with @"></input> </span></div>
-    <div class="span12" auto-update-user-tags="quackText" list-of-users="users"></div>    
+
+    <div style="margin-left: 20px; margin-top:20px" class="span8">
+        <div class="row-fluid">
+            <h3 class="header-bg font-20 line-30">Search Your Friends</h3>
+        </div>
+        <!--<span class="span12">Search: </span> <span class="span12">-->
+            <input type="text" ng-model="quackText" placeholder="Type @ and find your friend" />
+        <!--</span>-->
+    </div>
+    <div class="span12" auto-update-user-tags="quackText" list-of-users="users"></div>
 </div>
 
 

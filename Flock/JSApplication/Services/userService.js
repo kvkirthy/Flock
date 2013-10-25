@@ -3,6 +3,19 @@
 flockApp.service('userService', function ($http, $q) {
 
     var self = this;
+
+    this.getUserByUserName = function (userName) {
+        self.deferred = $q.defer();
+        $http.get("http://localhost:55886/api/user/getUserByUserName?userName="+ userName)
+        .success(function (data) {
+            self.deferred.resolve(data);
+        }).
+        error(function (error) {
+            self.deferred.reject(error);
+        });
+        return self.deferred.promise;
+    };
+
     this.getUser = function () {
         self.deferred = $q.defer();
         $http.get("/api/user/getUser?json=true")

@@ -1,14 +1,24 @@
-﻿
- <div id="userDetails" class="container" ng-controller="userProfileController">
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../../Content/imgareaselect-animated.css" rel="stylesheet" />
+    <link href="../../Content/imgareaselect-default.css" rel="stylesheet" />
+    <link href="../../Content/imgareaselect-deprecated.css" rel="stylesheet" />
+    <link href="../../Content/FlockApplication.css" rel="stylesheet" />
+
+</head>
+<div>
+    <div id="userProfile" class="container" ng-controller="userProfileController">
         <div class="row-fluid">
             <div>
-                <img class="img800200" style="margin: auto; position: absolute; left: 0; right: 0" src="../../Content/images/defaultCoverPic.png" />
+                <img id="userCoverImage"class="img800200" style="margin: auto; position: absolute; left: 0; right: 0" ng-src="{{userProfile.CoverImage}} " />
                 <br />
             </div>
         </div>
         <div class="media divcentre div800200">
             <a class="pull-left" href="#">
-                <img class="media-object img200200 float-left" src="../../Content/images/ContributorsPicz/nishant.jpg" />
+                <img class="media-object img200200 float-left" ng-src="{{userProfile.ProfileImage}}" />
             </a>
             <div class="media-body">
                 <h4 class="media-heading" style="text-align: center">Personal Details</h4>
@@ -77,4 +87,7 @@
                 </tr>
             </div>
         </div>
- </div>
+    </div>
+
+</div>
+</html>

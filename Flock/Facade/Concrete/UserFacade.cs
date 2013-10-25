@@ -106,10 +106,15 @@ namespace Flock.Facade.Concrete
             var returnUsers = new List<string>();
             foreach (var user in users)
             {
-                returnUsers.Add(user.LastName);
+                returnUsers.Add(user.UserName);
             }
 
             return returnUsers;
+        }
+
+        public UserDto GetUserDetailsNoSave(string userName)        
+        {
+            return _autoMap.Map<User, UserDto>(_userRepository.GetUserByUserName(userName));            
         }
     }
 }

@@ -44,5 +44,12 @@ namespace Flock.Controllers
         {
             return _userFacade.GetUserLikesInfo(quackId);
         }
+
+        [GET("getUserByUserName")]
+        public UserDto GetUserByUserName(string userName)
+        {
+            return _userFacade.GetUserDetails(userName);
+        }
+
     }
 }
