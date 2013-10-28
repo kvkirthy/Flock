@@ -6,7 +6,7 @@ flockApp.service('userService', function ($http, $q) {
 
     this.getUserByUserName = function (userName) {
         self.deferred = $q.defer();
-        $http.get("http://localhost:55886/api/user/getUserByUserName?userName="+ userName)
+        $http.get("/api/user/getUserByUserName?userName="+ userName)
         .success(function (data) {
             self.deferred.resolve(data);
         }).

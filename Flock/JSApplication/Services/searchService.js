@@ -4,7 +4,7 @@
     self.getAllUserTags = function () {
         self.defered = $q.defer();
 
-        $http.get("http://localhost:55886/api/search/userTags")
+        $http.get("/api/search/userTags")
         .success(function (data) {
             return self.defered.resolve(data);
         })
