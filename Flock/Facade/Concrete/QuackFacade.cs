@@ -113,7 +113,8 @@ namespace Flock.Facade.Concrete
                            LikeOrUnlike = VerifyLikeOrUnLike(quack, userId),
                            IsNew = quack.QuackTypeID == 1 ? true : false,
                            UserNickName = quack.User.UserName.Replace("DS\\", ""),
-                           ConversationId = quack.ConversationID
+                           ConversationId = quack.ConversationID,
+                           UserDisplayName = quack.User.FirstName + " "+quack.User.LastName
                        };
         }
 

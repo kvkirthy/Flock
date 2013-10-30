@@ -20,5 +20,6 @@ namespace Flock.DTO
         public bool IsNew { get; set; }
         public string UserNickName { get; set; }
         public int ConversationId { get; set; }
+        public string UserDisplayName { get; set; }
     }
 }

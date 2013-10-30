@@ -1,9 +1,7 @@
 ﻿<div ng-controller="userPageController" style="background:grey      ">
     <!--Header Section-->
-    <div style="height: 155px; background:cadetblue ">
+    <div style="height: 155px; background:cadetblue">
     </div>
-
-
 
     <div class="container center" >
         <!--Cover Pic Section-->
@@ -21,9 +19,10 @@
                         <ul class="nav pull-right">
                             <li class="divider-vertical"></li>
                             <li><a href="#userInfoModal" data-toggle="modal" data-backdrop="false"><i class="icon-user icon-white"></i></a></li>
-                            <li><a href="#searchModel" data-toggle="modal" data-backdrop="false">Search</a></li>
+                            <!--TODO: Need to complete this-->
+                            <!--<li><a href="#searchModel" data-toggle="modal" data-backdrop="false">Search</a></li>-->
                             <li><a href="#aboutModal" data-toggle="modal" data-backdrop="false">About</a></li>
-                            <li><a href="">Contact</a></li>
+                           <!-- <li><a href="">Contact</a></li>-->
                         </ul>
                     </div>
 
@@ -35,7 +34,7 @@
 
                 <img id="userCoverPic" />
 
-                <span style="font: 14px; font-family: verdana; font-weight: bold;">{{userName}} </span>
+                <span style="font: 14px; font-family: verdana; font-weight: bold;">{{displayName}} </span>
 
                 <span>
                     <a class="pull-right" href="#changePictureModel" style="font-size: 11px; text-decoration: none;" data-toggle="modal" data-backdrop="false">Change Cover</a>
@@ -87,7 +86,7 @@
                      </a>
                      <div class="media-body">
                          <span class="media-heading"
-                               style="color: steelblue; font-weight: bold;">{{quack.UserName}}
+                               style="color: steelblue; font-weight: bold;">{{quack.UserDisplayName}}
                          </span>
                          <span
                              style="color: slategray; font-size: 11px;">&nbsp;- {{quack.TimeSpan}} 
@@ -125,7 +124,7 @@
                                      </a>
                                      <div class="media-body">
                                          <span class="media-heading"
-                                               style="color: steelblue; font-weight: bold;">{{reply.UserName}}
+                                               style="color: steelblue; font-weight: bold;">{{reply.UserDisplayName}}
                                          </span>
                                          <span
                                              style="color: slategray; font-size: 11px;">&nbsp;-{{reply.TimeSpan}}
@@ -161,7 +160,7 @@
                                  <img id="Img1" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 64px; height: 64px; box-shadow: 3px 3px 1px #888888;" />
                              </a>
                              <div class="media-body">
-                                 <textarea id="{{'replyBox'+ quack.Id}}" class="span6" style="width: 500px; resize: none; font-family: arial; font-size: 13px;" placeholder="Reply..." rows="3" maxlength="200" on-enter="saveReply(quack.Id, 'replyBox'+ quack.Id, quack.IsNew, quack.ConversationId)"> @{{quack.UserNickName}}&nbsp;</textarea>
+                                 <textarea id="{{'replyBox'+ quack.Id}}" class="span6" style="width: 500px; resize: none; font-family: arial; font-size: 13px;" placeholder="Reply..." rows="3" maxlength="200" on-enter="saveReply(quack.Id, 'replyBox'+ quack.Id, quack.IsNew, quack.ConversationId)"> @{{quack.UserDisplayName}}:&nbsp;</textarea>
                                  <p class="text-success" style="font-size: 10px; font-family: arial; margin-top: -12px;">{{maxCharacters - replyContent.length}} characters remaining...</p>
                                  <br />
                              </div>

@@ -73,9 +73,22 @@ namespace Flock.Facade.Concrete
                 if(results.Count ==1)
                 {
                     //TODO: seperate out firstname and lastname from the name and assign properly
-                    currentUser.UserName = userName;  
-                    currentUser.FirstName = results[0].Properties["name"][0].ToString(); 
-                    currentUser.LastName  = results[0].Properties["name"][0].ToString();
+                    currentUser.UserName = userName;
+                    var name = results[0].Properties["name"][0].ToString();
+                    name = name.Replace("(DS)", "");
+                    name = name.Replace(" ", "");
+                    string[] names = name.Split(',');
+                    if (names.Count() > 1)
+                    {
+                        currentUser.FirstName = names[1];
+                        currentUser.LastName = names[0];
+                    }
+                    else
+                    {
+                         currentUser.FirstName = name;
+                        currentUser.LastName = "";
+                    }
+                    currentUser.EmailId = results[0].Properties["mail"][0].ToString();
                     currentUser.Active = true;
                     currentUser.AdditionalDetails = "Addtional Details";
                     currentUser.CreatedDate = DateTime.Now;
