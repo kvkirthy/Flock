@@ -26,6 +26,7 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
 
     userService.getUser().then(function (user) {
         $scope.user = user;
+        console.log($scope.user);
         $scope.userName = user.FirstName;
         $("#userCoverPic").attr("src", "data:image/jpeg;base64," + user.CoverImage);
         $scope.userProfilePicUrl = "data:image/jpeg;base64," + user.ProfileImage;
@@ -148,8 +149,10 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
         });
     };
 
-    $scope.likeOrUnlikeQuack = function(quack) {
-        quackService.likeOrUnlikeQuack(quack.Id, quack.UserId,
+    $scope.likeOrUnlikeQuack = function (quack) {
+
+        console.log(quack.LikeOrUnlike);
+        quackService.likeOrUnlikeQuack(quack.Id, $scope.user.ID,
             quack.LikeOrUnlike == "Like" ? true : false).then(function () {
                 $scope.replyMode = false;
             $scope.refreshQuacks();

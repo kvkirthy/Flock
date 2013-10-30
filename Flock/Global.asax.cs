@@ -30,7 +30,7 @@ namespace Flock
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            App_Start.EntityFrameworkProfilerBootstrapper.PreStart();
+            
             Mapper.Initialize(facadeProfile => facadeProfile.AddProfile(new FacadeProfile()));
         }
     }
