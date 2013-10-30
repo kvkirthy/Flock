@@ -107,7 +107,7 @@ namespace Flock.Facade.Concrete
                 var userDto = new UserLikesDto();
                 var user = _userRepository.GetUserById(usr.UserId);
                 userDto.UserPic = user.ProfileImage;
-                userDto.UserName = user.FirstName;
+                userDto.UserName = user.FirstName+ " "+user.LastName ;
                 result.Add(userDto);
             }
             return result;
