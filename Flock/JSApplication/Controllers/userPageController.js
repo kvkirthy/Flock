@@ -26,7 +26,6 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
 
     userService.getUser().then(function (user) {
         $scope.user = user;
-        console.log($scope.user);
         $scope.userName = user.FirstName;
         $("#userCoverPic").attr("src", "data:image/jpeg;base64," + user.CoverImage);
         $scope.userProfilePicUrl = "data:image/jpeg;base64," + user.ProfileImage;
