@@ -214,6 +214,7 @@
     <Content Include="Content\flock.css" />
     <Content Include="Content\FlockApplication.css" />
     <Content Include="Content\images\Avatar.gif" />
+    <Content Include="Content\images\backgroundImg.png" />
     <Content Include="Content\images\ContributorsPicz\harshaV.jpg" />
     <Content Include="Content\images\ContributorsPicz\kotaru.jpg" />
     <Content Include="Content\images\ContributorsPicz\niranjan.jpg" />
@@ -226,6 +227,7 @@
     <Content Include="Content\images\flock.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\headerBackground.png" />
     <Content Include="Content\images\michael-jackson-dancing-wallpaper_133509.jpg" />
     <Content Include="Content\images\profilepic - Copy.png" />
     <Content Include="Content\images\profilepic.png" />
