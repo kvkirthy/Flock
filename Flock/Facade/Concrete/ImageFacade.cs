@@ -106,10 +106,22 @@ namespace Flock.Facade.Concrete
             var height = imgPhoto.Height;
             var width = imgPhoto.Width;
 
-            if (height > maxHeight || width > maxWidth)
+            if (height > maxHeight && width > maxWidth)
             {
                 var newImage = new Bitmap(maxWidth, maxHeight);
                 Graphics.FromImage(newImage).DrawImage(imgPhoto, 0, 0, maxWidth, maxHeight);
+                src = CropImageFile(newImage, img.Width, img.Height, img.X, img.Y);
+            }
+            else if(height > maxHeight )
+            {
+                var newImage = new Bitmap(maxWidth, maxHeight);
+                Graphics.FromImage(newImage).DrawImage(imgPhoto, 0, 0, width, maxHeight);
+                src = CropImageFile(newImage, img.Width, img.Height, img.X, img.Y);
+            }
+            else if(width > maxWidth )
+            {
+                var newImage = new Bitmap(maxWidth, maxHeight);
+                Graphics.FromImage(newImage).DrawImage(imgPhoto, 0, 0, maxWidth, height);
                 src = CropImageFile(newImage, img.Width, img.Height, img.X, img.Y);
             }
             else
