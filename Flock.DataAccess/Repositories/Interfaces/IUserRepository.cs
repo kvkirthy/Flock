@@ -11,5 +11,6 @@ namespace Flock.DataAccess.Repositories.Interfaces
         User GetUserById(int id);
         void UpdateUserCoverImage(User user);
         void UpdateUserProfileImage(User user);
+        void UpdateUserPreferences(User user);
     }
 }

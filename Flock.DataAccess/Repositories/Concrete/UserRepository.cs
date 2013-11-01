@@ -50,5 +50,13 @@ namespace Flock.DataAccess.Repositories.Concrete
         {
             return base.GetById(id);
         }
+
+        public void UpdateUserPreferences(User user)
+        {
+            var userInfo = base.GetById(user.ID);
+            userInfo.Project = user.Project;
+            userInfo.Interests = user.Interests;
+            base.Update(userInfo);
+        }
     }
 }
