@@ -2,10 +2,14 @@
 'use strict';
 
 flockApp.controller('userInfoController', function ($scope, userService, quackService) {
+    $scope.userProject = "";
+    $scope.userInterest = "";
 
     $scope.$on('userInfoController.showUserInformation', function () {
         $scope.userPreferences = angular.copy($scope.user);
-         $scope.userProject=$scope.userPreferences.Project;
+        if($scope.userProject=="" )
+            $scope.userProject = $scope.userPreferences.Project;
+        if($scope.userInterest=="" )
          $scope.userInterest = $scope.userPreferences.Interests;
     });
 
