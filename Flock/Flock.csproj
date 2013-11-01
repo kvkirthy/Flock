@@ -57,9 +57,6 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
-    <Reference Include="HibernatingRhinos.Profiler.Appender">
-      <HintPath>..\packages\EntityFrameworkProfiler.2.0.2209.0\lib\HibernatingRhinos.Profiler.Appender.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -218,6 +215,7 @@
     <Content Include="Content\flock.css" />
     <Content Include="Content\FlockApplication.css" />
     <Content Include="Content\images\Avatar.gif" />
+    <Content Include="Content\images\backgroundImg.png" />
     <Content Include="Content\images\ContributorsPicz\harshaV.jpg" />
     <Content Include="Content\images\ContributorsPicz\kotaru.jpg" />
     <Content Include="Content\images\ContributorsPicz\niranjan.jpg" />
@@ -230,6 +228,7 @@
     <Content Include="Content\images\flock.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\headerBackground.png" />
     <Content Include="Content\images\michael-jackson-dancing-wallpaper_133509.jpg" />
     <Content Include="Content\images\profilepic - Copy.png" />
     <Content Include="Content\images\profilepic.png" />
@@ -295,6 +294,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\Untitled.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="JSApplication\Controllers\quackUserLikesController.js" />
@@ -319,6 +319,7 @@
     <Content Include="JSApplication\Templates\userPage.html" />
     <Content Include="JSApplication\Templates\userProfile.html" />
     <Content Include="Scripts\angular.js" />
+    <None Include="Properties\PublishProfiles\flockProfile.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

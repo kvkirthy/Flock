@@ -142,7 +142,11 @@ CREATE TABLE [dbo].[Users] (
     [AdditionalDetails] nvarchar(max)  NULL,
     [CreatedDate] datetime  NOT NULL,
     [CoverImage] varbinary(max)  NULL,
-    [ProfileImage] varbinary(max)  NULL
+    [ProfileImage] varbinary(max)  NULL,
+    [EmailId] nvarchar(50)  NULL,
+    [Project] nvarchar(50)  NULL,
+    [Interests] nchar(200)  NULL
+
 );
 GO
 

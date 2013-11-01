@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using Flock.DTO;
 using Flock.DataAccess.Base;
 using Flock.DataAccess.EntityFramework;
@@ -16,19 +17,21 @@ namespace Flock.Facade.Concrete
         private readonly IQuackTypeRepository _quackTypeRepository;
         private readonly IUserRepository _userRepository;
         private readonly IQuackLikeRepository _quackLikeRepository;
+        private readonly IUserFacade _userFacade;
 
-        public QuackFacade(IQuackRepository quackRepository, IQuackTypeRepository quackTypeRepository, IUserRepository userRepository, IQuackLikeRepository quackLikeRepository)
+        public QuackFacade(IQuackRepository quackRepository, IQuackTypeRepository quackTypeRepository, IUserRepository userRepository, IQuackLikeRepository quackLikeRepository, IUserFacade userFacade)
         {
             _quackRepository = quackRepository;
             _quackTypeRepository = quackTypeRepository;
             _userRepository = userRepository;
             _quackLikeRepository = quackLikeRepository;
+            _userFacade = userFacade;
         }
 
 
         public void SaveQuack(Quack quack)
         {
-           
+
 
             quack.CreatedDate = DateTime.Now;
             quack.LastModifiedDate = DateTime.Now;
@@ -53,35 +56,42 @@ namespace Flock.Facade.Concrete
         public IList<QuackDto> GetQuacksInfo(int conversationId)
         {
             var quacks = _quackRepository.GetQuacksInfo(conversationId);
-            var quacksInfo = quacks.Select(QuackMapper).ToList();
-             
-             foreach (var q in quacksInfo )
+            var userName = HttpContext.Current.User.Identity.Name;
+            var user = _userFacade.GetUserDetails(userName);
+
+            var quacksInfo = (from quack in quacks let q = new QuackDto() select QuackMapper(quack, user.ID)).ToList();
+
+
+            foreach (var q in quacksInfo )
              {
                  q.Replies = quacksInfo.Count - 1;
              }
             return quacksInfo;
         }
 
-        private string VerifyLikeOrUnLike(Quack quack)
+        private string VerifyLikeOrUnLike(Quack quack, int userId)
         {
-            var check = quack.QuackLikes.FirstOrDefault(q => q.UserId == quack.UserID && q.Active && q.QuackId ==quack.ID );
+            var check = quack.QuackLikes.FirstOrDefault(q => q.UserId == userId && q.Active && q.QuackId == quack.ID && q.Active);
             return check == null ? "Like" : "UnLike";
         }
 
         public IList<QuackDto> GetAllQuacks()
         {
+            var userName = HttpContext.Current.User.Identity.Name;
+            var user = _userFacade.GetUserDetails(userName);
+
             var quacks = _quackRepository.GetAllQuacks();
             var quackResults = new List<QuackDto>();
- 
-            foreach(var quack in quacks)
+
+            foreach (var quack in quacks)
             {
                 var q = new QuackDto();
-                q = QuackMapper(quack);
-                var replies = _quackRepository.GetAllReplies(quack.ID );
+                q = QuackMapper(quack, user.ID);
+                var replies = _quackRepository.GetAllReplies(quack.ID);
                 var qReplies = (from reply in replies let qreply = new QuackDto() select QuackMapper(reply)).ToList();
                 q.QuackReplies = qReplies;
                 q.Replies = replies.Count(qq => qq.Active);
-                quackResults.Add(q); 
+                quackResults.Add(q);
 
             }
 
@@ -89,7 +99,7 @@ namespace Flock.Facade.Concrete
         }
 
 
-        private QuackDto QuackMapper(Quack quack)
+        private QuackDto QuackMapper(Quack quack, int userId = 0)
         {
             return new QuackDto
                        {
@@ -100,10 +110,11 @@ namespace Flock.Facade.Concrete
                            UserName = quack.User.UserName,
                            UserImage = quack.User.ProfileImage,
                            UserId = quack.User.ID,
-                           LikeOrUnlike = VerifyLikeOrUnLike(quack),
+                           LikeOrUnlike = VerifyLikeOrUnLike(quack, userId),
                            IsNew = quack.QuackTypeID == 1 ? true : false,
                            UserNickName = quack.User.UserName.Replace("DS\\", ""),
-                           ConversationId =quack.ConversationID  
+                           ConversationId = quack.ConversationID,
+                           UserDisplayName = quack.User.FirstName + " "+quack.User.LastName
                        };
         }
 
@@ -112,9 +123,9 @@ namespace Flock.Facade.Concrete
             var result = "";
             if (d != null)
             {
-                var date = (DateTime) d;
+                var date = (DateTime)d;
                 TimeSpan timeSpan = DateTime.Now.Subtract(date);
-           
+
 
                 if (timeSpan.Days > 2)
                 {
@@ -136,7 +147,7 @@ namespace Flock.Facade.Concrete
                 {
                     result = "Few seconds ago";
                 }
-               
+
             }
             return result;
         }
@@ -145,10 +156,10 @@ namespace Flock.Facade.Concrete
         {
             _quackRepository.DeleteQuack(id);
 
-            var conversations =_quackRepository.GetAllReplies(id);
-            foreach(var conversation in conversations )
+            var conversations = _quackRepository.GetAllReplies(id);
+            foreach (var conversation in conversations)
             {
-                _quackRepository.DeleteQuack(conversation.ID );
+                _quackRepository.DeleteQuack(conversation.ID);
             }
 
 

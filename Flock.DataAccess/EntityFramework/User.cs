@@ -26,14 +26,14 @@ namespace Flock.DataAccess.EntityFramework
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string EmailId { get; set; }
-        public string Project { get; set; }
-        public string Interests { get; set; }
         public bool Active { get; set; }
         public string AdditionalDetails { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public byte[] CoverImage { get; set; }
         public byte[] ProfileImage { get; set; }
+        public string EmailId { get; set; }
+        public string Project { get; set; }
+        public string Interests { get; set; }
     
         public virtual ICollection<Quack> Quacks { get; set; }
         public virtual ICollection<UserInterest> UserInterests { get; set; }

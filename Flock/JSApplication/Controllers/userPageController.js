@@ -3,8 +3,8 @@
 
 flockApp.controller('userPageController', function ($scope, userService, quackService) {
 
-
-    $scope.userName = "";
+   
+    $scope.displayName = "";
     $scope.showConversations = false;
     $scope.expandOrCollapse = "Expand";
     $scope.maxCharacters = 200;
@@ -20,13 +20,17 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
             $scope.$broadcast('quackUserLikesController.showUserLikes');
     };
 
+    $scope.showUserDetails = function() {
+        $scope.$broadcast('userInfoController.showUserInformation');
+    };
+
     var getQuacks = function () {
         $scope.refreshQuacks();
     };
 
     userService.getUser().then(function (user) {
         $scope.user = user;
-        $scope.userName = user.FirstName;
+        $scope.displayName = user.FirstName+" "+user.LastName;
         $("#userCoverPic").attr("src", "data:image/jpeg;base64," + user.CoverImage);
         $scope.userProfilePicUrl = "data:image/jpeg;base64," + user.ProfileImage;
         $scope.imageUrl = "data:image/jpeg;base64," + user.CoverImage;
@@ -148,8 +152,8 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
         });
     };
 
-    $scope.likeOrUnlikeQuack = function(quack) {
-        quackService.likeOrUnlikeQuack(quack.Id, quack.UserId,
+    $scope.likeOrUnlikeQuack = function (quack) {
+        quackService.likeOrUnlikeQuack(quack.Id, $scope.user.ID,
             quack.LikeOrUnlike == "Like" ? true : false).then(function () {
                 $scope.replyMode = false;
             $scope.refreshQuacks();

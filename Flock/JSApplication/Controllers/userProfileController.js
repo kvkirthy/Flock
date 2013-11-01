@@ -5,7 +5,7 @@ flockApp.controller('userProfileController', function ($scope, $location, userSe
     var self = this;
 
     self.location = $location.absUrl();
-    $scope.userName = self.location.substr(self.location.indexOf("=") + 1, self.location.length)
+    $scope.userName = self.location.substr(self.location.indexOf("=") + 1, self.location.length);
 
     initialize();   
     function initialize() {
@@ -20,8 +20,10 @@ flockApp.controller('userProfileController', function ($scope, $location, userSe
             user.ProfileImage = "data:image/jpeg;base64," + userDto.ProfileImage;
             $scope.userProfile = user;
 
-        }, function(errorInfo){
-            console.log(errorInfo);
+        }, function (errorInfo) {
             throw new Error(errorInfo);
-        })};    
+        });
+    }
+
+    
 });

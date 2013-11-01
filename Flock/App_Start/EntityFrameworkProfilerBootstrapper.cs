@@ -1,4 +1,4 @@
-using HibernatingRhinos.Profiler.Appender.EntityFramework;
+
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Flock.App_Start.EntityFrameworkProfilerBootstrapper), "PreStart")]
 namespace Flock.App_Start
@@ -8,7 +8,7 @@ namespace Flock.App_Start
 		public static void PreStart()
 		{
 			// Initialize the profiler
-			EntityFrameworkProfiler.Initialize();
+			//EntityFrameworkProfiler.Initialize();
 			
 			// You can also use the profiler in an offline manner.
 			// This will generate a file with a snapshot of all the EntityFramework activity in the application,

@@ -144,6 +144,9 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CoverImage" Type="varbinary(max)" />
           <Property Name="ProfileImage" Type="varbinary(max)" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Project" Type="nvarchar" MaxLength="50" />
+          <Property Name="Interests" Type="nchar" MaxLength="200" />
         </EntityType>
         <Association Name="FK_Quack_Quack">
           <End Role="Quacks" Type="FlockModel.Store.Quacks" Multiplicity="0..1" />
@@ -395,6 +398,9 @@
           <Property Type="Binary" Name="CoverImage" MaxLength="Max" FixedLength="false" />
           <Property Type="Binary" Name="ProfileImage" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="QuackLikes" Relationship="FlockModel.FK_QuackLikes_Users" FromRole="User" ToRole="QuackLike" />
+          <Property Type="String" Name="EmailId" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Project" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Interests" MaxLength="200" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="UserInterest">
           <Key>
@@ -611,7 +617,10 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="IsTypeOf(FlockModel.User)">
         <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />

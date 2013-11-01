@@ -52,13 +52,14 @@ flockApp.service('userService', function ($http, $q) {
         return self.deferred.promise;
     };
     
-    this.saveUserDetails = function (userDetails) {
+    this.updateUserPreferences = function (userDetails) {
         self.deffered = $q.defer();
-        $http.put("api/user/saveUserDetails", userDetails)
+        $http.post("/api/userpreferences/updateUserPreferences", userDetails)
             .success(function (data) { self.deffered.resolve(data); })
             .error(function (error) { throw Error(error); });
 
         return self.deffered.promise;
 
     };
+
 });
