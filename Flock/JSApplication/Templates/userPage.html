@@ -1,4 +1,4 @@
-﻿<div ng-controller="userPageController" style="background-image:url('../../Content/images/body-bg.png')" >
+﻿<div ng-controller="userPageController" style="background-image:url('../../Content/images/Black_texture.jpg')" >
     <!--Header Section-->
     <div style="height: 155px; background-image:url('../../Content/images/title-bg.jpg')">
     </div>
@@ -34,7 +34,7 @@
 
                 <img id="userCoverPic" />
 
-                <span style="font: 14px; font-family: verdana; font-weight: bold;">{{displayName}} </span>
+                <span style="font-size: 14px; font-family: verdana; font-weight: bold;">{{displayName}} </span>
 
                 <span>
                     <a class="pull-right" href="#changePictureModel" style="font-size: 11px; text-decoration: none;" data-toggle="modal" data-backdrop="false">Change Cover</a>
@@ -59,7 +59,7 @@
                             <img id="userProfilePic" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" />
                             Change Picture </a>
                         <div class="media-body">
-                            <textarea id="quackText" class="span6" style="width: 575px; resize: none; font-family: arial;  font-size:12px;" placeholder="Your Quack..." rows="3" maxlength="200" ng-model="messageContent" on-enter="saveQuack()"></textarea>
+                            <textarea id="quackText" class="mainQuack boxsizingBorder" placeholder="Your Quack..." rows="3" maxlength="200" ng-model="messageContent" on-enter="saveQuack()"></textarea>
                             <p class="text-success" style="font-size: 10px; font-family: arial; margin-top: -12px;">{{maxCharacters - messageContent.length}} characters remaining...</p>
                             <br />
                         </div>
@@ -110,7 +110,7 @@
                          </p>
 
 
-
+                         <br/><br/>
                          <!--Conversations-->
                          <div style="max-height: 210px; overflow: auto; margin-top:-45px; ">
                              <div id="conversations" ng-show="quack.ShowConversation" ng-repeat="reply in quack.QuackReplies">
@@ -154,9 +154,10 @@
 
                              </div>
                          </div>
-                         
-                          
+                        
                          <div class="media" style="height: 90px; border: none; background: white;" ng-show="quack.ShowConversation">
+                              <br/>
+                          
                              <a class="pull-left" href="#" style="font-size: 9px; text-decoration: none;" data-toggle="modal" data-backdrop="false">
                                  <img id="Img1" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" />
                              </a>
