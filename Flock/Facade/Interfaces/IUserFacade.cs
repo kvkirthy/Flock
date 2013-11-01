@@ -12,9 +12,9 @@ namespace Flock.Facade.Interfaces
         UserDto GetUserDetailsNoSave(string userName);
         UserDto GetUserDetails(string userName);
         void SaveUser(UserDto user);
-        void UpdateUser(UserDto user);
+        void UpdateUserPreferences(UserDto user);
         List<UserLikesDto> GetUserLikesInfo(int quackId);
-
+        
         IEnumerable<string> GetAllUsers();
     }
 }

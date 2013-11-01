@@ -54,9 +54,13 @@ flockApp.service('userService', function ($http, $q) {
     
     this.updateUserPreferences = function (userDetails) {
         self.deffered = $q.defer();
-        $http.post("/api/userpreferences/updateUserPreferences", userDetails)
-            .success(function (data) { self.deffered.resolve(data); })
-            .error(function (error) { throw Error(error); });
+        $http.put("/api/user/updateUserPreferences", userDetails)
+            .success(function (data) {
+                 self.deffered.resolve(data);
+            })
+            .error(function (error) {
+                 throw Error(error);
+            });
 
         return self.deffered.promise;
 

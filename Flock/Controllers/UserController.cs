@@ -51,5 +51,12 @@ namespace Flock.Controllers
             return _userFacade.GetUserDetails(userName);
         }
 
+        [PUT("updateUserPreferences")]
+        public HttpResponseMessage Put(UserDto userInfo)
+        {
+            _userFacade.UpdateUserPreferences(userInfo);
+            return Request.CreateResponse(HttpStatusCode.Created, "true");
+        }
+
     }
 }

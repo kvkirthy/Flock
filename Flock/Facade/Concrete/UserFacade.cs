@@ -32,9 +32,9 @@ namespace Flock.Facade.Concrete
             _userRepository.SaveUser(_autoMap.Map<UserDto, User>(user));
         }
 
-        public void UpdateUser(UserDto user)
+        public void UpdateUserPreferences(UserDto user)
         {
-         
+            _userRepository.UpdateUserPreferences(_autoMap.Map<UserDto, User>(user));
         }
 
 
