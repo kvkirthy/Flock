@@ -14,7 +14,8 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
     $scope.quacks = [];
     $scope.replyMode = false;
     $scope.userLikeQuackId = "";
-
+    $scope.disableQuackMessage = false;
+    
     $scope.setQuackId = function(quackId, likes) {
             $scope.userLikeQuackId = quackId;
             $scope.$broadcast('quackUserLikesController.showUserLikes');
@@ -40,19 +41,29 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
     });
 
     $scope.saveQuack = function () {
+        $scope.disableQuackMessage = true;
         var quack = {};
         quack.userId = $scope.user.ID;
         quack.parentQuackId = null;
         quack.quackTypeId = 1;
         quack.quackContent = {};
         quack.quackContent.messageText = $scope.messageContent;
+        
+
         if (quack.quackContent.messageText != "") {
             quackService.saveQuack(quack).then(function () {
                 $scope.replyMode = false;
                 $scope.refreshQuacks();
                 $scope.messageContent = "";
+                $scope.disableQuackMessage = false;
+                
             });
         }
+        else {
+            $scope.disableQuackMessage = false;
+        }
+        
+
         
     };
     

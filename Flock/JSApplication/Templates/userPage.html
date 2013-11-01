@@ -59,7 +59,7 @@
                             <img id="userProfilePic" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" />
                             Change Picture </a>
                         <div class="media-body">
-                            <textarea id="quackText" class="mainQuack boxsizingBorder" placeholder="Your Quack..." rows="3" maxlength="200" ng-model="messageContent" on-enter="saveQuack()"></textarea>
+                            <textarea id="quackText" class="mainQuack boxsizingBorder" placeholder="Your Quack..." rows="3" maxlength="200" ng-model="messageContent" ng-disabled=" disableQuackMessage" on-enter="saveQuack()"></textarea>
                             <p class="text-success" style="font-size: 10px; font-family: arial; margin-top: -12px;">{{maxCharacters - messageContent.length}} characters remaining...</p>
                             <br />
                         </div>
