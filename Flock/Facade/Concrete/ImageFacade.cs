@@ -106,7 +106,7 @@ namespace Flock.Facade.Concrete
             var height = imgPhoto.Height;
             var width = imgPhoto.Width;
 
-            if (height > maxWidth && width > maxHeight)
+            if (height > maxWidth || width > maxHeight)
             {
                 var newImage = new Bitmap(maxWidth, maxHeight);
                 Graphics.FromImage(newImage).DrawImage(imgPhoto, 0, 0, maxWidth, maxHeight);
@@ -114,7 +114,7 @@ namespace Flock.Facade.Concrete
             }
             else
             {
-                src = CropImageFile(imgPhoto, 775, 195, img.X, img.Y);
+                src = CropImageFile(imgPhoto, 800, 200, img.X, img.Y);
             }
             var imageForPreview = Convert.ToBase64String(src);
             return imageForPreview;

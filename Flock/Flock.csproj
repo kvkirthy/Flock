@@ -217,6 +217,7 @@
     <Content Include="Content\images\AboutPageLong.jpg" />
     <Content Include="Content\images\Avatar.gif" />
     <Content Include="Content\images\backgroundImg.png" />
+    <Content Include="Content\images\body-bg.png" />
     <Content Include="Content\images\ContributorsPicz\harshaV.jpg" />
     <Content Include="Content\images\ContributorsPicz\kotaru.jpg" />
     <Content Include="Content\images\ContributorsPicz\niranjan.jpg" />
@@ -237,6 +238,7 @@
     <Content Include="Content\images\small.jpg" />
     <Content Include="Content\images\sss.png" />
     <Content Include="Content\images\ThumbsUp.jpg" />
+    <Content Include="Content\images\title-bg.jpg" />
     <Content Include="Content\images\X.jpg" />
     <Content Include="Content\imgareaselect-animated.css" />
     <Content Include="Content\imgareaselect-default.css" />
