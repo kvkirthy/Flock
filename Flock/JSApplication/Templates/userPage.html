@@ -162,7 +162,7 @@
                                  <img id="Img1" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" />
                              </a>
                              <div class="media-body">
-                                 <textarea id="{{'replyBox'+ quack.Id}}" class="span6" style="width: 500px; resize: none; font-family: arial;  font-size:12px;" placeholder="Reply..." rows="3" maxlength="200" on-enter="saveReply(quack.Id, 'replyBox'+ quack.Id, quack.IsNew, quack.ConversationId)"> @{{quack.UserDisplayName}}:&nbsp;</textarea>
+                                 <textarea id="{{'replyBox'+ quack.Id}}" class="span6" style="width: 500px; resize: none; font-family: arial;  font-size:12px;" placeholder="Reply..." rows="3" maxlength="200" ng-disabled="disableReplyAction" on-enter="saveReply(quack.Id, 'replyBox'+ quack.Id, quack.IsNew, quack.ConversationId)"> @{{quack.UserDisplayName}}:&nbsp;</textarea>
                                  <p class="text-success" style="font-size: 10px; font-family: arial; margin-top: -12px;">{{maxCharacters - replyContent.length}} characters remaining...</p>
                                  <br />
                              </div>

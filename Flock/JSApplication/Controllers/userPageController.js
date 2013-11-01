@@ -15,6 +15,7 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
     $scope.replyMode = false;
     $scope.userLikeQuackId = "";
     $scope.disableQuackMessage = false;
+    $scope.disableReplyAction = false;
     
     $scope.setQuackId = function(quackId, likes) {
             $scope.userLikeQuackId = quackId;
@@ -69,6 +70,7 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
     
 
     $scope.saveReply = function (quackId, element, isNew, conversationId) {
+        $scope.disableReplyAction = true;
         var quack = {};
         quack.userId = $scope.user.ID;
         quack.parentQuackId = null;
@@ -89,7 +91,11 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
                 $scope.replyMode = false;
                 $scope.refreshQuacks();
                 $scope.replyContent = "";
+                $scope.disableReplyAction = false;
             });
+        }
+        else {
+            $scope.disableReplyAction = false;
         }
         
     };
