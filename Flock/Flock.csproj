@@ -214,6 +214,7 @@
     <Content Include="Content\border-v.gif" />
     <Content Include="Content\flock.css" />
     <Content Include="Content\FlockApplication.css" />
+    <Content Include="Content\images\AboutPageLong.jpg" />
     <Content Include="Content\images\Avatar.gif" />
     <Content Include="Content\images\backgroundImg.png" />
     <Content Include="Content\images\ContributorsPicz\harshaV.jpg" />
