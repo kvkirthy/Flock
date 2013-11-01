@@ -3,7 +3,7 @@
 
 flockApp.controller('userPageController', function ($scope, userService, quackService) {
 
-
+   
     $scope.displayName = "";
     $scope.showConversations = false;
     $scope.expandOrCollapse = "Expand";
@@ -18,6 +18,10 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
     $scope.setQuackId = function(quackId, likes) {
             $scope.userLikeQuackId = quackId;
             $scope.$broadcast('quackUserLikesController.showUserLikes');
+    };
+
+    $scope.showUserDetails = function() {
+        $scope.$broadcast('userInfoController.showUserInformation');
     };
 
     var getQuacks = function () {

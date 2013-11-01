@@ -2,9 +2,14 @@
 'use strict';
 
 flockApp.controller('userInfoController', function ($scope, userService, quackService) {
+
+    $scope.$on('userInfoController.showUserInformation', function () {
+       $scope.userPreferences = angular.copy($scope.user);
+    });
+
     $scope.userPreferences = {};
     $scope.savePreferences = function () {
-        userService.saveUserDetails($scope.userPreferences).then(function () {
+        userService.updateUserPreferences($scope.userPreferences).then(function () {
            
         });
     };
