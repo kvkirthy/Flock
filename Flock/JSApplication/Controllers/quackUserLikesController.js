@@ -11,7 +11,12 @@ flockApp.controller('quackUserLikesController', function ($scope, userService) {
 
             else {
                 for (var i = 0; i < data.length; i++) {
-                    data[i].UserPic = "data:image/jpeg;base64," + data[i].UserPic;
+                    if (!(data[i].UserPic) || data[i].UserPic == "") {
+                        data[i].UserPic = "/Content/images/profilepic.png";
+                    }
+                    else {
+                        data[i].UserPic = "data:image/jpeg;base64," + data[i].UserPic;
+                    }
                 }
                 $scope.userLikes = data;
             }
