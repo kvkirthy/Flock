@@ -32,11 +32,36 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
 
     userService.getUser().then(function (user) {
         $scope.user = user;
-        $scope.displayName = user.FirstName+" "+user.LastName;
-        $("#userCoverPic").attr("src", "data:image/jpeg;base64," + user.CoverImage);
-        $scope.userProfilePicUrl = "data:image/jpeg;base64," + user.ProfileImage;
-        $scope.imageUrl = "data:image/jpeg;base64," + user.CoverImage;
-        $scope.profilePicimageUrl = $scope.userProfilePicUrl;
+        $scope.displayName = user.FirstName + " " + user.LastName;
+        
+        if (user.CoverImage == "") {
+            $("#userCoverPic").attr("src", "/Content/images/defaultCoverPic.png");
+            $scope.imageUrl = "/Content/images/defaultCoverPic.png";
+        }
+        else {
+            $("#userCoverPic").attr("src", "data:image/jpeg;base64," + user.CoverImage);
+            $scope.imageUrl = "data:image/jpeg;base64," + user.CoverImage;
+        }
+
+        if(user.ProfileImage =="") {
+            $scope.userProfilePicUrl = "/Content/images/profilepic.png";
+            $scope.profilePicimageUrl = $scope.userProfilePicUrl;
+        }
+        else {
+            $scope.userProfilePicUrl = "data:image/jpeg;base64," + user.ProfileImage;
+            $scope.profilePicimageUrl = $scope.userProfilePicUrl;
+        }
+
+     
+
+
+
+     
+        
+
+
+
+
         getQuacks();
 
     });

@@ -51,8 +51,8 @@ namespace Flock.Facade.Concrete
                 if(currentUser!=null )
                 {
 
-                    currentUser.CoverImage = _imageFacade.GetImageFromUrl(defaultCoverPicUrl);
-                    currentUser.ProfileImage = _imageFacade.GetImageFromUrl(defaultProfilePicUrl);
+                    //currentUser.CoverImage = _imageFacade.GetImageFromUrl(defaultCoverPicUrl);
+                    //currentUser.ProfileImage = _imageFacade.GetImageFromUrl(defaultProfilePicUrl);
 
                     _userRepository.SaveUser(currentUser);
                     return _autoMap.Map<User, UserDto>(currentUser);
