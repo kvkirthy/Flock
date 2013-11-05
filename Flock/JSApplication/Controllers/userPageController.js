@@ -180,7 +180,7 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
            quackService.getQuackInformation(quack.ConversationId).then(function(data)
            {
                for (var f = 0; f < data.length ; f++) {
-                   if (data[f].UserImage == "") {
+                   if (!(data[f].UserImage) || data[f].UserImage == "") {
                        data[f].UserImage = "/Content/images/profilepic.png";
                    }
                    else {
