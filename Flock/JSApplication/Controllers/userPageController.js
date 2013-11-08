@@ -1,7 +1,7 @@
 ﻿
 'use strict';
 
-flockApp.controller('userPageController', function ($scope, userService, quackService) {
+flockApp.controller('userPageController', function ($scope, userService, quackService, sessionFactory) {
 
    
     $scope.displayName = "";
@@ -106,9 +106,9 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
 
 
 
-    setInterval(function () {
+    //setInterval(function () {
         $scope.refreshQuacks();
-    }, 10000);
+    //}, 10000);
 
     $scope.expandClick = function (quack) {
         
@@ -159,4 +159,9 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
             $scope.refreshQuacks();
         } );
     };
+
+    $scope.$on('userTagSelected', function (event, data) {       
+        data.firstName = (data.firstName || "").split("@")[1]; // remove @
+        sessionFactory.user = data;
+    });
 });

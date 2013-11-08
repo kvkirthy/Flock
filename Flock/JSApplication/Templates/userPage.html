@@ -101,8 +101,9 @@
                          <button type="button" class="close pull-right" ng-click="deleteQuack(quack.Id)" style="margin-left: 2px; font-size: 16px !important;" ng-show="quack.ShowDelete" aria-hidden="true">x</button>
                          <a ng-show="quack.IsNew" style="color: green; font-size: 11px; text-decoration:none"  ng-click="setQuackId(quack.Id, quack.Likes)"  href="#quackUserLikes" data-toggle="modal" data-backdrop="false"  class="pull-right">({{quack.Likes}}) Likes | ({{quack.Replies}}) Replies</a>
 
-                         <p style="font-family: arial;  font-size:12px;">
-                             {{quack.Message}}
+                         <p style="font-family: arial;  font-size:12px;">  
+                             
+                             <span highlight-tags callback-fn="onLinkClick" ng-model="quack.Message"></span>
                             
                              <span class="pull-right" style="margin-left: 3px;"><a href="" ng-click="expandClick(quack)" style="color: blue; font-size: 11px; text-decoration: none;">{{quack.ExpandOrCollapse}}</a> </span>
                              <span ng-show="quack.IsNew" class="pull-right" style="margin-left: 3px;">|</span>

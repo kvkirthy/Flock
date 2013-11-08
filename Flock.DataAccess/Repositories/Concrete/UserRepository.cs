@@ -58,5 +58,14 @@ namespace Flock.DataAccess.Repositories.Concrete
             userInfo.Interests = user.Interests;
             base.Update(userInfo);
         }
+
+
+        public User GetUserByLastAndFirstName(string lastName, string firstName)
+        {
+            var users = base.GetAll();
+            return users.FirstOrDefault(user =>
+                user.LastName.Equals(lastName)
+                && user.FirstName.Equals(firstName));
+        }
     }
 }

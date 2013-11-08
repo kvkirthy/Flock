@@ -30,6 +30,7 @@ namespace Flock
 
             bundles.Add(new ScriptBundle("~/bundles/JSApplication").Include(
                 "~/JSApplication/main.js",
+                "~/JSApplication/Factories/sessionFactory.js",
                 "~/JSApplication/Services/searchService.js",
                 "~/JSApplication/Services/messageService.js",
                 "~/JSApplication/Services/userService.js",
@@ -42,12 +43,13 @@ namespace Flock
                  "~/JSApplication/Controllers/userPageController.js",
                  "~/JSApplication/Controllers/userInfoController.js",
                  "~/JSApplication/Controllers/userProfileController.js",
+                 "~/JSApplication/Controllers/loginController.js",
                 "~/JSApplication/Services/messageService.js",
                 "~/JSApplication/Services/registrationService.js",
                 "~/JSApplication/Directives/autoUpdateUserTags.js",
                 "~/JSApplication/Directives/onEnter.js",
                  "~/JSApplication/Directives/setTitle.js",
-                "~/JSApplication/Controllers/loginController.js"
+                 "~/JSApplication/Directives/highlightTags.js"                
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/FlockApplication.css"));            

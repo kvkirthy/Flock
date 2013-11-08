@@ -1,15 +1,22 @@
 ﻿'use strict';
 
-flockApp.controller('userProfileController', function ($scope, $location, userService, quackService) {    
+flockApp.controller('userProfileController', function ($scope, $location, userService, quackService, sessionFactory) {    
 
     var self = this;
 
-    self.location = $location.absUrl();
-    $scope.userName = self.location.substr(self.location.indexOf("=") + 1, self.location.length);
+    if (sessionFactory.user) {
+        self.lastName = sessionFactory.user.lastName;
+        self.firstName = sessionFactory.user.firstName;
+    }
+
+    //TODO: Bad code need to use factory for sharing data between controllers
+    //self.location = $location.absUrl();
+    //self.lastName = self.location.substr(self.location.indexOf("lastName="), (self.location.indexOf("&")-2));
+    //self.firstName = self.location.substr(self.location.indexOf("firstName=") + 1, self.location.length);
 
     initialize();   
     function initialize() {
-        userService.getUserByUserName($scope.userName).then(function (userDto) {
+        userService.getUserByUserName(self.lastName, self.firstName).then(function (userDto) {
             var user = {};
             user.FirstName = userDto.FirstName;
             user.LastName = userDto.LastName;

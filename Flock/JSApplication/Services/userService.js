@@ -4,9 +4,9 @@ flockApp.service('userService', function ($http, $q) {
 
     var self = this;
 
-    this.getUserByUserName = function (userName) {
+    this.getUserByUserName = function (lastName, firstName) {
         self.deferred = $q.defer();
-        $http.get("/api/user/getUserByUserName?userName="+ userName)
+        $http.get("/api/user/getUserByUserName?lastName="+ lastName +"&firstName="+firstName)
         .success(function (data) {
             self.deferred.resolve(data);
         }).

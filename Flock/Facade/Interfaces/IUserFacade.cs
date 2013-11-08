@@ -9,7 +9,7 @@ namespace Flock.Facade.Interfaces
 {
     public interface IUserFacade
     {
-        UserDto GetUserDetailsNoSave(string userName);
+        UserDto GetUserByLastNameAndFirstName(string lastName, string firstName);
         UserDto GetUserDetails(string userName);
         void SaveUser(UserDto user);
         void UpdateUserPreferences(UserDto user);

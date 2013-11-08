@@ -50,6 +50,12 @@ namespace Flock.Controllers
         {
             return _userFacade.GetUserDetails(userName);
         }
+        
+        [GET("getUserByLastNameAndFirstName")]
+        public UserDto GetUserByLastNameAndFirstName(string lastName, string firstName)
+        {
+            return _userFacade.GetUserByLastNameAndFirstName(lastName, firstName);
+        }
 
         [PUT("updateUserPreferences")]
         public HttpResponseMessage Put(UserDto userInfo)

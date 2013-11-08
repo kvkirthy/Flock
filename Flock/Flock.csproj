@@ -305,9 +305,11 @@
     <Content Include="JSApplication\Controllers\userPageController.js" />
     <Content Include="JSApplication\Controllers\userProfileController.js" />
     <Content Include="JSApplication\Directives\autoUpdateUserTags.js" />
+    <Content Include="JSApplication\Directives\highlightTags.js" />
     <Content Include="JSApplication\Directives\onEnter.js" />
     <Content Include="JSApplication\main.js" />
     <Content Include="JSApplication\Services\searchService.js" />
+    <Content Include="JSApplication\Factories\sessionFactory.js" />
     <Content Include="JSApplication\Services\userService.js" />
     <Content Include="JSApplication\Templates\About.html" />
     <Content Include="JSApplication\Templates\autoUpdateUserTagsDirectiveTemplate.html" />

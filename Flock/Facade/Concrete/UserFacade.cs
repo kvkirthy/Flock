@@ -125,9 +125,9 @@ namespace Flock.Facade.Concrete
             return returnUsers;
         }
 
-        public UserDto GetUserDetailsNoSave(string userName)        
+        public UserDto GetUserByLastNameAndFirstName(string lastName, string firstName)        
         {
-            return _autoMap.Map<User, UserDto>(_userRepository.GetUserByUserName(userName));            
+            return _autoMap.Map<User, UserDto>(_userRepository.GetUserByLastAndFirstName(lastName,firstName));            
         }
     }
 }

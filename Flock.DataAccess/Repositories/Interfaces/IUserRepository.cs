@@ -7,6 +7,9 @@ namespace Flock.DataAccess.Repositories.Interfaces
 
         IEnumerable<User> GetAllUsers();
         User GetUserByUserName(string userName);
+
+        User GetUserByLastAndFirstName(string lastName, string firstName);
+
         void SaveUser(User user);
         User GetUserById(int id);
         void UpdateUserCoverImage(User user);
