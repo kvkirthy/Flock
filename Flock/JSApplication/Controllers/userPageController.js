@@ -14,7 +14,9 @@ flockApp.controller('userPageController', function ($scope, $window, userService
     $scope.quacks = [];
     $scope.replyMode = false;
     $scope.userLikeQuackId = "";
-
+    $scope.disableQuackMessage = false;
+    $scope.disableReplyAction = false;
+    
     $scope.setQuackId = function(quackId, likes) {
             $scope.userLikeQuackId = quackId;
             $scope.$broadcast('quackUserLikesController.showUserLikes');
@@ -30,34 +32,59 @@ flockApp.controller('userPageController', function ($scope, $window, userService
 
     userService.getUser().then(function (user) {
         $scope.user = user;
-        $scope.displayName = user.FirstName+" "+user.LastName;
-        $("#userCoverPic").attr("src", "data:image/jpeg;base64," + user.CoverImage);
-        $scope.userProfilePicUrl = "data:image/jpeg;base64," + user.ProfileImage;
-        $scope.imageUrl = "data:image/jpeg;base64," + user.CoverImage;
-        $scope.profilePicimageUrl = $scope.userProfilePicUrl;
+        $scope.displayName = user.FirstName + " " + user.LastName;
+        
+        if (user.CoverImage == "") {
+            $("#userCoverPic").attr("src", "/Content/images/defaultCoverPic.png");
+            $scope.imageUrl = "/Content/images/defaultCoverPic.png";
+        }
+        else {
+            $("#userCoverPic").attr("src", "data:image/jpeg;base64," + user.CoverImage);
+            $scope.imageUrl = "data:image/jpeg;base64," + user.CoverImage;
+        }
+
+        if(user.ProfileImage =="") {
+            $scope.userProfilePicUrl = "/Content/images/profilepic.png";
+            $scope.profilePicimageUrl = $scope.userProfilePicUrl;
+        }
+        else {
+            $scope.userProfilePicUrl = "data:image/jpeg;base64," + user.ProfileImage;
+            $scope.profilePicimageUrl = $scope.userProfilePicUrl;
+        }
         getQuacks();
 
     });
 
     $scope.saveQuack = function () {
+        $scope.disableQuackMessage = true;
         var quack = {};
         quack.userId = $scope.user.ID;
         quack.parentQuackId = null;
         quack.quackTypeId = 1;
         quack.quackContent = {};
         quack.quackContent.messageText = $scope.messageContent;
+        
+
         if (quack.quackContent.messageText != "") {
             quackService.saveQuack(quack).then(function () {
                 $scope.replyMode = false;
                 $scope.refreshQuacks();
                 $scope.messageContent = "";
+                $scope.disableQuackMessage = false;
+                
             });
         }
+        else {
+            $scope.disableQuackMessage = false;
+        }
+        
+
         
     };
     
 
     $scope.saveReply = function (quackId, element, isNew, conversationId) {
+        $scope.disableReplyAction = true;
         var quack = {};
         quack.userId = $scope.user.ID;
         quack.parentQuackId = null;
@@ -78,7 +105,11 @@ flockApp.controller('userPageController', function ($scope, $window, userService
                 $scope.replyMode = false;
                 $scope.refreshQuacks();
                 $scope.replyContent = "";
+                $scope.disableReplyAction = false;
             });
+        }
+        else {
+            $scope.disableReplyAction = false;
         }
         
     };
@@ -87,7 +118,13 @@ flockApp.controller('userPageController', function ($scope, $window, userService
         if(!($scope.replyMode )){
             quackService.getAllQuacks().then(function(data) {
                 for (var i = 0; i < data.length; i++) {
-                    data[i].UserImage = "data:image/jpeg;base64," + data[i].UserImage;
+                    if (!(data[i].UserImage) || data[i].UserImage == "") {
+                        data[i].UserImage = "/Content/images/profilepic.png";
+                    }
+                    else {
+                        data[i].UserImage = "data:image/jpeg;base64," + data[i].UserImage;
+                    }
+                    
                     data[i].ShowConversation = false;
                     data[i].ExpandOrCollapse = "Expand";
                     if ($scope.user.ID == data[i].UserId) {
@@ -96,7 +133,14 @@ flockApp.controller('userPageController', function ($scope, $window, userService
                         data[i].ShowDelete = false;
                     }
                     for (var j = 0; j < data[i].QuackReplies.length ; j++) {
-                        data[i].QuackReplies[j].UserImage = "data:image/jpeg;base64," + data[i].QuackReplies[j].UserImage;
+                        
+                        if (!(data[i].QuackReplies[j].UserImage) || data[i].QuackReplies[j].UserImage=="") {
+                            data[i].QuackReplies[j].UserImage = "/Content/images/profilepic.png";
+                        }
+                        else {
+                            data[i].QuackReplies[j].UserImage = "data:image/jpeg;base64," + data[i].QuackReplies[j].UserImage;
+                        }
+                        
                     }
                 }
                 $scope.quacks = data;
@@ -135,8 +179,13 @@ flockApp.controller('userPageController', function ($scope, $window, userService
        if (!(quack.IsNew) && quack.ExpandOrCollapse == "Collapse") {
            quackService.getQuackInformation(quack.ConversationId).then(function(data)
            {
-               for (var f = 0;  f< data.length ; f++) {
-                   data[f].UserImage = "data:image/jpeg;base64," + data[f].UserImage;
+               for (var f = 0; f < data.length ; f++) {
+                   if (!(data[f].UserImage) || data[f].UserImage == "") {
+                       data[f].UserImage = "/Content/images/profilepic.png";
+                   }
+                   else {
+                       data[f].UserImage = "data:image/jpeg;base64," + data[f].UserImage;
+                   }
                }
                quack.QuackReplies = data;
            });

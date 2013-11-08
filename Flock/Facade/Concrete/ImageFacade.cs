@@ -44,7 +44,7 @@ namespace Flock.Facade.Concrete
                     break;
                 case "PreviewCoverPic":
                     {
-                        result = ImagePreview(img, 800, 450);
+                        result = ImagePreview(img, 595, 800);
                     }
                     break;
                
@@ -96,7 +96,7 @@ namespace Flock.Facade.Concrete
             }
         }
 
-        private string ImagePreview(UserImageDto img, int maxWidth, int maxHeight)
+        private string ImagePreview(UserImageDto img, int maxHeight, int maxWidth)
         {
             byte[] src;
             var currentImage = img.SourceUrl.Substring(img.SourceUrl.IndexOf(',') + 1);
@@ -106,15 +106,27 @@ namespace Flock.Facade.Concrete
             var height = imgPhoto.Height;
             var width = imgPhoto.Width;
 
-            if (height > maxWidth && width > maxHeight)
+            if (height > maxHeight && width > maxWidth)
             {
                 var newImage = new Bitmap(maxWidth, maxHeight);
                 Graphics.FromImage(newImage).DrawImage(imgPhoto, 0, 0, maxWidth, maxHeight);
                 src = CropImageFile(newImage, img.Width, img.Height, img.X, img.Y);
             }
+            else if(height > maxHeight )
+            {
+                var newImage = new Bitmap(maxWidth, maxHeight);
+                Graphics.FromImage(newImage).DrawImage(imgPhoto, 0, 0, width, maxHeight);
+                src = CropImageFile(newImage, img.Width, img.Height, img.X, img.Y);
+            }
+            else if(width > maxWidth )
+            {
+                var newImage = new Bitmap(maxWidth, maxHeight);
+                Graphics.FromImage(newImage).DrawImage(imgPhoto, 0, 0, maxWidth, height);
+                src = CropImageFile(newImage, img.Width, img.Height, img.X, img.Y);
+            }
             else
             {
-                src = CropImageFile(imgPhoto, 775, 195, img.X, img.Y);
+                src = CropImageFile(imgPhoto, 800, 200, img.X, img.Y);
             }
             var imageForPreview = Convert.ToBase64String(src);
             return imageForPreview;

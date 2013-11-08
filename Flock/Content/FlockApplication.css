@@ -132,4 +132,17 @@
 
 }
 
+.mainQuack {
+    width: 575px !important; 
+    resize: none !important; 
+    font-family: arial;  
+    font-size:12px;
+}
 
+textarea {resize:none !important}
+
+.boxsizingBorder {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}

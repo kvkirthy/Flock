@@ -1,6 +1,6 @@
-﻿<div ng-controller="userPageController" style="background-image:url('../../Content/images/backgroundImg.png')" >
+﻿<div ng-controller="userPageController" style="background-image:url('../../Content/images/Black_texture.jpg')" >
     <!--Header Section-->
-    <div style="height: 155px; background-image:url('../../Content/images/headerBackground.png')">
+    <div style="height: 155px; background-image:url('../../Content/images/title-bg.jpg')">
     </div>
 
     <div class="container center" >
@@ -21,7 +21,7 @@
                             <li><a href="#userInfoModal"  ng-click="showUserDetails()" data-toggle="modal" data-backdrop="false"><i class="icon-user icon-white"></i></a></li>
                             <!--TODO: Need to complete this-->
                             <!--<li><a href="#searchModel" data-toggle="modal" data-backdrop="false">Search</a></li>-->
-                            <li><a href="#aboutModal" data-toggle="modal" data-backdrop="false">About</a></li>
+                            <li><a href="#aboutModal" data-toggle="modal" data-backdrop="false">About us</a></li>
                            <!-- <li><a href="">Contact</a></li>-->
                         </ul>
                     </div>
@@ -30,11 +30,11 @@
             </div>
 
             <!--User Information-->
-            <div style="background: white; margin-top: -25px;">
+            <div style="background: white; margin-top: -20px;">
 
                 <img id="userCoverPic" />
 
-                <span style="font: 14px; font-family: verdana; font-weight: bold;">{{displayName}} </span>
+                <span style="font-size: 14px; font-family: verdana; font-weight: bold;">{{displayName}} </span>
 
                 <span>
                     <a class="pull-right" href="#changePictureModel" style="font-size: 11px; text-decoration: none;" data-toggle="modal" data-backdrop="false">Change Cover</a>
@@ -59,7 +59,7 @@
                             <img id="userProfilePic" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" />
                             Change Picture </a>
                         <div class="media-body">
-                            <textarea id="quackText" class="span6" style="width: 575px; resize: none; font-family: arial;  font-size:12px;" placeholder="Your Quack..." rows="3" maxlength="200" ng-model="messageContent" on-enter="saveQuack()"></textarea>
+                            <textarea id="quackText" class="mainQuack boxsizingBorder" placeholder="Your Quack..." rows="3" maxlength="200" ng-model="messageContent" ng-disabled=" disableQuackMessage" on-enter="saveQuack()"></textarea>
                             <p class="text-success" style="font-size: 10px; font-family: arial; margin-top: -12px;">{{maxCharacters - messageContent.length}} characters remaining...</p>
                             <br />
                         </div>
@@ -81,7 +81,7 @@
 
              <div ng-repeat="quack in quacks">
                  <div class="media well span7" style="margin-top: -35px; background: white; border: none;">
-                     <a class="pull-left" href="#">
+                     <a class="pull-left" href="">
                          <img class="media-object" style="width: 48px; height: 48px; box-shadow: 1px 1px 1px 1px #888888;" ng-src="{{ quack.UserImage}}" />
                      </a>
                      <div class="media-body">
@@ -111,7 +111,7 @@
                          </p>
 
 
-
+                         <br/><br/>
                          <!--Conversations-->
                          <div style="max-height: 210px; overflow: auto; margin-top:-45px; ">
                              <div id="conversations" ng-show="quack.ShowConversation" ng-repeat="reply in quack.QuackReplies">
@@ -120,7 +120,7 @@
 
 
 
-                                     <a class="pull-left" href="#">
+                                     <a class="pull-left" href="">
                                          <img class="media-object" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" ng-src="{{ reply.UserImage}}" />
                                      </a>
                                      <div class="media-body">
@@ -155,14 +155,15 @@
 
                              </div>
                          </div>
-                         
-                          
+                        
                          <div class="media" style="height: 90px; border: none; background: white;" ng-show="quack.ShowConversation">
-                             <a class="pull-left" href="#" style="font-size: 9px; text-decoration: none;" data-toggle="modal" data-backdrop="false">
+                              <br/>
+                          
+                             <a class="pull-left" href="" style="font-size: 9px; text-decoration: none;" data-toggle="modal" data-backdrop="false">
                                  <img id="Img1" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" />
                              </a>
                              <div class="media-body">
-                                 <textarea id="{{'replyBox'+ quack.Id}}" class="span6" style="width: 500px; resize: none; font-family: arial;  font-size:12px;" placeholder="Reply..." rows="3" maxlength="200" on-enter="saveReply(quack.Id, 'replyBox'+ quack.Id, quack.IsNew, quack.ConversationId)"> @{{quack.UserDisplayName}}:&nbsp;</textarea>
+                                 <textarea id="{{'replyBox'+ quack.Id}}" class="span6" style="width: 500px; resize: none; font-family: arial;  font-size:12px;" placeholder="Reply..." rows="3" maxlength="200" ng-disabled="disableReplyAction" on-enter="saveReply(quack.Id, 'replyBox'+ quack.Id, quack.IsNew, quack.ConversationId)"> @{{quack.UserDisplayName}}:&nbsp;</textarea>
                                  <p class="text-success" style="font-size: 10px; font-family: arial; margin-top: -12px;">{{maxCharacters - replyContent.length}} characters remaining...</p>
                                  <br />
                              </div>
