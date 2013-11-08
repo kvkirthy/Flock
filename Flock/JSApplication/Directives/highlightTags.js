@@ -17,9 +17,19 @@ flockApp.directive('highlightTags', function ($compile, $rootScope) {
                 if (message) {
                     self.targetMessage = message;
 
-                    if (message.indexOf('@') > 0) {
+                    var urlReg = new RegExp(/[\w]+:\/\/[\S]+/);
+                    var urlTextArray = message.match(urlReg);
+
+                    if (urlTextArray && _.isArray(urlTextArray)) {
+                        _.each(urlTextArray, function (urlText) {
+                            var urlLink = "<a target='_blank' href='" + urlText + "'>" + urlText + "</a>";
+                            self.targetMessage = self.targetMessage.replace(urlText, urlLink);
+                        });
+                    }
+
+                    if (self.targetMessage.indexOf('@') > 0) {
                         //var allMatches = new RegExp(/@*.+:/).exec(message);
-                        var allMatches = message.split(/@*:/);
+                        var allMatches = self.targetMessage.split(/@*:/);
                         _.each(allMatches, function (match) {
                             match = match.trim();
                             if (match.substring(0, 1) == "@") {
