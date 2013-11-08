@@ -1,6 +1,7 @@
 ﻿'use strict';
 
 flockApp.factory('sessionFactory', function () {
-    return {
-    };
+
+    var sessionFactory = {};
+    return sessionFactory;
 });

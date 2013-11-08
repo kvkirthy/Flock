@@ -1,7 +1,7 @@
 ﻿
 'use strict';
 
-flockApp.controller('userPageController', function ($scope, userService, quackService, sessionFactory) {
+flockApp.controller('userPageController', function ($scope, $window, userService, quackService, sessionFactory) {
 
    
     $scope.displayName = "";
@@ -161,7 +161,8 @@ flockApp.controller('userPageController', function ($scope, userService, quackSe
     };
 
     $scope.$on('userTagSelected', function (event, data) {       
-        data.firstName = (data.firstName || "").split("@")[1]; // remove @
+        data.firstName = (data.firstName || "").split("@")[1]; // purpose: remove @ from first name
         sessionFactory.user = data;
+        $window.open('/UserView/index?firstName=' + data.firstName + "&lastName=" + data.lastName)
     });
 });

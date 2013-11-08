@@ -4,15 +4,24 @@ flockApp.controller('userProfileController', function ($scope, $location, userSe
 
     var self = this;
 
-    if (sessionFactory.user) {
+    /*if (sessionFactory.user) {
         self.lastName = sessionFactory.user.lastName;
         self.firstName = sessionFactory.user.firstName;
-    }
+    }*/
 
     //TODO: Bad code need to use factory for sharing data between controllers
-    //self.location = $location.absUrl();
-    //self.lastName = self.location.substr(self.location.indexOf("lastName="), (self.location.indexOf("&")-2));
-    //self.firstName = self.location.substr(self.location.indexOf("firstName=") + 1, self.location.length);
+    self.location = $location.absUrl();
+
+    var getParamLength = function (param, paramValue) {
+        if (param.indexOf("&", param.indexOf(paramValue)) >= 0) {
+            return (param.indexOf("&", param.indexOf(paramValue))-(param.indexOf(paramValue)+paramValue.length));
+        } else {
+            param.length;
+        }
+    };
+
+    self.firstName = self.location.substr(self.location.indexOf("firstName=") + ("firstName=".length), getParamLength(self.location, "firstName="));
+    self.lastName = self.location.substr(self.location.indexOf("lastName=") + ("lastName=".length), getParamLength(self.location, "lastName="));
 
     initialize();   
     function initialize() {
