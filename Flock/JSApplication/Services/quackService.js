@@ -13,6 +13,19 @@
         return self.deferred.promise;
     };
 
+    this.getQuacksByFirstNameAndLastName = function (firstName, lastName) {
+        self.deferred = $q.defer();
+        $http.get("/api/quack/getQuackByFirstAndLastName?firstName=" + firstName + "&lastName=" + lastName)
+        .success(function (data) {
+            self.deferred.resolve(data);
+        })
+        .error(function (errorData) {
+            self.deferred.reject(errorData);
+        });       
+
+        return self.deferred.promise;
+    }
+
     this.getAllQuacks = function () {
         self.deferred = $q.defer();
         $http.get("/api/quack/activeQuacks")

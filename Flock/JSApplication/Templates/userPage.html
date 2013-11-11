@@ -81,13 +81,14 @@
 
              <div ng-repeat="quack in quacks">
                  <div class="media well span7" style="margin-top: -35px; background: white; border: none;">
-                     <a class="pull-left" href="">
+                     <a class="pull-left" href="" ng-click="openProfilePageByGivenName(quack.UserDisplayName)">
                          <img class="media-object" style="width: 48px; height: 48px; box-shadow: 1px 1px 1px 1px #888888;" ng-src="{{ quack.UserImage}}" />
                      </a>
                      <div class="media-body">
-                         <span class="media-heading"
-                               style="color: steelblue; font-family: candara; font-weight:bold; font-size:13px;  ">{{quack.UserDisplayName}}
-                         </span>
+                         <a class="media-heading" href="" ng-click="openProfilePageByGivenName(quack.UserDisplayName)"
+                            style="color: steelblue; font-family: candara; font-weight:bold; font-size:13px;  ">
+                             {{quack.UserDisplayName}}
+                         </a>
                          <span
                              style="color: slategray; font-family: candara; font-weight:bold; font-size:10px; ">&nbsp;- {{quack.TimeSpan}} 
                          </span>

@@ -171,5 +171,14 @@ namespace Flock.Facade.Concrete
             _quackLikeRepository.UpdateQuackLike(quackLike);
         }
 
+
+
+        public IList<QuackDto> GetQuacksByLastNameAndFirstName(string lastName, string firstName)
+        {
+            var returnQuacks = new List<QuackDto>();
+            var quacks = _quackRepository.GetQuacksByLastNameAndFirstName(lastName, firstName);
+            quacks.ToList().ForEach(q =>returnQuacks.Add(QuackMapper(q)));
+            return returnQuacks;
+        }
     }
 }

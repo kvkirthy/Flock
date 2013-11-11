@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-flockApp.controller('userProfileController', function ($scope, $location, userService, quackService, sessionFactory) {    
+flockApp.controller('userProfileController', function ($scope, $location, $window, userService, quackService, sessionFactory) {    
 
     var self = this;
 
@@ -32,14 +32,40 @@ flockApp.controller('userProfileController', function ($scope, $location, userSe
             user.EmailId = userDto.EmailId;
             user.Project = userDto.Project;
             user.Interests = userDto.Interests;
-            user.CoverImage = "data:image/jpeg;base64," + userDto.CoverImage;
-            user.ProfileImage = "data:image/jpeg;base64," + userDto.ProfileImage;
+            if (userDto.CoverImage) {
+                user.CoverImage = "data:image/jpeg;base64," + userDto.CoverImage;
+            }
+            else{
+                user.CoverImage = "/Content/images/defaultCoverPic.png";
+            }
+            
+            if (userDto.ProfileImage){
+                user.ProfileImage = "data:image/jpeg;base64," + userDto.ProfileImage;
+            }
+            else {
+                user.ProfileImage = "/Content/images/profilepic.png";
+            }
+            
+            
             $scope.userProfile = user;
 
         }, function (errorInfo) {
             throw new Error(errorInfo);
         });
+
+        quackService.getQuacksByFirstNameAndLastName(self.firstName, self.lastName).then(function (quacks) {
+            $scope.quacks = quacks
+        }, function (errorInfo) {
+            throw new Error(errorInfo);
+        });
+
     }
+
+    $scope.$on('userTagSelected', function (event, data) {
+        data.firstName = (data.firstName || "").split("@")[1]; // purpose: remove @ from first name
+        sessionFactory.user = data;
+        $window.open('/UserView/index?firstName=' + data.firstName + "&lastName=" + data.lastName)
+    });
 
     
 });

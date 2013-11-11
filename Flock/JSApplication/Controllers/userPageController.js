@@ -211,7 +211,16 @@ flockApp.controller('userPageController', function ($scope, $window, userService
 
     $scope.$on('userTagSelected', function (event, data) {       
         data.firstName = (data.firstName || "").split("@")[1]; // purpose: remove @ from first name
-        sessionFactory.user = data;
-        $window.open('/UserView/index?firstName=' + data.firstName + "&lastName=" + data.lastName)
+        //sessionFactory.user = data;
+        openProfilePage(data.firstName, data.lastName);
     });
+
+    $scope.openProfilePageByGivenName = function (data) {
+        var names = data.split(" ");
+        openProfilePage(names[0], names[1]);
+    };
+
+    var openProfilePage = function (firstName, lastName) {
+        $window.open('/UserView/index?firstName=' + firstName + "&lastName=" + lastName)
+    }
 });

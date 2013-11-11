@@ -1,93 +1,70 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-    <link href="../../Content/imgareaselect-animated.css" rel="stylesheet" />
-    <link href="../../Content/imgareaselect-default.css" rel="stylesheet" />
-    <link href="../../Content/imgareaselect-deprecated.css" rel="stylesheet" />
-    <link href="../../Content/FlockApplication.css" rel="stylesheet" />
+﻿<div style="background-image:url('../../Content/images/Black_texture.jpg')">
+    <!--Header Section-->
+    <div style="height: 155px; background-image:url('../../Content/images/title-bg.jpg')">
+    </div>    
+    
+        <div class="container">
+            <!--Cover Pic Section-->
+            <div class="span9" style="background: white; height: 900px; margin-top: -125px; border-top-width: 2px; border-color: dimgray; border-left-width: 2px; border-right-width: 2px; border-bottom-color: white">                
+                <br/>
+                <!--Flock Page header bar-->
+                <div></div>
+                <div class="span8 container" ng-controller="userProfileController">
+                    <div class="navbar navbar-inverse">
+                        <div class="navbar-inner">
+                            <div class="nav-collapse">
+                                <ul class="nav">
+                                    <li><a class="brand active" href="">Flock</a></li>
+                                    
+                                </ul>                                
+                            </div>                            
+                        </div>
+                        <div>
+                            <div id="userProfile">
+                                <img id="userCoverImage" ng-src="{{userProfile.CoverImage}} " />
+                            </div>
+                        </div> 
+                        <br/>                       
+                        <div class="span2">
+                            <img class="media-object img200200" style="box-shadow: 6px 6px 1px #888888;" ng-src="{{userProfile.ProfileImage}}" />                            
+                        </div>                        
+                        <div class="span4 pull-center"><strong>{{userProfile.LastName}}, {{userProfile.FirstName}}</strong></div>
+                        <div class="span4 pull-center">{{userProfile.EmailId}}</div>
+                        <div class="span4 pull-center"><hr /></div>
+                        <div class="span4 pull-center">{{userProfile.Project || 'Project information unavailable'}}</div>
+                        <div class="span4 pull-center">{{userProfile.Interests || 'Interests informaton unavailable'}}</div>
+                       </div>         
+                    <div class="span8 pull-center">&nbsp;</div>
+                    <div class="span8 pull-center">&nbsp;</div>
+                    <div class="span8 pull-center">&nbsp;</div>
 
-</head>
-<div>
-    <div id="userProfile" class="container" ng-controller="userProfileController">
-        <div class="row-fluid">
-            <div>
-                <img id="userCoverImage"class="img800200" style="margin: auto; position: absolute; left: 0; right: 0" ng-src="{{userProfile.CoverImage}} " />
-                <br />
-            </div>
-        </div>
-        <div class="media divcentre div800200">
-            <a class="pull-left" href="#">
-                <img class="media-object img200200 float-left" ng-src="{{userProfile.ProfileImage}}" />
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading" style="text-align: center">Personal Details</h4>
+                    <div class="span8 pull-center">
+                        <!--<div ng-repeat="quack in quacks">
+                            <div>{{quack.Message}}</div>
+                            <div><hr/></div>
+                        </div>-->
 
-                <table>
-                    <tr>
-                        <td>
-                            <span class="span1">
-                                <label for="firstName">FirstName:</label>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="span2">
-                                <label>{{userProfile.FirstName}}</label>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="span1">
-                                <label for="lastName">LastName:</label>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="span2">
-                                <label>{{userProfile.LastName}}</label>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="span1">
-                                <label for="EmailId">EmailId:</label>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="span2">
-                                <label>{{userProfile.EmailId}}</label>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="span1">
-                                <label for="Project">Project:</label>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="span2">
-                                <label>{{userProfile.Project}}</label>
-                            </span>
-                        </td>
-                    </tr>
-                </table>
-                <tr>
-                    <td>
-                        <span class="span1">
-                            <label for="Interests">Interests:</label>
-                        </span>
-                    </td>
-                    <td>
-                        <span class="span2">
-                            <label>{{userProfile.Interests}}</label>
-                        </span>
-                    </td>
-                </tr>
-            </div>
-        </div>
-    </div>
+                        <div ng-repeat="quack in quacks">
+                            <div class="media well span7" style="margin-top: -35px; background: white; border: none;">
+                                                                
+                                <div class="media-body">                                    
+                                    <span style="color: slategray; font-family: candara; ">
+                                        <strong> {{quack.TimeSpan}} </strong>
+                                    </span>
 
+                                    <a ng-show="quack.IsNew" style="color: green; font-size: 11px; text-decoration:none" ng-click="setQuackId(quack.Id, quack.Likes)" href="#quackUserLikes" data-toggle="modal" data-backdrop="false" class="pull-right">({{quack.Likes}}) Likes | ({{quack.Replies}}) Replies</a>
+
+                                    <p style="font-family: arial;  font-size:12px;">
+                                        <span highlight-tags callback-fn="onLinkClick" ng-model="quack.Message"></span>                                                                                
+                                    </p>                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+
+            </div>            
 </div>
-</html>
+   

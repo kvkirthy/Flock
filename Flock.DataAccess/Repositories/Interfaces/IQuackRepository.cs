@@ -13,6 +13,7 @@ namespace Flock.DataAccess.Repositories.Interfaces
         void SaveQuack(Quack quack);
         void GetQuack(int id);
 
+        IQueryable<Quack> GetQuacksByLastNameAndFirstName(string lastName, string firstName);
         IList<Quack> GetAllQuacks();
         void DeleteQuack(int id);
         void UpdateQuack(int quackId);

@@ -87,5 +87,24 @@ namespace Flock.DataAccess.Repositories.Concrete
                 .Take(200)
                 .ToList();
         }
+
+
+        public IQueryable<Quack> GetQuacksByLastNameAndFirstName(string lastName, string firstName)
+        {
+            return from quack in _context.Quacks
+                         join quackContent in _context.QuackContents
+                         on quack.ID equals quackContent.ID
+                         join user in _context.Users
+                         on quack.UserID equals user.ID
+                         join quackType in _context.QuackTypes
+                         on quack.QuackTypeID equals quackType.ID
+                         where user.FirstName.Equals(firstName) && user.LastName.Equals(lastName)
+                         orderby quack.CreatedDate descending
+                         select quack
+                         ;
+
+                             
+
+        }
     }
 }

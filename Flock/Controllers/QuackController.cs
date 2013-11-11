@@ -63,5 +63,11 @@ namespace Flock.Controllers
             return _quackFacade.GetQuacksInfo(conversationId );
         }
 
+        [GET("getQuackByFirstAndLastName")]
+        public IList<QuackDto> GetQuackByFirstAndLastName(string firstName, string lastName)
+        {
+            return _quackFacade.GetQuacksByLastNameAndFirstName(lastName, firstName);
+        }
+
     }
 }

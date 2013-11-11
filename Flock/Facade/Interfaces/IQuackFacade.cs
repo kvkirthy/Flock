@@ -13,6 +13,9 @@ namespace Flock.Facade.Interfaces
         void SaveQuack(Quack quack);
         void GetQuack(int id);
         IList<QuackDto> GetAllQuacks();
+
+        IList<QuackDto> GetQuacksByLastNameAndFirstName(string lastName, string firstName);
+
         void DeleteQuack(int id);
         void LikeOrUnlikeQuack(int quackId, int userId, Boolean isLike);
         IList<QuackDto> GetQuacksInfo(int conversationId);
