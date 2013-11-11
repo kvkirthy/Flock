@@ -5,17 +5,14 @@
     
         <div class="container">
             <!--Cover Pic Section-->
-            <div class="span9" style="background: white; height: 900px; margin-top: -125px; border-top-width: 2px; border-color: dimgray; border-left-width: 2px; border-right-width: 2px; border-bottom-color: white">                
-                <br/>
-                <!--Flock Page header bar-->
-                <div></div>
+            <div class="span9" style="background: white; margin-top: -125px; border-top-width: 2px; border-color: dimgray; border-left-width: 2px; border-right-width: 2px; border-bottom-color: white">                
+                <br/>                
                 <div class="span8 container" ng-controller="userProfileController">
                     <div class="navbar navbar-inverse">
                         <div class="navbar-inner">
                             <div class="nav-collapse">
                                 <ul class="nav">
-                                    <li><a class="brand active" href="">Flock</a></li>
-                                    
+                                    <li><a class="brand active" href="">Flock</a></li>                                    
                                 </ul>                                
                             </div>                            
                         </div>
@@ -28,22 +25,16 @@
                         <div class="span2">
                             <img class="media-object img200200" style="box-shadow: 6px 6px 1px #888888;" ng-src="{{userProfile.ProfileImage}}" />                            
                         </div>                        
-                        <div class="span4 pull-center"><strong>{{userProfile.LastName}}, {{userProfile.FirstName}}</strong></div>
+                        <div class="span4 pull-center"><strong>{{userProfile.FirstName}} {{userProfile.LastName}}</strong></div>
                         <div class="span4 pull-center">{{userProfile.EmailId}}</div>
                         <div class="span4 pull-center"><hr /></div>
                         <div class="span4 pull-center">{{userProfile.Project || 'Project information unavailable'}}</div>
                         <div class="span4 pull-center">{{userProfile.Interests || 'Interests informaton unavailable'}}</div>
-                       </div>         
+                     </div>         
                     <div class="span8 pull-center">&nbsp;</div>
                     <div class="span8 pull-center">&nbsp;</div>
-                    <div class="span8 pull-center">&nbsp;</div>
-
-                    <div class="span8 pull-center">
-                        <!--<div ng-repeat="quack in quacks">
-                            <div>{{quack.Message}}</div>
-                            <div><hr/></div>
-                        </div>-->
-
+                    <div class="span8 pull-center">&nbsp;</div>                    
+                    <div class="span8 pull-center">   
                         <div ng-repeat="quack in quacks">
                             <div class="media well span7" style="margin-top: -35px; background: white; border: none;">
                                                                 
@@ -52,7 +43,7 @@
                                         <strong> {{quack.TimeSpan}} </strong>
                                     </span>
 
-                                    <a ng-show="quack.IsNew" style="color: green; font-size: 11px; text-decoration:none" ng-click="setQuackId(quack.Id, quack.Likes)" href="#quackUserLikes" data-toggle="modal" data-backdrop="false" class="pull-right">({{quack.Likes}}) Likes | ({{quack.Replies}}) Replies</a>
+                                    <!-- <a ng-show="quack.IsNew" style="color: green; font-size: 11px; text-decoration:none" ng-click="setQuackId(quack.Id, quack.Likes)" href="#quackUserLikes" data-toggle="modal" data-backdrop="false" class="pull-right">({{quack.Likes}}) Likes | ({{quack.Replies}}) Replies</a>-->
 
                                     <p style="font-family: arial;  font-size:12px;">
                                         <span highlight-tags callback-fn="onLinkClick" ng-model="quack.Message"></span>                                                                                
@@ -67,4 +58,6 @@
 
             </div>            
 </div>
+
+<ng-include src="'../JSApplication/Templates/quackUserLikes.html'"></ng-include>
    

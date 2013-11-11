@@ -66,6 +66,25 @@ namespace Flock.Controllers
         [GET("getQuackByFirstAndLastName")]
         public IList<QuackDto> GetQuackByFirstAndLastName(string firstName, string lastName)
         {
+            #region Verify if name information is correct
+            if (lastName == null)
+            {
+                lastName = "";
+            }
+            else if (lastName.Equals("undefined"))
+            {
+                lastName = "";
+            }
+
+            if (firstName == null)
+            {
+                firstName = "";
+            }
+            else if (firstName.Equals("undefined"))
+            {
+                firstName = "";
+            }
+            #endregion
             return _quackFacade.GetQuacksByLastNameAndFirstName(lastName, firstName);
         }
 

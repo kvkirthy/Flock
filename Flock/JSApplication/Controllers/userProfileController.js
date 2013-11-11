@@ -23,6 +23,11 @@ flockApp.controller('userProfileController', function ($scope, $location, $windo
     self.firstName = self.location.substr(self.location.indexOf("firstName=") + ("firstName=".length), getParamLength(self.location, "firstName="));
     self.lastName = self.location.substr(self.location.indexOf("lastName=") + ("lastName=".length), getParamLength(self.location, "lastName="));
 
+    $scope.setQuackId = function (quackId, likes) {
+        $scope.userLikeQuackId = quackId;
+        $scope.$broadcast('quackUserLikesController.showUserLikes');
+    };
+
     initialize();   
     function initialize() {
         userService.getUserByUserName(self.lastName, self.firstName).then(function (userDto) {

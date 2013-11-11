@@ -54,6 +54,26 @@ namespace Flock.Controllers
         [GET("getUserByLastNameAndFirstName")]
         public UserDto GetUserByLastNameAndFirstName(string lastName, string firstName)
         {
+            #region Verify if name information is correct
+                if (lastName == null)
+                {
+                    lastName = "";
+                }
+                else if (lastName.Equals("undefined"))
+                {
+                    lastName = "";
+                }
+
+                if ( firstName == null)
+                {
+                    firstName = "";
+                }
+                else if (firstName.Equals("undefined"))
+                {
+                    firstName = "";
+                }
+            #endregion
+
             return _userFacade.GetUserByLastNameAndFirstName(lastName, firstName);
         }
 
