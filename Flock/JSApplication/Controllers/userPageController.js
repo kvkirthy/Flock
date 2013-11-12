@@ -221,6 +221,6 @@ flockApp.controller('userPageController', function ($scope, $window, userService
     };
 
     var openProfilePage = function (firstName, lastName) {
-        $window.open('/UserView/index?firstName=' + firstName + "&lastName=" + lastName)
+        $window.open('/UserView/index?firstName=' + firstName + "&lastName=" + lastName, lastName + firstName);
     }
 });
