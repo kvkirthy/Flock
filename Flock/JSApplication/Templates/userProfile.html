@@ -25,11 +25,12 @@
                         <div class="span2">
                             <img class="media-object img200200" style="box-shadow: 6px 6px 1px #888888;" ng-src="{{userProfile.ProfileImage}}" />                            
                         </div>                        
+                        <strong>{{errorMessage}}</strong>
                         <div class="span4 pull-center"><strong>{{userProfile.FirstName}} {{userProfile.LastName}}</strong></div>
                         <div class="span4 pull-center">{{userProfile.EmailId}}</div>
                         <div class="span4 pull-center"><hr /></div>
-                        <div class="span4 pull-center">{{userProfile.Project || 'Project information unavailable'}}</div>
-                        <div class="span4 pull-center">{{userProfile.Interests || 'Interests informaton unavailable'}}</div>
+                        <div class="span4 pull-center">{{userProfile.Project}}</div>
+                        <div class="span4 pull-center">{{userProfile.Interests}}</div>
                      </div>         
                     <div class="span8 pull-center">&nbsp;</div>
                     <div class="span8 pull-center">&nbsp;</div>

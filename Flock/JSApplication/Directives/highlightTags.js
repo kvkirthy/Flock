@@ -27,7 +27,7 @@ flockApp.directive('highlightTags', function ($compile, $rootScope) {
                         });
                     }
 
-                    if (self.targetMessage.indexOf('@') > 0) {
+                    if (self.targetMessage.indexOf('@') >= 0) {
                         //var allMatches = new RegExp(/@*.+:/).exec(message);
                         var allMatches = self.targetMessage.split(/@*:/);
                         _.each(allMatches, function (match) {

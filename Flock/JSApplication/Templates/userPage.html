@@ -44,20 +44,14 @@
             <br />
 
             <div>
-                <div>
-                    <!-- <img id="userProfilePic" src="../../Content/images/profilepic - Copy.png" />
-                    <textarea class="span7" style="margin-top: 8px;" ng-model="quackText" style="resize: none" placeholder="Your Quack..." rows="3" maxlength="200" on-enter="saveQuack()"></textarea>
-                    <div style="margin-top: -5px">
-                        <a href="#" style="font-size: 11px">Change Picture</a>
-                        <a href="#" class="pull-right" style="font-size: 11px; margin-right:8px; margin-top:-5px;  ">Attach Image</a>
-                    </div>-->
-                    <!--TOD0: Commented for Draft implementation--- need to get the css correct-->
-                    <!--<div style="margin-left: 100px;" auto-update-user-tags="quackText" list-of-users="users"></div>-->
-
+                <div>                    
                     <div class="media well span7" style="height: 65px; margin-top: -15px; border: none; background: white;">
-                        <a class="pull-left" href="#changeProfilePictureModel" style="font-size: 9px; text-decoration: none;" data-toggle="modal" data-backdrop="false">
-                            <img id="userProfilePic" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" />
-                            Change Picture </a>
+                        <span class="pull-left" style="font-size: 9px; text-decoration: none;">
+                            <a href="" ng-click="openProfilePageByGivenName(displayName)">
+                                <img id="userProfilePic" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" />
+                            </a>
+                            <a href="#changeProfilePictureModel" data-toggle="modal" data-backdrop="false" > Change Picture </a>
+                        </span>
                         <div class="media-body">
                             <textarea id="quackText" class="mainQuack boxsizingBorder" placeholder="Your Quack..." rows="3" maxlength="200" ng-model="messageContent" ng-disabled=" disableQuackMessage" on-enter="saveQuack()"></textarea>
                             <p class="text-success" style="font-size: 10px; font-family: arial; margin-top: -12px;">{{maxCharacters - messageContent.length}} characters remaining...</p>
@@ -139,8 +133,8 @@
                                          <a ng-show="reply.IsNew" href="#quackUserLikes" ng-click="setQuackId(reply.Id, reply.Likes)" data-toggle="modal" data-backdrop="false" style="color: green; text-decoration: none; font-size: 11px;" class="pull-right">({{reply.Likes}}) Likes | ({{reply.Replies}}) Replies</a>
 
                                          <p style="font-family: arial;  font-size:12px; width: 500px">
-                                             {{reply.Message}}
-                                             <span ng-show="reply.IsNew" class="pull-right"><a href="" ng-click="likeOrUnlikeQuack(reply)" style="color: blue; font-size: 11px; text-decoration: none;">{{reply.LikeOrUnlike}}</a></span>
+                                             <span highlight-tags callback-fn="onLinkClick" ng-model="reply.Message"></span>
+                                             <span ng-show=" reply.isnew" class="pull-right"><a href="" ng-click="likeOrUnlikeQuack(reply)" style="color: blue; font-size: 11px; text-decoration: none;">{{reply.LikeOrUnlike}}</a></span>
                                          </p>
 
                                      </div>

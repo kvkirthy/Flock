@@ -32,26 +32,30 @@ flockApp.controller('userProfileController', function ($scope, $location, $windo
     function initialize() {
         userService.getUserByUserName(self.lastName, self.firstName).then(function (userDto) {
             var user = {};
-            user.FirstName = userDto.FirstName;
-            user.LastName = userDto.LastName;
-            user.EmailId = userDto.EmailId;
-            user.Project = userDto.Project;
-            user.Interests = userDto.Interests;
-            if (userDto.CoverImage) {
-                user.CoverImage = "data:image/jpeg;base64," + userDto.CoverImage;
+            if (userDto && userDto != "null") {
+                
+                user.FirstName = userDto.FirstName;
+                user.LastName = userDto.LastName;
+                user.EmailId = userDto.EmailId;
+                user.Project = userDto.Project || 'Project information unavailable';
+                user.Interests = userDto.Interests || 'Interests information unavailable';
+                if (userDto.CoverImage) {
+                    user.CoverImage = "data:image/jpeg;base64," + userDto.CoverImage;
+                }
+                else {
+                    user.CoverImage = "/Content/images/defaultCoverPic.png";
+                }
+
+                if (userDto.ProfileImage) {
+                    user.ProfileImage = "data:image/jpeg;base64," + userDto.ProfileImage;
+                }
+                else {
+                    user.ProfileImage = "/Content/images/profilepic.png";
+                }
+            } else {
+                $scope.errorMessage = "Apologies, no user found with given information. (" + self.firstName  + " " + self.lastName + ")" ;                
             }
-            else{
-                user.CoverImage = "/Content/images/defaultCoverPic.png";
-            }
-            
-            if (userDto.ProfileImage){
-                user.ProfileImage = "data:image/jpeg;base64," + userDto.ProfileImage;
-            }
-            else {
-                user.ProfileImage = "/Content/images/profilepic.png";
-            }
-            
-            
+
             $scope.userProfile = user;
 
         }, function (errorInfo) {
