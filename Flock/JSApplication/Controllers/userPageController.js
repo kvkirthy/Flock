@@ -16,6 +16,8 @@ flockApp.controller('userPageController', function ($scope, $window, userService
     $scope.userLikeQuackId = "";
     $scope.disableQuackMessage = false;
     $scope.disableReplyAction = false;
+    var isValidUser = false;
+    
     
     $scope.setQuackId = function(quackId, likes) {
             $scope.userLikeQuackId = quackId;
@@ -31,6 +33,14 @@ flockApp.controller('userPageController', function ($scope, $window, userService
     };
 
     userService.getUser().then(function (user) {
+        
+        if (user == "null") {
+           
+            window.location.replace("/JSApplication/Templates/Guest.html");
+            return;
+        }
+
+        isValidUser = true;
         $scope.user = user;
         $scope.displayName = user.FirstName + " " + user.LastName;
         
@@ -53,9 +63,16 @@ flockApp.controller('userPageController', function ($scope, $window, userService
         }
         getQuacks();
 
+
+
     });
 
     $scope.saveQuack = function () {
+        
+        if(!isValidUser ) {
+            return;
+        }
+        
         $scope.disableQuackMessage = true;
         var quack = {};
         quack.userId = $scope.user.ID;
@@ -150,9 +167,10 @@ flockApp.controller('userPageController', function ($scope, $window, userService
 
 
 
-    //setInterval(function () {
+    setInterval(function () {
+        if(isValidUser)
         $scope.refreshQuacks();
-    //}, 10000);
+    }, 30000);
 
     $scope.expandClick = function (quack) {
         

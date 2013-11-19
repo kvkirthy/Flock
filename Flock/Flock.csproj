@@ -214,6 +214,7 @@
     <Content Include="Content\border-v.gif" />
     <Content Include="Content\flock.css" />
     <Content Include="Content\FlockApplication.css" />
+    <Content Include="Content\images\GuestInfo.png" />
     <Content Include="Content\images\AboutPageLong.jpg" />
     <Content Include="Content\images\Black_texture.jpg" />
     <Content Include="Content\images\body-bg.png" />
@@ -303,6 +304,7 @@
     <Content Include="JSApplication\Services\quackService.js" />
     <Content Include="JSApplication\Templates\changePhoto.html" />
     <Content Include="JSApplication\Templates\changeProfilePic.html" />
+    <Content Include="JSApplication\Templates\Guest.html" />
     <Content Include="JSApplication\Templates\quackUserLikes.html" />
     <Content Include="JSApplication\Templates\SearchWindow.html" />
     <Content Include="JSApplication\Templates\userInfo.html" />

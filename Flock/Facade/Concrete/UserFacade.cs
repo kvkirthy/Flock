@@ -15,9 +15,9 @@ namespace Flock.Facade.Concrete
     public class UserFacade : IUserFacade
     {
         private readonly IUserRepository _userRepository;
-        private readonly IQuackLikeRepository  _quackLikeRepository;
+        private readonly IQuackLikeRepository _quackLikeRepository;
         private readonly IAutoMap _autoMap;
-        private readonly IImageFacade  _imageFacade;
+        private readonly IImageFacade _imageFacade;
 
         public UserFacade(IUserRepository userRepository, IAutoMap autoMap, IImageFacade imageFacade, IQuackLikeRepository quackLikeRepository)
         {
@@ -37,41 +37,60 @@ namespace Flock.Facade.Concrete
             _userRepository.UpdateUserPreferences(_autoMap.Map<UserDto, User>(user));
         }
 
+        private bool CheckUserGroup(SearchResultCollection searchResults, string groupName)
+        {
+            var groupCount = searchResults[0].Properties["memberOf"].Count;
+            for (var cnt = 0; cnt < groupCount; cnt++)
+            {
+                var grpName = (String)searchResults[0].Properties["memberOf"][cnt];
+                var equalsIndex = grpName.IndexOf(groupName, 1, StringComparison.Ordinal);
+
+                if (equalsIndex > 0) return true;
+            }
+            return false;
+        }
+
+
 
         public UserDto GetUserDetails(string userName)
         {
             //TODO: Urls should move as default vaules in database. This approach is bad
             string defaultCoverPicUrl = "http://" + System.Web.HttpContext.Current.Request.Url.Authority + "/Content/images/defaultCoverPic.png";
             string defaultProfilePicUrl = "http://" + System.Web.HttpContext.Current.Request.Url.Authority + "/Content/images/profilepic.png";
-            
+
             var currentUser = _userRepository.GetUserByUserName(userName);
-            if(currentUser == null)
+            if (currentUser == null)
             {
                 currentUser = ReadUserDetailsFromActiveDirectory(userName);
-                if(currentUser!=null )
+                if (currentUser != null)
                 {
-
                     //currentUser.CoverImage = _imageFacade.GetImageFromUrl(defaultCoverPicUrl);
                     //currentUser.ProfileImage = _imageFacade.GetImageFromUrl(defaultProfilePicUrl);
 
                     _userRepository.SaveUser(currentUser);
                     return _autoMap.Map<User, UserDto>(currentUser);
                 }
+                return null;
             }
-            return   _autoMap.Map<User,UserDto>(currentUser ) ;
+            return _autoMap.Map<User, UserDto>(currentUser);
         }
 
         private User ReadUserDetailsFromActiveDirectory(string userName)
         {
-            var currentUser = new User(); 
+
+
+            var currentUser = new User();
             var directory = new DirectoryEntry();
             var userAccountName = userName.Replace("DS\\", "");
             var directorySearcher = new DirectorySearcher { Filter = "(&(objectCategory=person)(objectClass=user)(sAMAccountName=" + userAccountName + "))", SearchRoot = directory };
             using (directorySearcher)
             {
                 var results = directorySearcher.FindAll();
-                if(results.Count ==1)
+                if (results.Count == 1)
                 {
+                    if (!CheckUserGroup(results, "HYD_FrontOfficeSuite")) return null;
+
+
                     //TODO: seperate out firstname and lastname from the name and assign properly
                     currentUser.UserName = userName;
                     var name = results[0].Properties["name"][0].ToString();
@@ -85,7 +104,7 @@ namespace Flock.Facade.Concrete
                     }
                     else
                     {
-                         currentUser.FirstName = name;
+                        currentUser.FirstName = name;
                         currentUser.LastName = "";
                     }
                     currentUser.EmailId = results[0].Properties["mail"][0].ToString();
@@ -97,17 +116,17 @@ namespace Flock.Facade.Concrete
             return currentUser;
         }
 
-        public List<UserLikesDto > GetUserLikesInfo(int quackId)
+        public List<UserLikesDto> GetUserLikesInfo(int quackId)
         {
             var userLikesInfo = _quackLikeRepository.GetUserLikesInfo(quackId);
             var result = new List<UserLikesDto>();
 
-            foreach(var usr in userLikesInfo )
+            foreach (var usr in userLikesInfo)
             {
                 var userDto = new UserLikesDto();
                 var user = _userRepository.GetUserById(usr.UserId);
                 userDto.UserPic = user.ProfileImage;
-                userDto.UserName = user.FirstName+ " "+user.LastName ;
+                userDto.UserName = user.FirstName + " " + user.LastName;
                 result.Add(userDto);
             }
             return result;
@@ -125,9 +144,9 @@ namespace Flock.Facade.Concrete
             return returnUsers;
         }
 
-        public UserDto GetUserByLastNameAndFirstName(string lastName, string firstName)        
+        public UserDto GetUserByLastNameAndFirstName(string lastName, string firstName)
         {
-            return _autoMap.Map<User, UserDto>(_userRepository.GetUserByLastAndFirstName(lastName,firstName));            
+            return _autoMap.Map<User, UserDto>(_userRepository.GetUserByLastAndFirstName(lastName, firstName));
         }
     }
 }
