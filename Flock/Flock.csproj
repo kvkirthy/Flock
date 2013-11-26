@@ -222,8 +222,10 @@
     <Content Include="Content\images\duck.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\potluck.png" />
     <Content Include="Content\images\profilepic - Copy.png" />
     <Content Include="Content\images\profilepic.png" />
+    <Content Include="Content\images\roadShow.png" />
     <Content Include="Content\images\small.jpg" />
     <Content Include="Content\images\title-bg.jpg" />
     <Content Include="Content\imgareaselect-animated.css" />
