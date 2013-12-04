@@ -121,7 +121,8 @@ CREATE TABLE [dbo].[QuackContents] (
     [ID] int  IDENTITY(1,1) NOT NULL,
     [MessageText] nvarchar(300)  NOT NULL,
     [CreatedDate] datetime  NOT NULL,
-    [QuackImage] varbinary(max)  NULL
+    [Image] varbinary(max)  NULL,
+    [ImageUrl] CHAR(1)	
 );
 GO
 

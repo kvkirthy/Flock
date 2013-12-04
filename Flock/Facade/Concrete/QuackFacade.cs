@@ -50,10 +50,12 @@ namespace Flock.Facade.Concrete
             if (!String.IsNullOrEmpty(quack.QuackContent.ImageUrl))
             {
                 var img = quack.QuackContent.ImageUrl;
+                quack.QuackContent.ImageUrl = "Y";
                 var currentImage = img.Substring(img.IndexOf(',') + 1);
                 var data = Convert.FromBase64String(currentImage);
                 quack.QuackContent.Image = data;
             }
+
             quack.QuackContent.CreatedDate = DateTime.Now;
             _quackRepository.SaveQuack(quack);
 

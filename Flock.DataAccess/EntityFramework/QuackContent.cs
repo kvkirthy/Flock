@@ -22,8 +22,8 @@ namespace Flock.DataAccess.EntityFramework
         public int ID { get; set; }
         public string MessageText { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public byte[] QuackImage { get; set; }
         public byte[] Image { get; set; }
+        public string ImageUrl { get; set; }
     
         public virtual ICollection<Quack> Quacks { get; set; }
     }
