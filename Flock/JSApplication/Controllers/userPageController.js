@@ -134,7 +134,6 @@ flockApp.controller('userPageController', function ($scope, $window, userService
         if (!($scope.replyMode)) {
         
             quackService.getAllQuacks().then(function (data) {
-                console.log(data);
                 
                 for (var i = 0; i < data.length; i++) {
                     
@@ -199,7 +198,7 @@ flockApp.controller('userPageController', function ($scope, $window, userService
                     }
                 }
                 $scope.quacks = data;
-                console.log('refreshing');
+                
             });
         }
     };
@@ -209,7 +208,7 @@ flockApp.controller('userPageController', function ($scope, $window, userService
     setInterval(function () {
         if (isValidUser)
         $scope.refreshQuacks();
-    }, 500000000);
+    }, 45000);
 
     $scope.expandClick = function (quack) {
         

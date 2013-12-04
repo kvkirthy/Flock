@@ -55,7 +55,8 @@
                                 {{maxCharacters - messageContent.length}} characters remaining...
                                 <!--TODO POST IMAGE-->
                                 <a href="#postImageQuack" data-toggle="modal" data-backdrop="false" class="pull-right"  style="color: blue; font-size: 11px; text-decoration: none; margin-left: 5px; margin-top: 3px; margin-right: 45px;">Post Image</a>
-                                <img class="pull-right" src="../../Content/images/postImage.png" />
+                                <a href="#postImageQuack" data-toggle="modal" data-backdrop="false">
+                                <img  data-toggle="modal" data-backdrop="false" class="pull-right" src="../../Content/images/postImage.png" /></a>
                             </p>
                             <br />
                         </div>
@@ -135,14 +136,14 @@
 
                             <!--TODO: REPLY ACTION -->
                             <span ng-show="true" class="pull-right" style="margin-left: 10px; margin-top: -10px;">
-                                <img src="../../Content/images/replies.png" />
+                                <a href =""><img ng-click="expandClick(quack)" src="../../Content/images/replies.png" /></a>
                                 <!--<a href="" style="color: blue; font-size: 11px; text-decoration: none;">View all Replies</a>-->
                                 <a href="" ng-click="expandClick(quack)" style="color: blue; font-size: 11px; text-decoration: none;">{{quack.ExpandOrCollapse}}</a>
                             </span>
 
 
                             <span ng-show="true" class="pull-right" style="margin-left: 10px; margin-top: -10px;">
-                                <img src="../../Content/images/like.png" />
+                                <a href =""><img ng-click="likeOrUnlikeQuack(quack)" src="../../Content/images/like.png" /></a>
                                 <a href="" ng-click="likeOrUnlikeQuack(quack)" style="color: blue; font-size: 11px; text-decoration: none;">{{quack.LikeOrUnlike}}  </a>
                             </span>
 
@@ -259,6 +260,8 @@
     <ng-include src="'JSApplication/Templates/userInfo.html'"></ng-include>
     <ng-include src="'JSApplication/Templates/postImageQuack.html'"></ng-include>
     <img src="../../Content/images/happenings.png" style="position: fixed; left: 73%; top: 13%;" />
+    <img src="../../Content/images/potluck.png" style="position: fixed; left: 73%; top: 20%;" />
+    <img src="../../Content/images/teamouting.png" style="position: fixed; left: 72%; top: 38%;" />
 
 </div>
 
