@@ -42,8 +42,8 @@ namespace Flock.DataAccess.Repositories.Concrete
                 .Include("User")
                 .Include("QuackType");
             //TODO: Paging
-            return quacks.Where(quack => quack.Active)
-                .OrderByDescending(quack => quack.CreatedDate )
+            return quacks.Where(quack => quack.Active && quack.QuackTypeID ==1)
+                .OrderByDescending(quack => quack.LastModifiedDate )
                 .Take(200)
                 .ToList();
         }
@@ -82,7 +82,7 @@ namespace Flock.DataAccess.Repositories.Concrete
                 .Include("User")
                 .Include("QuackType");
             //TODO: Paging
-            return quacks.Where(quack => quack.Active && ( quack.ConversationID == conversationId || quack.ID == conversationId ))
+            return quacks.Where(quack => quack.Active &&  quack.ConversationID == conversationId)
                 .OrderBy(quack => quack.CreatedDate)
                 .Take(200)
                 .ToList();

@@ -1,189 +1,253 @@
-﻿<div ng-controller="userPageController" style="background-image:url('../../Content/images/Black_texture.jpg')" >
+﻿<div ng-controller="userPageController" style="background-image: url('../../Content/images/Black_texture.jpg')">
     <!--Header Section-->
-    <div style="height: 155px; background-image:url('../../Content/images/title-bg.jpg')">
+    <div style="height: 155px; background-image: url('../../Content/images/title-bg.jpg')">
     </div>
 
-    <div class="container center" >
-        <!--Cover Pic Section-->
-        <div class="well span8" style="background: white; height: 375px; margin-top: -125px; border-top-width: 2px; border-color: dimgray; border-left-width: 2px; border-right-width: 2px; border-bottom-color: white">
+    <div class="container center">
+        <!--Begin - Cover Pic Section-------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <div class="well span8"
+            style="background: white; height: 375px; margin-top: -125px; border-top-width: 2px; border-color: dimgray; border-left-width: 2px; border-right-width: 2px; border-bottom-color: white">
             <!--Flock Page header bar-->
             <div class="navbar navbar-inverse">
                 <div class="navbar-inner">
-
-
                     <div class="nav-collapse">
                         <ul class="nav">
                             <li><a class="brand active" href="">Flock</a></li>
                         </ul>
-
                         <ul class="nav pull-right">
                             <li class="divider-vertical"></li>
-                            <li><a href="#userInfoModal"  ng-click="showUserDetails()" data-toggle="modal" data-backdrop="false"><i class="icon-user icon-white"></i></a></li>
+                            <li><a href="#userInfoModal" ng-click="showUserDetails()" data-toggle="modal" data-backdrop="false"><i class="icon-user icon-white"></i></a></li>
                             <!--TODO: Need to complete this-->
                             <!--<li><a href="#searchModel" data-toggle="modal" data-backdrop="false">Search</a></li>-->
                             <li><a href="#aboutModal" data-toggle="modal" data-backdrop="false">About us</a></li>
-                           <!-- <li><a href="">Contact</a></li>-->
+                            <!-- <li><a href="">Contact</a></li>-->
                         </ul>
                     </div>
-
                 </div>
             </div>
 
             <!--User Information-->
             <div style="background: white; margin-top: -20px;">
-
                 <img id="userCoverPic" />
-
                 <span style="font-size: 14px; font-family: verdana; font-weight: bold;">{{displayName}} </span>
-
                 <span>
                     <a class="pull-right" href="#changePictureModel" style="font-size: 11px; text-decoration: none;" data-toggle="modal" data-backdrop="false">Change Cover</a>
                 </span>
                 <br />
             </div>
             <br />
+            <!--End - Cover Pic Section-------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
+            <!--Begin - User pic and Quack Section--------------------------------------------------------------------------------------------------------------------------------------------------->
             <div>
-                <div>                    
-                    <div class="media well span7" style="height: 65px; margin-top: -15px; border: none; background: white;">
+                <div>
+                    <div class="media well span7" style="height: 75px; width: 700px !important; margin-top: -15px; border: none; background: white;">
                         <span class="pull-left" style="font-size: 9px; text-decoration: none;">
                             <a href="" ng-click="openProfilePageByGivenName(displayName)">
                                 <img id="userProfilePic" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" />
                             </a>
-                            <a href="#changeProfilePictureModel" data-toggle="modal" data-backdrop="false" > Change Picture </a>
+                            <a href="#changeProfilePictureModel" data-toggle="modal" data-backdrop="false">Change Picture </a>
                         </span>
                         <div class="media-body">
-                            <textarea id="quackText" class="mainQuack boxsizingBorder" placeholder="Your Quack..." rows="3" maxlength="200" ng-model="messageContent" ng-disabled=" disableQuackMessage" on-enter="saveQuack()"></textarea>
-                            <p class="text-success" style="font-size: 10px; font-family: arial; margin-top: -12px;">{{maxCharacters - messageContent.length}} characters remaining...</p>
+                            <textarea id="quackText" class="mainQuack boxsizingBorder" style="width: 585px !important;" placeholder="Your Quack..." rows="3" maxlength="300" ng-model="messageContent"
+                                ng-disabled=" disableQuackMessage" on-enter="saveQuack()"></textarea>
+                            <p class="text-success" style="font-size: 10px; font-family: arial; margin-top: -12px;">
+                                {{maxCharacters - messageContent.length}} characters remaining...
+                                <!--TODO POST IMAGE-->
+                                <a href="" class="pull-right" ng-click="likeOrUnlikeQuack(quack)" style="color: blue; font-size: 11px; text-decoration: none; margin-left: 5px; margin-top: 3px; margin-right: 45px;">Post Image</a>
+                                <img class="pull-right" src="../../Content/images/postImage.png" />
+                            </p>
                             <br />
                         </div>
                     </div>
                 </div>
                 <br />
             </div>
+            <!--End -  User pic and Quack Section------------------------------------------------------------------------------------------------------------------------------------------------------->
+        </div>
+    </div>
+
+
+    <div class="container center">
+        <div class="well span8" style="background: white; margin-top: -30px; border-color: dimgray; border-left-width: 2px; border-right-width: 2px; border-bottom-width: 1px; border-top-color: white">
+            <!--OBJECT - QUACK-->
+            <div ng-repeat="quack in quacks">
+
+                <!--Begin, Quack user pic--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                <div class="media well span7" style="margin-top: -35px; background: white; border: none !important;">
+
+                    <a class="pull-left" href="" ng-click="openProfilePageByGivenName(quack.UserDisplayName)">
+                        <img class="media-object" style="width: 48px; height: 48px; box-shadow: 1px 1px 1px 1px #888888;" ng-src="{{ quack.UserImage}}" />
+                    </a>
+                    <!--End, user pic-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+                    <!--Begin - MAIN QUACK--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                    <!--Beign user name, time span, likes and replies-->
+                    <div class="media-body">
+                        <div>
+                            <a class="media-heading" href="" ng-click="openProfilePageByGivenName(quack.UserDisplayName)"
+                                style="color: steelblue; font-family: candara; font-weight: bold; font-size: 13px;">{{quack.UserDisplayName}}
+                            </a>
+                            <span
+                                style="color: slategray; font-family: candara; font-weight: bold; font-size: 10px;">&nbsp;- {{quack.TimeSpan}} 
+                            </span>
+                            <!--DO NOT DELETE THIS COMMENTED CODE-->
+                            <!-- <span ng-show="quack.IsNew"
+                                       style="color: red; font-size: 11px; font-weight: bold">&nbsp; Quack 
+                                 </span>
+                                <span ng-show="!quack.IsNew"
+                                      style="color: orange; font-size: 11px; font-weight: bold">&nbsp;-Reply
+                                </span>-->
+
+                            <!--DELETE ACTION-->
+                            <button type="button" class="close pull-right" ng-click="deleteQuack(quack.Id)" style="margin-left: 2px; font-size: 14px !important; font-weight: bold;"
+                                ng-show="quack.ShowDelete" aria-hidden="true">
+                                x</button>
+
+                            <!--TODO: REPLIES, REPLY ACTION -->
+                            <a ng-show="quack.IsNew" href="" ng-click="expandClick(quack)"  style="color: green; font-size: 11px; text-decoration: none" class="pull-right">Replies </a>
+                            <a ng-show="quack.IsNew" style="color: green; font-size: 12px; font-weight: bold; text-decoration: none" class="pull-right">({{quack.Replies}})&nbsp;</a>
+
+
+                            <!--LIKES, LIKE ACTION-->
+                            <a ng-show="quack.IsNew" style="color: green; font-size: 11px; text-decoration: none"
+                                ng-click="setQuackId(quack.Id, quack.Likes)" href="#quackUserLikes" data-toggle="modal" data-backdrop="false"
+                                class="pull-right">Likes &nbsp; | &nbsp; </a>
+                            <a ng-show="quack.IsNew" style="color: green; font-size: 12px; font-weight: bold; text-decoration: none" class="pull-right">({{quack.Likes}})&nbsp;</a>
+
+                            <!--QUACK MESSAGE-->
+                            <p style="font-family: arial; font-size: 12px;">
+                                <span highlight-tags callback-fn="onLinkClick" ng-model="quack.Message"></span>
+                            </p>
+
+                            <!--TODO: REPLY ACTION -->
+                            <span ng-show="true" style="margin-top: -10px;">
+                                <a href="" ng-click="expandClick(quack)" style="color: darkcyan; font-size: 12px; text-decoration: none;">{{quack.LatestReply.CommentsInfo}}</a>
+                            </span>
+
+                            <!--TODO: REPLY ACTION -->
+                            <span ng-show="true" class="pull-right" style="margin-left: 10px; margin-top: -10px;">
+                                <img src="../../Content/images/replies.png" />
+                                <!--<a href="" style="color: blue; font-size: 11px; text-decoration: none;">View all Replies</a>-->
+                                <a href="" ng-click="expandClick(quack)" style="color: blue; font-size: 11px; text-decoration: none;">{{quack.ExpandOrCollapse}}</a> </span>
+                            </span>
+
+                            <span ng-show="true" class="pull-right" style="margin-left: 10px; margin-top: -10px;">
+                                <img src="../../Content/images/like.png" />
+                                <a href="" ng-click="likeOrUnlikeQuack(quack)" style="color: blue; font-size: 11px; text-decoration: none;">{{quack.LikeOrUnlike}}  </a>
+                            </span>
+
+                            <br />
+                            <!--End - MAIN QUACK--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                        </div>
+                        
+                        <!--Begin Latest Reply------------------------------------------------------------------------------------------------------------------------------------------>
+                        
+                        <div id="latestReply" ng-show="!quack.ShowConversation && quack.showLatestReply"  style="display: block; background: ghostwhite;">
+                            <hr style="margin: 0.1em auto;" />
+                            <div class="media">
+
+                                <a class="pull-left" href="" ng-click="openProfilePageByGivenName(quack.LatestReply.UserDisplayName)">
+                                    <img class="media-object" style="width: 48px; height: 48px; margin-left: 5px; box-shadow: 3px 3px 1px #888888;" ng-src="{{ quack.LatestReply.UserImage}}" />
+                                </a>
+                                <div class="media-body">
+                                    <span class="media-heading"
+                                          style="color: steelblue; font-family: candara; font-weight: bold; font-size: 13px;">{{quack.LatestReply.UserDisplayName}}
+                                    </span>
+                                    <span
+                                        style="color: slategray; font-family: candara; font-weight: bold; font-size: 10px;">&nbsp;-{{quack.LatestReply.TimeSpan}}
+                                    </span>
+                                    
+                                    <button type="button" class="close pull-right" ng-click="deleteQuack(quack.LatestReply.Id)"
+                                            style="margin-left: 2px; margin-right: 5px; font-weight:bold;  font-size: 14px !important;" ng-show="quack.LatestReply.ShowDelete" aria-hidden="true">
+                                        x</button>
+                                        
+                                    <p style="font-family: arial; font-size: 12px; width: 500px">
+                                        <span highlight-tags callback-fn="onLinkClick" ng-model="quack.LatestReply.Message"></span>
+
+                                    </p>
+
+                                </div>
+                            </div>
+                            
+                                
+                        </div>
+                        <!-- End Latest Reply-------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+                        <!-- Begin Conversations--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+                        <div id="conv" style="max-height: 215px;  overflow:auto ;  background: ghostwhite;" ng-show="quack.ShowConversation">
+
+                            <div id="conversations" ng-show="quack.ShowConversation" ng-repeat="reply in quack.QuackReplies" style="display: block;">
+                                <hr style="margin: 0.1em auto;" />
+                                <div class="media">
+
+                                    <a class="pull-left" href="" ng-click="openProfilePageByGivenName(reply.UserDisplayName)">
+                                        <img class="media-object" style="width: 48px; margin-left: 5px; height: 48px; box-shadow: 3px 3px 1px #888888;" ng-src="{{ reply.UserImage}}" />
+                                    </a>
+                                    <div class="media-body">
+                                        <span class="media-heading"
+                                              style="color: steelblue; font-family: candara; font-weight: bold; font-size: 13px;">{{reply.UserDisplayName}}
+                                        </span>
+                                        <span
+                                            style="color: slategray; font-family: candara; font-weight: bold; font-size: 10px;">&nbsp;-{{reply.TimeSpan}}
+                                        </span>
+                                        
+                                        <button type="button" class="close pull-right" ng-click="deleteQuack(reply.Id)"
+                                                style="margin-left: 2px; margin-right: 5px; font-weight:bold;  font-size: 14px !important;" ng-show="reply.ShowDelete" aria-hidden="true">
+                                            x</button>
+                                        
+                                        <p style="font-family: arial; font-size: 12px; width: 500px">
+                                            <span highlight-tags callback-fn="onLinkClick" ng-model="reply.Message"></span>
+
+                                        </p>
+
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    <!-- End Conversations-------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+                        
+
+                        <!--REPLY BOX-- ng-show="quack.ShowConversation"-->
+                        <div class="media" style="height: 85px; margin-top: -12px; border: none; background: ghostwhite;" ng-show="quack.ShowConversation">
+                            <br />
+
+                            <a class="pull-left" href="" style="font-size: 9px; text-decoration: none;" data-toggle="modal" data-backdrop="false">
+                                <img id="Img1" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 48px; height: 48px; margin-left: 5px; box-shadow: 3px 3px 1px #888888;" />
+                            </a>
+                            <div class="media-body">
+                                <textarea id="{{'replyBox'+ quack.Id}}" class="span6" style="width: 525px; resize: none; font-family: arial; font-size: 12px;" placeholder="Reply..." rows="2" maxlength="300" ng-disabled="disableReplyAction" on-enter="saveReply(quack.Id, 'replyBox'+ quack.Id, quack.IsNew, quack.ConversationId)"> @{{quack.UserDisplayName}}:&nbsp;</textarea>
+
+                                <br />
+                            </div>
+                        </div>
+
+                    </div>
 
 
 
+                </div>
+
+            </div>
 
         </div>
-
-        
-
     </div>
-     <div class="container center">
-         <div class="well span8" style="background: white; margin-top: -30px; border-color: dimgray; border-left-width: 2px; border-right-width: 2px; border-bottom-width: 1px; border-top-color: white">
-
-             <div ng-repeat="quack in quacks">
-                 <div class="media well span7" style="margin-top: -35px; background: white; border: none;">
-                     <a class="pull-left" href="" ng-click="openProfilePageByGivenName(quack.UserDisplayName)">
-                         <img class="media-object" style="width: 48px; height: 48px; box-shadow: 1px 1px 1px 1px #888888;" ng-src="{{ quack.UserImage}}" />
-                     </a>
-                     <div class="media-body">
-                         <a class="media-heading" href="" ng-click="openProfilePageByGivenName(quack.UserDisplayName)"
-                            style="color: steelblue; font-family: candara; font-weight:bold; font-size:13px;  ">
-                             {{quack.UserDisplayName}}
-                         </a>
-                         <span
-                             style="color: slategray; font-family: candara; font-weight:bold; font-size:10px; ">&nbsp;- {{quack.TimeSpan}} 
-                         </span>
-                         <!-- <span ng-show="quack.IsNew"
-                                    style="color: red; font-size: 11px; font-weight: bold">&nbsp; Quack 
-                              </span>
-                             <span ng-show="!quack.IsNew"
-                                   style="color: orange; font-size: 11px; font-weight: bold">&nbsp;-Reply
-                             </span>-->
-
-                         <button type="button" class="close pull-right" ng-click="deleteQuack(quack.Id)" style="margin-left: 2px; font-size: 16px !important;" ng-show="quack.ShowDelete" aria-hidden="true">x</button>
-                         <a ng-show="quack.IsNew" style="color: green; font-size: 11px; text-decoration:none"  ng-click="setQuackId(quack.Id, quack.Likes)"  href="#quackUserLikes" data-toggle="modal" data-backdrop="false"  class="pull-right">({{quack.Likes}}) Likes | ({{quack.Replies}}) Replies</a>
-
-                         <p style="font-family: arial;  font-size:12px;">  
-                             
-                             <span highlight-tags callback-fn="onLinkClick" ng-model="quack.Message"></span>
-                            
-                             <span class="pull-right" style="margin-left: 3px;"><a href="" ng-click="expandClick(quack)" style="color: blue; font-size: 11px; text-decoration: none;">{{quack.ExpandOrCollapse}}</a> </span>
-                             <span ng-show="quack.IsNew" class="pull-right" style="margin-left: 3px;">|</span>
-                             <span ng-show="quack.IsNew" class="pull-right" style="margin-left: 3px;"><a href="" ng-click="likeOrUnlikeQuack(quack)" style="color: blue; font-size: 11px; text-decoration: none;">{{quack.LikeOrUnlike}}</a></span>
-                         </p>
-
-
-                         <br/><br/>
-                         <!--Conversations-->
-                         <div style="max-height: 210px; overflow: auto; margin-top:-45px; ">
-                             <div id="conversations" ng-show="quack.ShowConversation" ng-repeat="reply in quack.QuackReplies">
-                                 <hr style="margin: 0.1em auto;" />
-                                 <div class="media">
-
-
-
-                                     <a class="pull-left" href="">
-                                         <img class="media-object" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" ng-src="{{ reply.UserImage}}" />
-                                     </a>
-                                     <div class="media-body">
-                                         <span class="media-heading"
-                                               style="color: steelblue; font-family: candara; font-weight:bold; font-size:13px;">{{reply.UserDisplayName}}
-                                         </span>
-                                         <span
-                                             style="color: slategray; font-family: candara; font-weight:bold; font-size:10px;">&nbsp;-{{reply.TimeSpan}}
-                                         </span>
-                                         <span ng-show="reply.IsNew"
-                                               style="color: red; font-size: 11px; font-weight: bold">&nbsp;  <img  style="width:30px; height:30px;" src="../../Content/images/small.jpg" /> 
-                                         </span>
-
-                                         <button type="button" class="close pull-right" ng-click="deleteQuack(reply.Id)" style="margin-left: 2px; margin-right: 5px; font-size: 16px !important;" ng-show="quack.ShowDelete" aria-hidden="true">x</button>
-                                         <a ng-show="reply.IsNew" href="#quackUserLikes" ng-click="setQuackId(reply.Id, reply.Likes)" data-toggle="modal" data-backdrop="false" style="color: green; text-decoration: none; font-size: 11px;" class="pull-right">({{reply.Likes}}) Likes | ({{reply.Replies}}) Replies</a>
-
-                                         <p style="font-family: arial;  font-size:12px; width: 500px">
-                                             <span highlight-tags callback-fn="onLinkClick" ng-model="reply.Message"></span>
-                                             <span ng-show=" reply.isnew" class="pull-right"><a href="" ng-click="likeOrUnlikeQuack(reply)" style="color: blue; font-size: 11px; text-decoration: none;">{{reply.LikeOrUnlike}}</a></span>
-                                         </p>
-
-                                     </div>
-                                 </div>
-
-
-                                 <!--ReplyTextBox--->
-
-
-
-
-
-
-                             </div>
-                         </div>
-                        
-                         <div class="media" style="height: 90px; border: none; background: white;" ng-show="quack.ShowConversation">
-                              <br/>
-                          
-                             <a class="pull-left" href="" style="font-size: 9px; text-decoration: none;" data-toggle="modal" data-backdrop="false">
-                                 <img id="Img1" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" />
-                             </a>
-                             <div class="media-body">
-                                 <textarea id="{{'replyBox'+ quack.Id}}" class="span6" style="width: 500px; resize: none; font-family: arial;  font-size:12px;" placeholder="Reply..." rows="3" maxlength="200" ng-disabled="disableReplyAction" on-enter="saveReply(quack.Id, 'replyBox'+ quack.Id, quack.IsNew, quack.ConversationId)"> @{{quack.UserDisplayName}}:&nbsp;</textarea>
-                                 <p class="text-success" style="font-size: 10px; font-family: arial; margin-top: -12px;">{{maxCharacters - replyContent.length}} characters remaining...</p>
-                                 <br />
-                             </div>
-                         </div>
-
-                     </div>
-
-
-
-                 </div>
-             </div>
-         </div>
-         </div>
 
     <ng-include src="'JSApplication/Templates/changePhoto.html'"></ng-include>
     <ng-include src="'JSApplication/Templates/changeProfilePic.html'"></ng-include>
     <ng-include src="'JSApplication/Templates/quackUserLikes.html'"></ng-include>
     <ng-include src="'JSApplication/Templates/SearchWindow.html'"></ng-include>
     <ng-include src="'JSApplication/Templates/About.html'"></ng-include>
-    <ng-include src="'JSApplication/Templates/userInfo.html'"></ng-include> 
-    
-    <img src="../../Content/images/happenings.png" style="position:fixed; left:73%; top:13%;"/>
-    <img src="../../Content/images/roadShow.png" style="position:fixed; left:73%; top:20%;"/>
-    <img src="../../Content/images/potluck.png" style="position:fixed; left:73%; top:40%;"/>
-    <img src="../../Content/images/teamouting.png" style="position:fixed; left:72%; top:59%;"/>
+    <ng-include src="'JSApplication/Templates/userInfo.html'"></ng-include>
+
+    <img src="../../Content/images/happenings.png" style="position: fixed; left: 73%; top: 13%;" />
+
 </div>
 
 

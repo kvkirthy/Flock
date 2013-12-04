@@ -214,6 +214,7 @@
     <Content Include="Content\border-v.gif" />
     <Content Include="Content\flock.css" />
     <Content Include="Content\FlockApplication.css" />
+    <Content Include="Content\images\duck_moving.gif" />
     <Content Include="Content\images\GuestInfo.png" />
     <Content Include="Content\images\AboutPageLong.jpg" />
     <Content Include="Content\images\Black_texture.jpg" />
@@ -223,9 +224,12 @@
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\happenings.png" />
+    <Content Include="Content\images\like.png" />
+    <Content Include="Content\images\postImage.png" />
     <Content Include="Content\images\potluck.png" />
     <Content Include="Content\images\profilepic - Copy.png" />
     <Content Include="Content\images\profilepic.png" />
+    <Content Include="Content\images\replies.png" />
     <Content Include="Content\images\roadShow.png" />
     <Content Include="Content\images\small.jpg" />
     <Content Include="Content\images\teamouting.png" />

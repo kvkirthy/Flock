@@ -45,6 +45,11 @@ namespace Flock.Facade.Concrete
             quack.QuackContent.CreatedDate = DateTime.Now;
             _quackRepository.SaveQuack(quack);
 
+            if(quack.ConversationID!=0  )
+            {
+                _quackRepository.UpdateQuack(quack.ConversationID);
+            }
+
         }
 
         public void GetQuack(int id)
@@ -62,10 +67,10 @@ namespace Flock.Facade.Concrete
             var quacksInfo = (from quack in quacks let q = new QuackDto() select QuackMapper(quack, user.ID)).ToList();
 
 
-            foreach (var q in quacksInfo )
-             {
-                 q.Replies = quacksInfo.Count - 1;
-             }
+            foreach (var q in quacksInfo)
+            {
+                q.Replies = quacksInfo.Count - 1;
+            }
             return quacksInfo;
         }
 
@@ -114,9 +119,65 @@ namespace Flock.Facade.Concrete
                            IsNew = quack.QuackTypeID == 1 ? true : false,
                            UserNickName = quack.User.UserName.Replace("DS\\", ""),
                            ConversationId = quack.ConversationID,
-                           UserDisplayName = quack.User.FirstName + " "+quack.User.LastName
+                           UserDisplayName = quack.User.FirstName + " " + quack.User.LastName,
+                           LatestReply = GetRepliesInformation(quack.ID),
                        };
         }
+
+        private QuackDto GetRepliesInformation(int quackId)
+        {
+            var resultQuack = new QuackDto();
+
+            var commentInfo = "";
+            var quacks = _quackRepository.GetAllReplies(quackId);
+            if(quacks!= null && quacks.Any() )
+            {
+                var latestQuackIndex = quacks.Count() - 1;
+
+                resultQuack.UserDisplayName = quacks[latestQuackIndex].User.FirstName + " " + quacks[latestQuackIndex].User.LastName;
+                resultQuack.UserImage = quacks[latestQuackIndex].User.ProfileImage;
+                resultQuack.TimeSpan = GetTimeSpanInformation(quacks[latestQuackIndex].LastModifiedDate);
+                resultQuack.Id = quacks[latestQuackIndex].ID;
+                resultQuack.UserId = quacks[latestQuackIndex].UserID;
+                resultQuack.Message = quacks[latestQuackIndex].QuackContent.MessageText; 
+
+                switch (quacks.Count( ))
+                {
+                    case 1:
+                        commentInfo = "";
+                        break;
+                    case 2:
+                        commentInfo = quacks[0].User.FirstName + " also commented on this Quack...";
+                        break;
+                    case 3:
+                        commentInfo = quacks[0].User.FirstName + " and " + quacks[1].User.FirstName +
+                                      " also commented on this Quack...";
+                        break;
+                    case 4:
+                        commentInfo = quacks[0].User.FirstName + ", " + quacks[1].User.FirstName +" and "+quacks[2].User.FirstName+
+                                      " also commented on this Quack...";
+                        break;
+                    default:
+                        for(var i=0; i< quacks.Count(); i++  ){
+                            switch (i)
+                            {
+                                case 0:
+                                    commentInfo = commentInfo+ quacks[i].User.FirstName;
+                                    break;
+                                case 1:
+                                    commentInfo = commentInfo+", "+ quacks[i].User.FirstName;
+                                    break;
+                            }
+                        }
+                        commentInfo = commentInfo + " and " + (quacks.Count()-2) + " others also replied to this Quack...";
+                        break;
+                }
+                resultQuack.CommentsInfo = commentInfo;
+          
+            }
+            return resultQuack;
+        }
+
 
         private string GetTimeSpanInformation(DateTime? d)
         {
@@ -169,6 +230,8 @@ namespace Flock.Facade.Concrete
         {
             var quackLike = new QuackLike { QuackId = quackId, UserId = userId, Active = isLike };
             _quackLikeRepository.UpdateQuackLike(quackLike);
+
+            _quackRepository.UpdateQuack(quackId);
         }
 
 
@@ -177,7 +240,7 @@ namespace Flock.Facade.Concrete
         {
             var returnQuacks = new List<QuackDto>();
             var quacks = _quackRepository.GetQuacksByLastNameAndFirstName(lastName, firstName);
-            quacks.ToList().ForEach(q =>returnQuacks.Add(QuackMapper(q)));
+            quacks.ToList().ForEach(q => returnQuacks.Add(QuackMapper(q)));
             return returnQuacks;
         }
     }

@@ -79,7 +79,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="MessageText" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="MessageText" Type="nvarchar" Nullable="false" MaxLength="300" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="QuackImage" Type="varbinary(max)" />
         </EntityType>
@@ -368,7 +368,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="MessageText" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="MessageText" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Quacks" Relationship="FlockModel.FK_Quack_QuackContent" FromRole="QuackContent" ToRole="Quack" />
           <Property Type="Binary" Name="QuackImage" MaxLength="Max" FixedLength="false" />

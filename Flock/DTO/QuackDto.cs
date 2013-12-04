@@ -21,5 +21,7 @@ namespace Flock.DTO
         public string UserNickName { get; set; }
         public int ConversationId { get; set; }
         public string UserDisplayName { get; set; }
+        public QuackDto LatestReply { get; set; }
+        public string CommentsInfo { get; set; }
     }
 }

@@ -2,12 +2,11 @@
 'use strict';
 
 flockApp.controller('userPageController', function ($scope, $window, userService, quackService, sessionFactory) {
-
-   
+    
     $scope.displayName = "";
     $scope.showConversations = false;
     $scope.expandOrCollapse = "Expand";
-    $scope.maxCharacters = 200;
+    $scope.maxCharacters = 300;
     $scope.user = {};
     $scope.userPreferences = "User Preferences";
     $scope.userProfilePicUrl = "";
@@ -132,7 +131,8 @@ flockApp.controller('userPageController', function ($scope, $window, userService
     };
 
     $scope.refreshQuacks = function () {
-        if(!($scope.replyMode )){
+        if (!($scope.replyMode)) {
+        
             quackService.getAllQuacks().then(function(data) {
                 for (var i = 0; i < data.length; i++) {
                     if (!(data[i].UserImage) || data[i].UserImage == "") {
@@ -142,6 +142,28 @@ flockApp.controller('userPageController', function ($scope, $window, userService
                         data[i].UserImage = "data:image/jpeg;base64," + data[i].UserImage;
                     }
                     
+                    if (data[i].Replies != 0) {
+                        data[i].showLatestReply = true;
+                        if (!(data[i].LatestReply.UserImage) || data[i].LatestReply.UserImage == "") {
+                            data[i].LatestReply.UserImage = "/Content/images/profilepic.png";
+                        }
+                        else {
+                            data[i].LatestReply.UserImage = "data:image/jpeg;base64," + data[i].LatestReply.UserImage;
+                        }
+                        
+                        if ($scope.user.ID == data[i].LatestReply.UserId) {
+                            data[i].LatestReply.ShowDelete = true;
+                        } else {
+                            data[i].LatestReply.ShowDelete = false;
+                        }
+                    }
+                    else {
+                        data[i].showLatestReply = false;
+                    }
+                    
+                   
+                    
+                    
                     data[i].ShowConversation = false;
                     data[i].ExpandOrCollapse = "Expand";
                     if ($scope.user.ID == data[i].UserId) {
@@ -149,6 +171,10 @@ flockApp.controller('userPageController', function ($scope, $window, userService
                     } else {
                         data[i].ShowDelete = false;
                     }
+                    
+                    
+                    
+
                     for (var j = 0; j < data[i].QuackReplies.length ; j++) {
                         
                         if (!(data[i].QuackReplies[j].UserImage) || data[i].QuackReplies[j].UserImage=="") {
@@ -161,6 +187,7 @@ flockApp.controller('userPageController', function ($scope, $window, userService
                     }
                 }
                 $scope.quacks = data;
+                console.log('refreshing');
             });
         }
     };
@@ -168,9 +195,9 @@ flockApp.controller('userPageController', function ($scope, $window, userService
 
 
     setInterval(function () {
-        if(isValidUser)
+        if (isValidUser)
         $scope.refreshQuacks();
-    }, 30000);
+    }, 500000000);
 
     $scope.expandClick = function (quack) {
         
@@ -192,10 +219,11 @@ flockApp.controller('userPageController', function ($scope, $window, userService
                 $scope.quacks[i].ExpandOrCollapse = "Expand";
                 $scope.quacks[i].ShowConversation = false;
             }
+           
         }
         
-       if (!(quack.IsNew) && quack.ExpandOrCollapse == "Collapse") {
-           quackService.getQuackInformation(quack.ConversationId).then(function(data)
+       if (quack.ExpandOrCollapse == "Collapse") {
+           quackService.getQuackInformation(quack.Id).then(function(data)
            {
                for (var f = 0; f < data.length ; f++) {
                    if (!(data[f].UserImage) || data[f].UserImage == "") {
@@ -204,8 +232,17 @@ flockApp.controller('userPageController', function ($scope, $window, userService
                    else {
                        data[f].UserImage = "data:image/jpeg;base64," + data[f].UserImage;
                    }
+                   
+                   if ($scope.user.ID == data[f].UserId) {
+                       data[f].ShowDelete = true;
+                   } else {
+                       data[f].ShowDelete = false;
+                   }
+                   
+
                }
                quack.QuackReplies = data;
+             
            });
        }
 
