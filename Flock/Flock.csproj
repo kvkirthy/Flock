@@ -225,6 +225,7 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\happenings.png" />
     <Content Include="Content\images\like.png" />
+    <Content Include="Content\images\Penguins.jpg" />
     <Content Include="Content\images\postImage.png" />
     <Content Include="Content\images\potluck.png" />
     <Content Include="Content\images\profilepic - Copy.png" />
@@ -294,6 +295,7 @@
     <Content Include="Content\Untitled.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="JSApplication\Controllers\postImageQuackController.js" />
     <Content Include="JSApplication\Controllers\quackUserLikesController.js" />
     <Content Include="JSApplication\Controllers\uploadImageController.js" />
     <Content Include="JSApplication\Controllers\uploadProfileImageController.js" />
@@ -313,6 +315,7 @@
     <Content Include="JSApplication\Templates\changePhoto.html" />
     <Content Include="JSApplication\Templates\changeProfilePic.html" />
     <Content Include="JSApplication\Templates\Guest.html" />
+    <Content Include="JSApplication\Templates\postImageQuack.html" />
     <Content Include="JSApplication\Templates\quackUserLikes.html" />
     <Content Include="JSApplication\Templates\SearchWindow.html" />
     <Content Include="JSApplication\Templates\userInfo.html" />

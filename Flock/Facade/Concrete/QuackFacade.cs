@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using Flock.DTO;
@@ -18,14 +20,17 @@ namespace Flock.Facade.Concrete
         private readonly IUserRepository _userRepository;
         private readonly IQuackLikeRepository _quackLikeRepository;
         private readonly IUserFacade _userFacade;
+        private readonly IImageFacade _imageFacade;
 
-        public QuackFacade(IQuackRepository quackRepository, IQuackTypeRepository quackTypeRepository, IUserRepository userRepository, IQuackLikeRepository quackLikeRepository, IUserFacade userFacade)
+        public QuackFacade(IQuackRepository quackRepository, IQuackTypeRepository quackTypeRepository, IUserRepository userRepository, IQuackLikeRepository quackLikeRepository,
+            IUserFacade userFacade, IImageFacade imageFacade)
         {
             _quackRepository = quackRepository;
             _quackTypeRepository = quackTypeRepository;
             _userRepository = userRepository;
             _quackLikeRepository = quackLikeRepository;
             _userFacade = userFacade;
+            _imageFacade = imageFacade;
         }
 
 
@@ -42,10 +47,17 @@ namespace Flock.Facade.Concrete
             var user = _userRepository.GetUserById(quack.UserID);
             quack.User = user;
 
+            if (!String.IsNullOrEmpty(quack.QuackContent.ImageUrl))
+            {
+                var img = quack.QuackContent.ImageUrl;
+                var currentImage = img.Substring(img.IndexOf(',') + 1);
+                var data = Convert.FromBase64String(currentImage);
+                quack.QuackContent.Image = data;
+            }
             quack.QuackContent.CreatedDate = DateTime.Now;
             _quackRepository.SaveQuack(quack);
 
-            if(quack.ConversationID!=0  )
+            if (quack.ConversationID != 0)
             {
                 _quackRepository.UpdateQuack(quack.ConversationID);
             }
@@ -121,6 +133,7 @@ namespace Flock.Facade.Concrete
                            ConversationId = quack.ConversationID,
                            UserDisplayName = quack.User.FirstName + " " + quack.User.LastName,
                            LatestReply = GetRepliesInformation(quack.ID),
+                           QuackImage =quack.QuackContent.Image  
                        };
         }
 
@@ -130,7 +143,7 @@ namespace Flock.Facade.Concrete
 
             var commentInfo = "";
             var quacks = _quackRepository.GetAllReplies(quackId);
-            if(quacks!= null && quacks.Any() )
+            if (quacks != null && quacks.Any())
             {
                 var latestQuackIndex = quacks.Count() - 1;
 
@@ -139,9 +152,9 @@ namespace Flock.Facade.Concrete
                 resultQuack.TimeSpan = GetTimeSpanInformation(quacks[latestQuackIndex].LastModifiedDate);
                 resultQuack.Id = quacks[latestQuackIndex].ID;
                 resultQuack.UserId = quacks[latestQuackIndex].UserID;
-                resultQuack.Message = quacks[latestQuackIndex].QuackContent.MessageText; 
+                resultQuack.Message = quacks[latestQuackIndex].QuackContent.MessageText;
 
-                switch (quacks.Count( ))
+                switch (quacks.Count())
                 {
                     case 1:
                         commentInfo = "";
@@ -154,26 +167,27 @@ namespace Flock.Facade.Concrete
                                       " also commented on this Quack...";
                         break;
                     case 4:
-                        commentInfo = quacks[0].User.FirstName + ", " + quacks[1].User.FirstName +" and "+quacks[2].User.FirstName+
+                        commentInfo = quacks[0].User.FirstName + ", " + quacks[1].User.FirstName + " and " + quacks[2].User.FirstName +
                                       " also commented on this Quack...";
                         break;
                     default:
-                        for(var i=0; i< quacks.Count(); i++  ){
+                        for (var i = 0; i < quacks.Count(); i++)
+                        {
                             switch (i)
                             {
                                 case 0:
-                                    commentInfo = commentInfo+ quacks[i].User.FirstName;
+                                    commentInfo = commentInfo + quacks[i].User.FirstName;
                                     break;
                                 case 1:
-                                    commentInfo = commentInfo+", "+ quacks[i].User.FirstName;
+                                    commentInfo = commentInfo + ", " + quacks[i].User.FirstName;
                                     break;
                             }
                         }
-                        commentInfo = commentInfo + " and " + (quacks.Count()-2) + " others also replied to this Quack...";
+                        commentInfo = commentInfo + " and " + (quacks.Count() - 2) + " others also replied to this Quack...";
                         break;
                 }
                 resultQuack.CommentsInfo = commentInfo;
-          
+
             }
             return resultQuack;
         }

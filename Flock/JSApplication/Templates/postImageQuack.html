@@ -1,0 +1,57 @@
+﻿
+    <div id="postImageQuack" ng-controller="postImageQuackController" 
+         class="modal hide fade" style="margin-left: -33%; margin-top: -7px; height: 875px !important; width: 810px;" tabindex="-1"
+         role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        
+        <div class="modal-header">
+            <h4 id="myPictureModalLabel" style="text-decoration:underline; font-family:tahoma">Post a Quack with Image</h4>
+            <button id="closeQuackPictureModal" class="btn pull-right" style="margin-left:3px;" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button id="saveQuackPictureModal" class="btn btn-primary pull-right"  ng-click="saveImageQuack()" style="margin-left:3px;">Save</button>
+            <br/>
+            <br/>
+               <div style="height:40px; ">
+                       <label class="control-label alert-block alert-error"  
+                              ng-show="showQuackPictureModalErrorMessage">&nbsp;Enter quack content to post image</label>
+                   </div>
+            <br/>
+        </div>
+        <div>
+            <div>
+                <div class="media well span7" style="height: 75px; width: 700px !important; margin-top: -15px; border: none; background: white;">
+                    <span class="pull-left" style="font-size: 9px; text-decoration: none;">
+                        <a href="" ng-click="openProfilePageByGivenName(displayName)">
+                            <img id="userProfilePic" class="media-object" ng-src="{{userProfilePicUrl}}" style="width: 48px; height: 48px; box-shadow: 3px 3px 1px #888888;" />
+                        </a>
+                        <a href="#changeProfilePictureModel" data-toggle="modal" data-backdrop="false">Change Picture </a>
+                    </span>
+                    <div class="media-body">
+                        <textarea id="quackText" class="mainQuack boxsizingBorder" style="width: 625px !important;" placeholder="Your Quack..." rows="3" maxlength="300" ng-model="imageQuackMessageContent"
+                                  ng-disabled="disableQuackImageMessage"></textarea>
+                        <p class="text-success" style="font-size: 10px; font-family: arial; margin-top: -12px;">
+                            {{maxCharacters - messageContent.length}} characters remaining...
+                        </p>
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
+
+        <div style="height: 400px !important;">
+            <div style="margin-left: 35px; margin-right: 35px;">
+                <div>
+                    <div class="control-group">
+                        <!--<div>
+                            <label class="control-label text-info">&nbsp;Upload Picture - Size Min(64 X 64 px) Max(400 X 400 px)</label>
+                        </div>-->
+                        <img id="uplodedQuackPicture" ng-src="{{quackPicImageSource}}" style="border-color:black ; border-width:2px;"/>
+                        <div>
+                            <input type="file" name="file" id="UploadQuackPic"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+

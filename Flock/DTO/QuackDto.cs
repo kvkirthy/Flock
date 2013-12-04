@@ -23,5 +23,6 @@ namespace Flock.DTO
         public string UserDisplayName { get; set; }
         public QuackDto LatestReply { get; set; }
         public string CommentsInfo { get; set; }
+        public byte[] QuackImage { get; set; } 
     }
 }

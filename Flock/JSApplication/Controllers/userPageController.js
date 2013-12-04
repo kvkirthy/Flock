@@ -133,8 +133,20 @@ flockApp.controller('userPageController', function ($scope, $window, userService
     $scope.refreshQuacks = function () {
         if (!($scope.replyMode)) {
         
-            quackService.getAllQuacks().then(function(data) {
+            quackService.getAllQuacks().then(function (data) {
+                console.log(data);
+                
                 for (var i = 0; i < data.length; i++) {
+                    
+
+                    if (!(data[i].QuackImage) || data[i].QuackImage == "") {
+                        data[i].showQuackImage =false;
+                    }
+                    else {
+                        data[i].QuackImage = "data:image/jpeg;base64," + data[i].QuackImage;
+                        data[i].showQuackImage = true;
+                    }
+                    
                     if (!(data[i].UserImage) || data[i].UserImage == "") {
                         data[i].UserImage = "/Content/images/profilepic.png";
                     }

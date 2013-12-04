@@ -54,7 +54,7 @@
                             <p class="text-success" style="font-size: 10px; font-family: arial; margin-top: -12px;">
                                 {{maxCharacters - messageContent.length}} characters remaining...
                                 <!--TODO POST IMAGE-->
-                                <a href="" class="pull-right" ng-click="likeOrUnlikeQuack(quack)" style="color: blue; font-size: 11px; text-decoration: none; margin-left: 5px; margin-top: 3px; margin-right: 45px;">Post Image</a>
+                                <a href="#postImageQuack" data-toggle="modal" data-backdrop="false" class="pull-right"  style="color: blue; font-size: 11px; text-decoration: none; margin-left: 5px; margin-top: 3px; margin-right: 45px;">Post Image</a>
                                 <img class="pull-right" src="../../Content/images/postImage.png" />
                             </p>
                             <br />
@@ -106,7 +106,7 @@
                                 x</button>
 
                             <!--TODO: REPLIES, REPLY ACTION -->
-                            <a ng-show="quack.IsNew" href="" ng-click="expandClick(quack)"  style="color: green; font-size: 11px; text-decoration: none" class="pull-right">Replies </a>
+                            <a ng-show="quack.IsNew" href="" ng-click="expandClick(quack)" style="color: green; font-size: 11px; text-decoration: none" class="pull-right">Replies </a>
                             <a ng-show="quack.IsNew" style="color: green; font-size: 12px; font-weight: bold; text-decoration: none" class="pull-right">({{quack.Replies}})&nbsp;</a>
 
 
@@ -120,6 +120,13 @@
                             <p style="font-family: arial; font-size: 12px;">
                                 <span highlight-tags callback-fn="onLinkClick" ng-model="quack.Message"></span>
                             </p>
+                            
+                            <!--IMAGE POSTING-->
+                            <span ng-show="quack.showQuackImage">
+                                <img ng-src="{{ quack.QuackImage}}" />
+                                <br />
+                                <br />
+                            </span>
 
                             <!--TODO: REPLY ACTION -->
                             <span ng-show="true" style="margin-top: -10px;">
@@ -130,8 +137,9 @@
                             <span ng-show="true" class="pull-right" style="margin-left: 10px; margin-top: -10px;">
                                 <img src="../../Content/images/replies.png" />
                                 <!--<a href="" style="color: blue; font-size: 11px; text-decoration: none;">View all Replies</a>-->
-                                <a href="" ng-click="expandClick(quack)" style="color: blue; font-size: 11px; text-decoration: none;">{{quack.ExpandOrCollapse}}</a> </span>
+                                <a href="" ng-click="expandClick(quack)" style="color: blue; font-size: 11px; text-decoration: none;">{{quack.ExpandOrCollapse}}</a>
                             </span>
+
 
                             <span ng-show="true" class="pull-right" style="margin-left: 10px; margin-top: -10px;">
                                 <img src="../../Content/images/like.png" />
@@ -141,10 +149,14 @@
                             <br />
                             <!--End - MAIN QUACK--------------------------------------------------------------------------------------------------------------------------------------------------------------->
                         </div>
-                        
+
+
+
+
+
                         <!--Begin Latest Reply------------------------------------------------------------------------------------------------------------------------------------------>
-                        
-                        <div id="latestReply" ng-show="!quack.ShowConversation && quack.showLatestReply"  style="display: block; background: ghostwhite;">
+
+                        <div id="latestReply" ng-show="!quack.ShowConversation && quack.showLatestReply" style="display: block; background: ghostwhite;">
                             <hr style="margin: 0.1em auto;" />
                             <div class="media">
 
@@ -153,16 +165,16 @@
                                 </a>
                                 <div class="media-body">
                                     <span class="media-heading"
-                                          style="color: steelblue; font-family: candara; font-weight: bold; font-size: 13px;">{{quack.LatestReply.UserDisplayName}}
+                                        style="color: steelblue; font-family: candara; font-weight: bold; font-size: 13px;">{{quack.LatestReply.UserDisplayName}}
                                     </span>
                                     <span
                                         style="color: slategray; font-family: candara; font-weight: bold; font-size: 10px;">&nbsp;-{{quack.LatestReply.TimeSpan}}
                                     </span>
-                                    
+
                                     <button type="button" class="close pull-right" ng-click="deleteQuack(quack.LatestReply.Id)"
-                                            style="margin-left: 2px; margin-right: 5px; font-weight:bold;  font-size: 14px !important;" ng-show="quack.LatestReply.ShowDelete" aria-hidden="true">
+                                        style="margin-left: 2px; margin-right: 5px; font-weight: bold; font-size: 14px !important;" ng-show="quack.LatestReply.ShowDelete" aria-hidden="true">
                                         x</button>
-                                        
+
                                     <p style="font-family: arial; font-size: 12px; width: 500px">
                                         <span highlight-tags callback-fn="onLinkClick" ng-model="quack.LatestReply.Message"></span>
 
@@ -170,15 +182,15 @@
 
                                 </div>
                             </div>
-                            
-                                
+
+
                         </div>
                         <!-- End Latest Reply-------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
                         <!-- Begin Conversations--------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
-                        <div id="conv" style="max-height: 215px;  overflow:auto ;  background: ghostwhite;" ng-show="quack.ShowConversation">
+                        <div id="conv" style="max-height: 215px; overflow: auto; background: ghostwhite;" ng-show="quack.ShowConversation">
 
                             <div id="conversations" ng-show="quack.ShowConversation" ng-repeat="reply in quack.QuackReplies" style="display: block;">
                                 <hr style="margin: 0.1em auto;" />
@@ -189,16 +201,16 @@
                                     </a>
                                     <div class="media-body">
                                         <span class="media-heading"
-                                              style="color: steelblue; font-family: candara; font-weight: bold; font-size: 13px;">{{reply.UserDisplayName}}
+                                            style="color: steelblue; font-family: candara; font-weight: bold; font-size: 13px;">{{reply.UserDisplayName}}
                                         </span>
                                         <span
                                             style="color: slategray; font-family: candara; font-weight: bold; font-size: 10px;">&nbsp;-{{reply.TimeSpan}}
                                         </span>
-                                        
+
                                         <button type="button" class="close pull-right" ng-click="deleteQuack(reply.Id)"
-                                                style="margin-left: 2px; margin-right: 5px; font-weight:bold;  font-size: 14px !important;" ng-show="reply.ShowDelete" aria-hidden="true">
+                                            style="margin-left: 2px; margin-right: 5px; font-weight: bold; font-size: 14px !important;" ng-show="reply.ShowDelete" aria-hidden="true">
                                             x</button>
-                                        
+
                                         <p style="font-family: arial; font-size: 12px; width: 500px">
                                             <span highlight-tags callback-fn="onLinkClick" ng-model="reply.Message"></span>
 
@@ -206,13 +218,13 @@
 
                                     </div>
                                 </div>
-                                
-                                
+
+
                             </div>
                         </div>
-                    <!-- End Conversations-------------------------------------------------------------------------------------------------------------------------------------------------------->
+                        <!-- End Conversations-------------------------------------------------------------------------------------------------------------------------------------------------------->
 
-                        
+
 
                         <!--REPLY BOX-- ng-show="quack.ShowConversation"-->
                         <div class="media" style="height: 85px; margin-top: -12px; border: none; background: ghostwhite;" ng-show="quack.ShowConversation">
@@ -245,7 +257,7 @@
     <ng-include src="'JSApplication/Templates/SearchWindow.html'"></ng-include>
     <ng-include src="'JSApplication/Templates/About.html'"></ng-include>
     <ng-include src="'JSApplication/Templates/userInfo.html'"></ng-include>
-
+    <ng-include src="'JSApplication/Templates/postImageQuack.html'"></ng-include>
     <img src="../../Content/images/happenings.png" style="position: fixed; left: 73%; top: 13%;" />
 
 </div>
